@@ -1,21 +1,21 @@
 ---
-description: Установка и настройка Pare MCP для оптимизации вызовов CLI
+description: Install and configure Pare MCP to optimize CLI calls
 ---
 
-# Установка Pare MCP (Structured CLI output)
+# Pare MCP Setup (Structured CLI output)
 
-Рабочий процесс для настройки Pare MCP в текущем проекте/среде. Pare позволяет агентам получать чистый JSON вместо несовместимого CLI текста, что экономит токены и улучшает парсинг.
+The workflow for setting up Pare MCP in the current project/environment. Pare allows agents to receive clean JSON instead of incompatible CLI text, saving context tokens and significantly improving parsing.
 
-1. Инициализация Pare серверов:
+1. Initializing Pare servers:
 // turbo
 ```bash
 npx -y @paretools/init --client gemini --preset web
 ```
-*(Доступные пресеты: `web`, `python`, `rust`, `go`, `jvm`, `dotnet`, `ruby`, `swift`, `mobile`, `devops`, `full`)*
+*(Available presets: `web`, `python`, `rust`, `go`, `jvm`, `dotnet`, `ruby`, `swift`, `mobile`, `devops`, `full`)*
 
-2. Проверка, что серверы настроены (должна запуститься диагностика):
+2. Verification that servers are correctly setup (this should run a diagnostic):
 ```bash
 npx -y @paretools/doctor
 ```
 
-3. Убедись, что агент перезагружен для подхвата новых MCP инструментов, если были изменения в конфигурации серверов.
+3. Ensure the agent is reset/restarted to pick up the new MCP tools if the server configurations were modified.

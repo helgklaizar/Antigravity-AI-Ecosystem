@@ -2,44 +2,44 @@
 description: "Master Orchestrator: Automatically route a new feature request through the entire pipeline (CEO -> Eng -> Implement -> Judge)."
 ---
 
-# /master (Мастер-Оркестратор)
+# /master (Master Orchestrator)
 
 **Role:** Chief Orchestrator / Project Manager
-**Goal:** Взять любую абстрактную или конкретную задачу от пользователя и провести её по правильному маршруту разработки.
+**Goal:** Take any abstract or concrete user request and route it through the correct development track.
 
-## Маршруты (Треки):
-В зависимости от запроса пользователя, выбери один из двух сценариев (по умолчанию предлагай Fast Track для мелких фиксов):
+## Routes (Tracks):
+Depending on the user's request, choose one of two scenarios (default to Fast Track for minor fixes):
 
-- **FULL TRACK (`/feature`)** — для новых фичей, продуктов с нуля или объемных архитектурных изменений. (Stages 1 -> 2 -> 3 -> 4 -> 5 -> 6).
-- **FAST TRACK (`/fix`)** — для минорных правок, багфиксов или рефакторинга. (Сразу переходи к Stages 3 -> 4 -> 5 -> 6).
+- **FULL TRACK (`/feature`)** — For new features, zero-to-one products, or major architectural shifts. (Stages 1 -> 2 -> 3 -> 4 -> 5 -> 6).
+- **FAST TRACK (`/fix`)** — For minor tweaks, bug fixes, or refactoring. (Skip to Stages 3 -> 4 -> 5 -> 6 directly).
 
-Обязательно используй `view_file` перед запуском каждого этапа для чтения деталей.
+Always use the `view_file` tool before running each stage to read the specific instructions.
 
-### Stage 1: Бизнес-идея (CEO Mode) — *Только Full Track*
-1. Прочитай файл: `.gemini/antigravity/workflows/plan-ceo.md`
-2. Выполни инструкции (преврати идею пользователя в продукт).
-3. **Ожидание:** Спроси пользователя: "Утверждаем бизнес-идею? Переходим к архитектуре?"
+### Stage 1: Business Idea (CEO Mode) — *Full Track Only*
+1. Read the file: `.gemini/workflows/plan-ceo.md`
+2. Follow the instructions to turn the user's idea into a product vision.
+3. **Wait:** Ask the user: "Do we approve the business idea? Shall we move to the architecture stage?"
 
-### Stage 2: Технический план (Engineering Mode) — *Только Full Track*
-1. Прочитай файл `.gemini/antigravity/workflows/plan-eng.md`
-2. Выполни инструкции по проектированию архитектуры.
-3. Сохрани план в `docs/plans/[название]-plan.md`.
-4. **Ожидание:** Спроси пользователя: "План сохранен. Начинаем кодить (Stage 3)?"
+### Stage 2: Technical Plan (Engineering Mode) — *Full Track Only*
+1. Read the file: `.gemini/workflows/plan-eng.md`
+2. Follow the architecture design instructions.
+3. Save the plan to `docs/plans/[name]-plan.md`.
+4. **Wait:** Ask the user: "Plan saved. Shall we start coding (Stage 3)?"
 
-### Stage 3: Разработка (Implementation Mode) — *Оба трека*
-1. Прочитай файл `.gemini/antigravity/workflows/implement.md`
-2. Начни процесс разработки (Confidence check -> тесты -> код). Дожидайся завершения.
+### Stage 3: Development (Implementation Mode) — *Both Tracks*
+1. Read the file: `.gemini/workflows/implement.md`
+2. Start the development process (Confidence check -> tests -> code). Wait for completion.
 
-### Stage 4: Адаптивное QA (Smoke Test) — *Оба трека*
-1. **Если это Web UI / Frontend:** Прочитай файл `.gemini/antigravity/workflows/qa-smoke.md` и запусти браузер для проверки.
-2. **Если это API / Backend / CLI:** Прогони консольные скрипты, юнит-тесты или `curl` запросы. НЕ вызывай браузерный субагент для не-веб задач.
-3. Убедись, что багов не осталось.
+### Stage 4: Adaptive QA (Smoke Test) — *Both Tracks*
+1. **If Web UI / Frontend:** Read `.gemini/workflows/qa-smoke.md` and launch the browser subagent to verify.
+2. **If API / Backend / CLI:** Run terminal scripts, unit tests, or `curl` requests. DO NOT call the browser subagent for non-web tasks.
+3. Make sure no bugs remain.
 
-### Stage 5: Контроль качества (Audit Judge Mode) — *Оба трека*
-1. Прочитай файл `.gemini/antigravity/workflows/audit-judge.md`
-2. Оцени качество фичи, проверь на фатальные уязвимости (SQLi/Race Conditions) и запиши трейс в `.gemini/antigravity/brain/session_traces.md`.
+### Stage 5: Quality Control (Audit Judge Mode) — *Both Tracks*
+1. Read the file: `.gemini/workflows/audit-judge.md`
+2. Evaluate feature quality, check for fatal vulnerabilities (SQLi/Race Conditions), and write a trace in `.gemini/brain/session_traces.md`.
 
-### Stage 6: Сброс памяти / Сохранение стейта
-1. Прочитай файл `.gemini/antigravity/workflows/context-compress.md`
-2. Обнови кодовые статусы в корневом `GEMINI.md`.
-3. Спроси пользователя: "Обнуляем контекст (новый чат), или сохраняем стейт в памяти и продолжаем работу тут же?"
+### Stage 6: Memory Reset / State Save
+1. Read the file: `.gemini/workflows/context-compress.md`
+2. Update the codebase status in the root `GEMINI.md`.
+3. Ask the user: "Shall we clear the context (start a new chat) or save the state in memory and continue working here?"

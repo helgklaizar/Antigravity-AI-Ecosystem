@@ -9,7 +9,7 @@ description: "Compress the context window to prevent LLM bloat and hallucination
 ## Instructions:
 1. **Analyze Current Progress:** Review all tasks accomplished in this dialog so far.
 2. **Update GEMINI.md:** 
-   - Write the summary of changes to the "Что делали последним" section in the root `GEMINI.md`.
-   - Update the "Следующие задачи" section with the remaining tasks.
+   - Write the summary of changes to the "Last Modifications" section in the root `GEMINI.md`.
+   - Update the "Next Tasks" section with the remaining tasks.
    - Update any architectural changes or tech debt discovered.
-3. **Save State & Instruct User:** Tell the user: "Я обновил GEMINI.md. История диалога может стать слишком большой (context bloat). Пожалуйста, открой **новый чат**, чтобы избежать ошибок и галлюцинаций из-за переполнения контекста памяти."
+3. **Save State & Instruct User:** Tell the user: "I've updated GEMINI.md. The chat history might become too large (context bloat). Please open a **new chat** to avoid errors and hallucinations caused by context overflow."
