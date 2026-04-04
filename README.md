@@ -104,17 +104,19 @@ cp -R skills ~/.gemini/antigravity/
 Whenever you scaffold a new repository, your **very first action** should be initiating the `GEMINI.md` file in your root folder:
 
 ```bash
-cp ~/.gemini/templates/project-index.md ./GEMINI.md
+cp ~/.gemini/templates/gemini-index.md ./GEMINI.md
 ```
 *Fill in your tech stack, run commands, and architecture. The AI will read this file every time it opens the project.*
 
 ### Triggering Workflows
 Interact with your AI using specific slash-commands mapped to the files in `workflows/`:
 
-- **`/master`** — Bootstraps the full Orchestrator pipeline. The AI acts as your CEO (Idea validation), Engineer (Planning), Coder (Implementation), and QA Judge.
+- **`/new-project`** — Automates the instantiation of an extensible project scaffolding following strict architecture rules.
 - **`/feature-interview`** — The AI will ask you precise product-management questions to narrow down a vague idea into concrete requirements.
-- **`/deep-market-research`** — Triggers a parallel social-listening extraction across Reddit/Twitter/HN to validate PM hypotheses.
-- **`/ui-prototyping`** — Forces the AI to bypass raw HTML and generate production-ready Tailwind/React code with proper icons and structured data.
+- **`/ui-prototyping`** — Forces the AI to bypass raw HTML and generate production-ready React/Tailwind code with proper structured design.
+- **`/api-integrations`** — Triggers the framework's strict rules for building robust API endpoints and E2E tests.
+- **`/git-hooks-qa`** — Runs automated QA (linting, tests, build) in a loop until the code is fully functional and safe to ship.
+- **`/pentest-qa`** — Triggers security audit workflow and vulnerability scanning to harden your application.
 - **`/adversarial-review`** — Paste your technical/product plan, and the AI will try to destroy it by finding edge cases, security flaws, and architectural bottlenecks before you waste time building it.
 
 ---
