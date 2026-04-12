@@ -1,132 +1,35 @@
-<div align="center">
-  <h1>🚀 Google Antigravity IDE: Spec-Driven AI Framework</h1>
-  
-  <p>
-    <strong>An autonomous AI ecosystem designed specifically for Technical Product/Project Managers and Founders to automate end-to-end product creation.</strong>
-  </p>
+# Antigravity AI Ecosystem
 
-  <p>
-    <a href="https://github.com/helgklaizar/antigravity-ai-framework/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
-    <a href="#"><img alt="Status: Active" src="https://img.shields.io/badge/Status-Active-success.svg"></a>
-    <a href="#"><img alt="Platform: Google Antigravity" src="https://img.shields.io/badge/Platform-Antigravity%20%7C%20Claude%20Code-orange"></a>
-  </p>
-</div>
+Welcome to the **Antigravity AI Ecosystem**. This repository contains a tailored setup of skills, workflows, and templates explicitly adapted for the **Google Antigravity IDE**.
 
----
+> **Note:** This system is constructed specifically for the **local Antigravity application** environment. We do NOT support cloud instances or other generalized toolkits, as these workflows rely heavily on the precise capabilities and context parameters native strictly to the Antigravity IDE desktop environment.
 
-## 📢 Latest Release (v2.0 - Local Sync)
-- **Environment Agnosticism**: Replaced absolute local paths with universal relative paths (`~/.gemini/`) across rule sets and workflows for safe, seamless deployment by any user.
-- **Tauri MacOS Automation**: Introduced `tauri-ship.sh` inside `tools/` for automated MacOS App bundle building and DMG generation, integrated directly into agent behavior.
-- **Workflow Consolidation**: Deprecated redundant workflows (`context-compress.md`, `master.md`, `implement.md`, etc.) and refined the core toolkit with new dedicated workflows like `api-integrations.md` and `git-hooks-qa.md`.
-- **Global Rules Refinement**: Enhanced `agent-behavior.md` for safe SQLite data gathering, automatic external link tracking, and rigorous internal QA gate loops.
+## 🧩 Ecosystem Architecture
 
----
+This ecosystem scales your productivity within the Antigravity IDE through an integrated library of processes:
 
-## 📖 Project Vision & Target Audience
+### 1. Global Workflows (`/global_workflows`)
+A powerful, diverse set of markdown-based workflows acting as deterministic execution plans:
+- **Slash Commands:** Seamlessly execute by invoking `/[slash-command]`.
+- **Specialized Roles:** Dedicated workflows for Systems Architects, Frontend Engineers, Quant Analysts, Researchers, and DevOps.
+- **Autonomous Operations:** Supports fully automated pipelines like `/auto-test-loop`, `/deploy-desktop`, or `/feature-planning`.
 
-This framework was built with a clear purpose: **empowering Technical Product Managers (PMs) and Founders to build entire digital products autonomously**.
+### 2. Skills (`/skills`)
+Specialized technical guidelines detailing *how* to perform granular analysis or specific task types (e.g., Tech Analysis standardizing the evaluation of new repositories or tools).
 
-AI coding assistants (like Google Antigravity, Claude Code, or Cursor) often suffer from context bloat and unpredictable code generation. Left unchecked, agents act like hyperactive junior developers—eagerly writing 500 lines of broken code for features they barely understand, ignoring existing constraints or architecture.
+### 3. Templates (`/templates`)
+Foundational templates, such as `GEMINI.md`, providing persistent memory and project intelligence models to ensure that Antigravity maintains its situational awareness across complex project lifecycles.
 
-This framework solves that by enforcing **Spec-Driven Development**. It forces the IDE to behave like a strict **Tech Lead / Automated Engineering Team**. The system will literally refuse to write large chunks of code without a proper `micro-spec.md` and rigorously enforces project memory. 
+## 🚀 Setup & Integration
 
-### Key Philosophy
-1. **Architecture first, code second**: The agent halts abstract requests and forces a structured `/feature-interview` to gather business requirements before touching the codebase.
-2. **Project Memory (`GEMINI.md`)**: The AI reads a single source of truth in your project root to understand the stack, boundaries, and technical debt, saving context window resources.
-3. **No Bullshit Rule**: The AI is instructed to give ultra-short "yes/no" responses by default, act as your technical co-founder, and acknowledge errors instantly without hallucinating excuses.
+To inject this ecosystem into your Antigravity IDE:
 
----
+1. **Clone this repository**:
+   ```bash
+   git clone https://github.com/helgklaizar/Antigravity-AI-Ecosystem.git
+   ```
+2. **Transfer logic**: Copy the `global_workflows`, `skills`, and `templates` folders to your local config path (typically `~/.gemini/antigravity/`).
+3. **Restart Context**: Begin typing a slash `/` in your prompt window. You will see the exhaustive list of new, highly optimized workflows.
 
-## 📦 File Structure
-
-Below is the complete blueprint of the framework. You map these into your global AI configuration directory.
-
-```text
-.
-├── global_rules/               # Global IDE / Assistant instructions
-│   ├── GEMINI.md               # Core rules and the template for Project Memory
-│   └── agent-behavior.md       # Triggers that stop the AI from blindly coding
-├── templates/                  # Standardized markdown documents
-│   ├── gemini-index.md         # To record architectural boundaries and deployment links
-│   └── micro-spec.md           # To document features, Non-Goals, and Acceptance Criteria
-├── tools/                      # Executable scripts and utilities
-│   ├── ai-radar/               # SQLite-based intelligence data tracking
-│   └── tauri-ship.sh           # CI/CD script for automated Tauri MacOS builds
-├── workflows/                  # Custom multi-step agent routines
-│   ├── new-project.md          # Workflow to instantiate a new extensible project structure
-│   ├── api-integrations.md     # Architecture rules for strict and tested API development
-│   ├── adversarial-review.md   # "Devil's Advocate" technical code review mode
-│   ├── feature-interview.md    # Product requirement gathering mode
-│   ├── deep-market-research.md # Deep social listening & competitor analysis
-│   ├── ui-prototyping.md       # Programmable UI/Tailwind generation rules
-│   ├── git-hooks-qa.md         # Automated QA loops before reporting task completion
-│   ├── pentest-qa.md           # Instructions for performing security audits
-│   └── log-external-source.md  # Automated journaling of outside documentation
-└── skills/                     # 14+ specialized Google-ecosystem AI capabilities
-    ├── browser-agent/          # Automated UI verification Subagent
-    ├── deep-research/          # External documentation & context research
-    └── ... (and many more)
-```
-
----
-
-## 🚀 Installation & Setup
-
-To use this framework, you need to link or copy these rules into your IDE's global AI assistant brain.
-
-### 1. Clone the repository
-```bash
-git clone https://github.com/helgklaizar/antigravity-ai-framework.git
-cd antigravity-ai-framework
-```
-
-### 2. Apply to Google Antigravity (or similar standard helpers)
-If you are using **Google Antigravity IDE** or an assistant that reads global configuration from an isolated dotfolder (e.g., `~/.gemini/`):
-
-```bash
-# 1. Ensure your global AI directory exists
-mkdir -p ~/.gemini/
-
-# 2. Copy the entire structure into your root config
-cp -R global_rules/* ~/.gemini/
-cp -R templates ~/.gemini/
-cp -R workflows ~/.gemini/
-cp -R skills ~/.gemini/antigravity/
-```
-
-*Note: For **Claude Code** or **Cursor**, add the contents of `global_rules/` into your IDE's custom Prompt Ruleset window.*
-
----
-
-## 🛠 Usage Guide
-
-### Creating a New Project
-Whenever you scaffold a new repository, your **very first action** should be initiating the `GEMINI.md` file in your root folder:
-
-```bash
-cp ~/.gemini/templates/gemini-index.md ./GEMINI.md
-```
-*Fill in your tech stack, run commands, and architecture. The AI will read this file every time it opens the project.*
-
-### Triggering Workflows
-Interact with your AI using specific slash-commands mapped to the files in `workflows/`:
-
-- **`/new-project`** — Automates the instantiation of an extensible project scaffolding following strict architecture rules.
-- **`/feature-interview`** — The AI will ask you precise product-management questions to narrow down a vague idea into concrete requirements.
-- **`/ui-prototyping`** — Forces the AI to bypass raw HTML and generate production-ready React/Tailwind code with proper structured design.
-- **`/api-integrations`** — Triggers the framework's strict rules for building robust API endpoints and E2E tests.
-- **`/git-hooks-qa`** — Runs automated QA (linting, tests, build) in a loop until the code is fully functional and safe to ship.
-- **`/pentest-qa`** — Triggers security audit workflow and vulnerability scanning to harden your application.
-- **`/adversarial-review`** — Paste your technical/product plan, and the AI will try to destroy it by finding edge cases, security flaws, and architectural bottlenecks before you waste time building it.
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! If you have optimized prompts or new workflows (such as advanced PR reviews, deep-research flows, or specialized framework templates), feel free to open a Pull Request.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### 🛡️ Security
+This public release has been carefully sanitized. It contains no API keys, tokens, or environment secrets. Everything is completely safe for deployment to your local environment.
