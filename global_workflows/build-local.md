@@ -22,7 +22,7 @@ open http://localhost:PORT
 
 ### Для Desktop (Tauri / .app)
 4. **Очистка**: Удали старые артефакты сборки и кэши (например `.next`, `cargo clean`).
-5. **Сборка Frotend/Tauri**: Выполни `pnpm run build && pnpm run tauri build`.
+5. **Сборка Frotend/Tauri**: Выполни долгую сборку, обернув ее в `caffeinate -i`, чтобы macOS не уснула. Например: `caffeinate -i pnpm run tauri build`.
 6. **Подпись и перенос (macOS)**:
    - Если это релиз, перенеси `.app` в `/Applications` (избегание App Translocation).
    - Сними карантины: `xattr -cr /Applications/MyApp.app`.

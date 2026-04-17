@@ -1,6 +1,6 @@
 ---
 title: Road Start
-description: Workflow description
+description: Запуск и планирование дорожной карты развития проекта (Roadmap).
 ---
 
 0. **СИСТЕМНОЕ:** Выведи: `🔄 **Контекст:** [Агент: manager] | [Скилл: None] | [Воркфлоу: /road-start]`

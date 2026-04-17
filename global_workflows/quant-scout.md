@@ -1,6 +1,6 @@
 ---
 title: Quant Scout
-description: Workflow description
+description: Скаутинг и поиск перспективных квантовых стратегий и рыночных аномалий.
 ---
 
 # 📉 Quant Scout (Поиск алго/мат проектов и статей)
