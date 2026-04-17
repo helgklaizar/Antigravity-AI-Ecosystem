@@ -11,7 +11,7 @@ This ecosystem scales your productivity within the Antigravity IDE through an in
 ### 1. Global Workflows (`/global_workflows`)
 A powerful, diverse set of markdown-based workflows acting as deterministic execution plans for the global IDE:
 - **Slash Commands:** Seamlessly execute by invoking `/[slash-command]`.
-- **System Automation:** Supports fully automated pipelines like `/auto-test-loop`, `/deploy-desktop`, or `/feature-planning`.
+- **Agentic Orchestration:** Supports fully autonomous, multi-step pipelines like `/qa-orchestrator`, `/release-engine`, `/issue-triage`, or `/product-discovery`.
 
 ### 2. Project Agents (`/agents`)
 A dense selection of role-specific definitions meant for your local IDE workspace (`.gemini/agents/`). These grant specialized behaviors to the agent based on tasks:
