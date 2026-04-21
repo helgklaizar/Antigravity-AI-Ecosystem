@@ -1,66 +1,39 @@
-# 🌍 AI Ecosystem (The Ultimate Sync Assistant)
+# 🌍 AI Ecosystem
 
-> Your personal agent-driven assistant to keep your local AI environment updated, standardized, and aligned with the latest "AI fashion."
+> Your personal assistant that sets up, standardizes, and updates your AI environment (Cursor, Windsurf, Claude, Copilot, Antigravity) automatically.
 
-**AI Ecosystem** is not just a repository. It is an **ever-evolving Synchronization Service**. It ensures that your IDEs (Cursor, Windsurf, Claude, Copilot, Antigravity) are always configured with the most cutting-edge prompts, the latest directory structures, and the newest agent workflows available on the market.
-
-No manual setup. No standalone installers. Just talk to your AI.
+No manual installation required. You don't need to be an engineer to set this up — you just need to talk to your AI.
 
 ---
 
-## 🚀 How It Works (Agent-Driven Setup)
+## 🚀 How to Install (For Regular Users)
 
-We replaced traditional setup scripts with a pure Agentic workflow. Your AI configures itself.
+It takes 1 minute and works by having your AI configure itself.
 
 1. Open your AI IDE (Antigravity, Cursor, Claude, etc.).
-2. Tell the AI: *"Read `AI_ONBOARDING.md` from the AI-Ecosystem repo and bootstrap my system."*
-3. The AI conducts a quick onboarding interview in the chat (asking for your profession, stack, and project paths).
-4. The AI uses its terminal access to automatically deploy your environment:
+2. Copy and paste this exact prompt into the chat:
+   > *"Read `AI_ONBOARDING.md` from the `helgklaizar/AI-Ecosystem` repository and bootstrap my system."*
+3. The AI will ask you a few simple questions (like your profession) and automatically download all the necessary workflows, prompts, and rules directly into your computer.
 
-```text
-~/.ai-ecosystem/          ← Global Ecosystem (Source of Truth)
-├── agents/               ← Specialized AI Personas
-├── skills/               ← Framework-specific knowledge (React, Rust)
-├── templates/            ← Senior-level code standards (QA_RULES, PRD)
-└── workflows/            ← Standard operating procedures
-```
-
-It is fully idempotent (safe to run multiple times) and automatically maps native configs (`.cursorrules`, `CLAUDE.md`, `.windsurfrules`) to this single source of truth.
+That's it! Your AI is now fully equipped with senior-level skills and the latest industry standards.
 
 ---
 
-## ⚡ The `/update` Command (Sync Assistant)
+## ⚡ How to Update
 
-This repository is the central hub for cutting-edge AI configs.
-
-To keep your machine up-to-date:
-1. Type `/update` in any of your active AI projects.
-2. Your AI Assistant will automatically run `git pull` in your global `~/.ai-ecosystem/` folder.
-3. The AI will read the latest `AI_ONBOARDING.md` and safely inject new agents, rules (like `DESIGN.md`), or syntax optimizations into your current workspace.
+The AI industry moves fast. To get the newest agents and prompts:
+1. Type `/update` in your AI chat.
+2. Your AI will automatically sync with this repository and safely inject any new features into your workspace.
 
 ---
 
-## 📚 The Actionable Sources Index
+## 🧠 For Advanced Users & AI Agents
 
-Where do AI agents get their skills? 
+If you want to understand how the ecosystem works under the hood, or if you are an AI Agent looking for your databases, check out our internal documentation:
 
-We have compiled the **Ultimate AI Sources Index** in [`base/SOURCES.md`](./base/SOURCES.md). 
-
-This is an actionable database for your AI. If you ask your AI to do something it doesn't know how to do (e.g., "Connect to a PostgreSQL database" or "Give me a Next.js rule"), it will consult `SOURCES.md`, navigate to the top community repositories (like `awesome-mcp-servers` or `cursor.directory`), extract the exact code it needs, and install it into your local ecosystem.
-
----
-
-## 🏛️ Supported AI Tools (Native Routing)
-
-AI Ecosystem is totally agnostic. During setup, the AI creates the exact files your specific tool expects:
-
-| Tool | Config files generated |
-|---|---|
-| **Antigravity** | `GEMINI.md`, `.gemini/agents/`, `.ai/brain/` memory |
-| **Cursor** | `.cursorrules`, `.cursorignore`, `.cursor/rules/*.mdc` |
-| **Windsurf** | `.windsurfrules`, `.windsurfignore`, `.windsurf/rules/` |
-| **Claude / RooCode** | `CLAUDE.md`, `AGENTS.md` |
-| **GitHub Copilot** | `.github/copilot-instructions.md`, `.github/copilot-agents/` |
+- 📖 **[The Setup Script (`AI_ONBOARDING.md`)](AI_ONBOARDING.md)** — The exact instructions your AI follows during installation.
+- 🏗️ **[The Architecture (`base/STRUCTURE.md`)](base/STRUCTURE.md)** — How files are mapped to native IDE configs (`.cursorrules`, `CLAUDE.md`, etc.).
+- 📚 **[The Actionable Index (`base/SOURCES.md`)](base/SOURCES.md)** — The ultimate database of community skills (MCP servers, Prompts) that your AI can autonomously pull from.
 
 ---
 
