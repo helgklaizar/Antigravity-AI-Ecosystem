@@ -1,18 +1,16 @@
-# GEMINI.md: Project Context & Strategic Guidelines
+# Project Context
 
-## Project: [Project Name]
-- **Core Stack**: [e.g., MLX, React, Metal]
-- **Strategic Goal**: [e.g., Build the fastest local inference engine]
+## Project
+- **Name**: [project-name]
+- **Stack**: [e.g., Swift, React, Python, Rust]
+- **Goal**: [one sentence describing what this project does]
+- **Status**: [active / paused / done]
 
-## 🧠 Strategic Memory (Keep During Compact)
-- [Key architectural decisions and benchmark targets]
-- [Global AI tools/models currently in use for this project]
+## Architecture
+[Brief description of the main components and how they connect]
 
-## 🧭 Operational Principles (Internal Guidelines)
-*These are principles, not rigid laws. Deviate if justified by speed or quality.*
-- **Security**: Work with `.env` and secrets cautiously, but don't block access if needed for configuration.
-- **Workflow**: Prefer incremental commits and automated formatting, but skip if in "Fast Exploration" mode.
-- **Architecture**: Follow the project's folder convention, but feel free to suggest refactoring if it improves scalability.
+## Key Decisions
+- [decision]: [why]
 
-## 🏛 Layout & Structure
-- [High-level overview]
+## Important Notes
+[Anything the AI should always know about this project]

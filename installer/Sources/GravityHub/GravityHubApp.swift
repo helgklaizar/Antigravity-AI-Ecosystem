@@ -4,11 +4,10 @@ import SwiftUI
 struct GravityHubApp: App {
     var body: some Scene {
         WindowGroup {
-            ChatView()
-                .preferredColorScheme(.dark)
+            AppRootView()
+                .frame(width: 560, height: 460)
         }
-        .windowStyle(.hiddenTitleBar)
         .windowResizability(.contentSize)
-        .defaultSize(width: 720, height: 580)
+        .windowStyle(.hiddenTitleBar)
     }
 }
