@@ -47,11 +47,12 @@ Once approved, execute the following:
 2. **Download & Copy**: Copy the core files from this repository to the global directory (e.g., `base/STRUCTURE.md`, `templates/GEMINI.md`, and specific skills/workflows based on their profession).
 3. **Dependencies**: If the user approved package installation, run `brew install`, `npm i -g`, or `pip install` for missing core tools relevant to their profession.
 4. **Project Injection (Native Routing)**: For every project found in Stage 2, you MUST deploy the ecosystem rules into the **native folders** of the tools the user selected. Do NOT force a universal folder; use what the tool natively expects:
-   - **Antigravity**: Create `.gemini/agents/` (for rules) and `.gemini/brain/` (for local memory). Write `GEMINI.md`.
-   - **Cursor**: Create `.cursor/rules/` and copy the agents there as `.mdc` files. Write `.cursorrules`.
-   - **Claude**: Write `CLAUDE.md`.
-   - **Copilot**: Create `.github/copilot-agents/` and copy rules there. Write `.github/copilot-instructions.md`.
+   - **Antigravity**: Create `.gemini/agents/` (for rules) and `.ai/brain/` (for local memory). Write `GEMINI.md`.
+   - **Cursor**: Create `.cursor/rules/` and copy the agents there as `.mdc` files. You MUST add YAML frontmatter to the top of `.mdc` files (e.g., `globs`). Write `.cursorrules`.
+   - **Claude**: Write `CLAUDE.md` (use XML tags for structure if needed).
+   - **Copilot**: Create `.github/copilot-agents/` and copy rules there. Write `.github/copilot-instructions.md` using natural, conversational language.
    - **Windsurf**: Create `.windsurf/rules/` and copy rules as `.mdc`. Write `.windsurfrules`.
+   - **Universal Memory**: ALL of these native files MUST include a strict rule telling the AI to read/write its project memory logs in the `.ai/brain/` folder.
    - Ensure you do NOT overwrite existing project code. Only inject ecosystem rules natively.
 5. **Git Automation**: If the user approved Git setup:
    - Run `git init`, `git add .`, `git commit -m "chore: setup AI Ecosystem"` in each project.
