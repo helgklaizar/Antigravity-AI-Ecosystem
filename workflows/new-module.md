@@ -50,7 +50,7 @@ API-контракт (если type=api):
 
 ### 5. Реализовать модуль
 - Следовать паттернам из `<project>/GEMINI.md → ## Ключевые решения`.
-- Не нарушать constraints из `<project>/.gemini/rules/constraints.md`.
+- Не нарушать constraints из `<project>/.ai/rules/constraints.md`.
 
 ### 6. Обновить документацию
 - `docs/architecture.md` — добавить модуль в схему Mermaid.

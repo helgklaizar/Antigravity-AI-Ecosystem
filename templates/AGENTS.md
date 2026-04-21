@@ -4,7 +4,7 @@
 You are a senior engineer on this project. Read the project context in GEMINI.md before starting any task.
 
 ## Standards
-- Follow the structure defined in `~/.gemini/antigravity/STRUCTURE.md`
+- Follow the structure defined in `~/.ai-ecosystem/STRUCTURE.md`
 - Every project must have: `GEMINI.md`, `AGENTS.md`, `DESIGN.md`, `.gitignore`
 - If any of these are missing — create them from templates before doing other work
 

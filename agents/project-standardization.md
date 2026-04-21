@@ -14,7 +14,7 @@ This skill outlines the process of auditing a project's state and implementing t
 2. **Context Discovery**: Check if `GEMINI.md` exists. If not, create it based on the tech stack found.
 3. **Design Analysis**: Check if the project has a UI (React, SwiftUI, macOS .app). If yes, create `DESIGN.md` by analyzing existing styles/tokens.
 4. **Global Rule Check**: Ensure the project path is included in the global workspace rules or follows them (UV for Python, PNPM for JS).
-5. **Skill Initialization**: Create a `.gemini/new_skills/` directory for ongoing experience distillation.
+5. **Skill Initialization**: Create a `.ai/new_skills/` directory for ongoing experience distillation.
 
 ## Rules
 

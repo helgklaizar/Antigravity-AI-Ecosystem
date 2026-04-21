@@ -10,7 +10,7 @@
 ## 📁 Level 1 — User Level (`~/`)
 
 ```
-~/.gemini/
+~/.ai/
 └── antigravity/                  ← Antigravity (Gemini) config
     ├── settings.json             ← profile + selected AI tools
     ├── templates/
@@ -36,7 +36,7 @@
 
 ```
 <projects_root>/
-├── .gemini/
+├── .ai/
 │   └── agents/                   ← workspace-wide agents
 │       ├── architect.md
 │       ├── developer.md
@@ -61,7 +61,7 @@
 ├── .cursorrules                  ← if Cursor selected
 ├── DESIGN.md                     ← always (design tokens)
 ├── .gitignore                    ← always (per tech stack)
-├── .gemini/
+├── .ai/
 │   ├── agents/                   ← project-specific agents
 │   └── brain/                    ← local memory
 │       └── .system_generated/

@@ -17,8 +17,8 @@ You get the right agents, workflows, and skills for your profession. Nothing mor
 2. Ask the AI to read `AI_ONBOARDING.md`.
 3. The AI will conduct a quick onboarding interview in the chat.
 4. The AI uses its terminal access to automatically deploy your environment:
-   ├── ~/.gemini/            ← global AI config
-   ├── <projects>/.gemini/   ← workspace agents
+   ├── ~/.ai/            ← global AI config
+   ├── <projects>/.ai/   ← workspace agents
    └── Copied from this repo:
        ├── agents/           ← for your profession
        ├── workflows/        ← for your stack
@@ -70,10 +70,10 @@ AI-Ecosystem/
 
 Every project configured by AI Ecosystem follows a 3-level structure:
 
-**Level 1 — User** (`~/.gemini/antigravity/`)
+**Level 1 — User** (`~/.ai-ecosystem/`)
 Global config, templates, workflows, and skills shared across all your projects.
 
-**Level 2 — Workspace** (`<projects_root>/.gemini/`)
+**Level 2 — Workspace** (`<projects_root>/.ai/`)
 Workspace-wide agents available in every project in that folder.
 
 **Level 3 — Project** (`<project>/`)
@@ -89,7 +89,7 @@ AI Ecosystem is not tied to one tool. During setup you pick what you use:
 
 | Tool | Config files generated |
 |---|---|
-| **Antigravity / Gemini** | `GEMINI.md`, `AGENTS.md`, `.gemini/` hierarchy |
+| **Antigravity / Gemini** | `GEMINI.md`, `AGENTS.md`, `.ai/` hierarchy |
 | **Claude** | `CLAUDE.md`, `AGENTS.md`, `.claude/` hierarchy |
 | **Cursor** | `.cursorrules`, `.cursorignore`, `.cursor/rules/` hierarchy |
 | **GitHub Copilot** | `.github/copilot-instructions.md`, `.github/copilot-agents/` hierarchy |

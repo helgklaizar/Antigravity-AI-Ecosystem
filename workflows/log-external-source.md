@@ -21,7 +21,7 @@ description: Автоматическое логирование внешних 
 2. **Запиши в Базу Данных (AI Radar)**:
    Без спроса пользователя, сгенерируй JSON-строку и вызови локальный скрипт:
    ```bash
-   python ~/.gemini/tools/ai-radar/radar.py add '{"url": "...", "title": "...", "tags": "...", "category": "Repo", "usefulness": 8, "our_use_case": "Поможет с..."}'
+   python ~/.ai/tools/ai-radar/radar.py add '{"url": "...", "title": "...", "tags": "...", "category": "Repo", "usefulness": 8, "our_use_case": "Поможет с..."}'
    ```
    *(Используй метод `run_command` для выполнения этого баш-скрипта)*.
 

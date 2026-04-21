@@ -75,7 +75,7 @@ Skills work with 30+ AI coding agents:
 | [GitHub Copilot](https://github.com/features/copilot) | `.github/copilot/skills/` |
 | [Cline](https://cline.bot) | `.cline/skills/` |
 | [Windsurf](https://codeium.com/windsurf) | `.windsurf/skills/` |
-| [Gemini CLI](https://gemini.google.com) | `.gemini/skills/` |
+| [Gemini CLI](https://gemini.google.com) | `.ai/skills/` |
 | [Kilo](https://kilo.ai) | `.kilo/skills/` |
 
 And many more including: Amp, Antigravity, Augment, Droid, Goose, Kiro CLI, OpenCode, Roo, Trae, VSCode, and others.

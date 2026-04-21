@@ -15,7 +15,7 @@ Read this entire document before taking ANY action. Do not skip steps. Execute t
 **Background (Terminal):**
 While waiting for their answer, use your terminal tools to silently gather general system information:
 - Run `uname -a` (OS info)
-- Run `which git node python brew` (What tools are installed?)
+- Run `which git node python brew gh` (What tools are installed?)
 - Note the user's home directory path.
 
 ---
@@ -29,24 +29,30 @@ While waiting for their answer, use your terminal tools to silently gather gener
 
 **Background (Terminal):**
 1. Once the user provides the path to their projects, *automatically* use your terminal tools (`ls`, `find`) to scan the provided directory. 
-2. **Analysis**: Correlate the user's stated profession with the projects you found. Do they have a `MVP`/`PROD`/`WORK` structure? Do they already have `.gemini` folders or `.cursorrules`? 
+2. **Analysis**: Correlate the user's stated profession with the projects you found. Do they have a `MVP`/`PROD`/`WORK` structure? Do they already have `.ai` folders or `.cursorrules`? 
 3. If the folder is completely empty or missing, note that this will be a "setup from scratch" scenario.
 
 ---
 
-## STAGE 3: Base Setup & Rules Generation (Настройка базы)
+## STAGE 3: Base Setup & Dependencies (Настройка базы и пакетов)
 
 **Frontend (Chat):**
-1. Present a brief summary of your audit: "I found X projects. I see you are a [Profession]. Here is what I will deploy..."
-2. Wait for the user to say "Go" or "Start".
+1. Present a brief summary of your audit: "I found X projects. I see you are a [Profession]."
+2. Ask: "Should I check and install any missing base dependencies for your stack (like node, python, rust via brew/npm)? Also, do you want me to automatically initialize Git repositories and push them to GitHub?"
+3. Wait for the user's approval to start the deployment.
 
 **Background (Terminal):**
-1. **Global Setup**: Create `~/.gemini/antigravity/` and its subdirectories (`agents`, `workflows`, `skills`, `templates`, `knowledge`, `brain`).
+Once approved, execute the following:
+1. **Global Setup**: Create `~/.ai-ecosystem/` and its subdirectories (`agents`, `workflows`, `skills`, `templates`, `knowledge`, `brain`).
 2. **Download & Copy**: Copy the core files from this repository to the global directory (e.g., `base/STRUCTURE.md`, `templates/GEMINI.md`, and specific skills/workflows based on their profession).
-3. **Project Injection**: For every project found in Stage 2:
-   - Create `.gemini/agents/` and `.gemini/brain/` locally if using Antigravity.
-   - Write `.cursorrules`, `CLAUDE.md`, `.windsurfrules`, or `.github/copilot-instructions.md` depending on the tools they selected.
+3. **Dependencies**: If the user approved package installation, run `brew install`, `npm i -g`, or `pip install` for missing core tools relevant to their profession.
+4. **Project Injection**: For every project found in Stage 2:
+   - Create `.ai/agents/` and `.ai/brain/` locally.
+   - Write `.cursorrules`, `CLAUDE.md`, `.windsurfrules`, or `.github/copilot-instructions.md` depending on the tools they selected. These files MUST reference the `.ai/` local memory and `~/.ai-ecosystem/` global rules.
    - Ensure you do NOT overwrite existing project code. Only inject ecosystem rules.
-4. **Save State**: Write `~/.gemini/antigravity/settings.json` with the user's profile data.
+5. **Git Automation**: If the user approved Git setup:
+   - Run `git init`, `git add .`, `git commit -m "chore: setup AI Ecosystem"` in each project.
+   - If `gh` is installed, run `gh repo create` and push the initial commit.
+6. **Save State**: Write `~/.ai-ecosystem/settings.json` with the user's profile data.
 
 **Final Action**: Output a markdown summary of what was installed and announce that the ecosystem is fully configured.
