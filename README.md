@@ -1,27 +1,34 @@
 # 🌍 AI Ecosystem
 
-> Your personal assistant that sets up, standardizes, and updates your AI environment (Cursor, Windsurf, Claude, Copilot, Antigravity) automatically.
+> **Set up your perfect working environment just by talking to your AI.**
 
-No manual installation required. You don't need to be an engineer to set this up — you just need to talk to your AI.
+## 🎯 Who We Are & Why Use Us?
+
+You don't need to manually configure your IDE, search for the best prompts, or figure out how to structure your projects. 
+
+**Our core idea is simple:** You just talk to your AI. Your AI already understands what needs to be done. It will ask you a couple of questions about your profession and stack, and then it will automatically configure your entire environment for you.
+
+**Why should you use us?**
+Because the AI industry moves incredibly fast. By using AI Ecosystem, you are **always up-to-date**. We constantly sync with the most cutting-edge tools, the best agent skills, and a base project structure designed for maximum productivity. 
 
 ---
 
-## 🚀 How to Install (For Regular Users)
+## 🚀 How to Install
 
 It takes 1 minute and works by having your AI configure itself.
 
 1. Open your AI IDE (Antigravity, Cursor, Claude, etc.).
 2. Copy and paste this exact prompt into the chat:
    > *"Read `AI_ONBOARDING.md` from the `helgklaizar/AI-Ecosystem` repository and bootstrap my system."*
-3. The AI will ask you a few simple questions (like your profession) and automatically download all the necessary workflows, prompts, and rules directly into your computer.
+3. The AI will ask you a few simple questions and automatically download all the necessary workflows, prompts, and rules directly into your computer.
 
 That's it! Your AI is now fully equipped with senior-level skills and the latest industry standards.
 
 ---
 
-## ⚡ How to Update
+## ⚡ How to Stay Updated
 
-The AI industry moves fast. To get the newest agents and prompts:
+To get the newest agents and prompts as the industry evolves:
 1. Type `/update` in your AI chat.
 2. Your AI will automatically sync with this repository and safely inject any new features into your workspace.
 
@@ -33,7 +40,7 @@ If you want to understand how the ecosystem works under the hood, or if you are 
 
 - 📖 **[The Setup Script (`AI_ONBOARDING.md`)](AI_ONBOARDING.md)** — The exact instructions your AI follows during installation.
 - 🏗️ **[The Architecture (`base/STRUCTURE.md`)](base/STRUCTURE.md)** — How files are mapped to native IDE configs (`.cursorrules`, `CLAUDE.md`, etc.).
-- 📚 **[The Actionable Index (`base/SOURCES.md`)](base/SOURCES.md)** — The ultimate database of community skills (MCP servers, Prompts) that your AI can autonomously pull from.
+- 📚 **[The Actionable Index (`base/SOURCES.md`)](base/SOURCES.md)** — The database of our native skills + community tools (MCP servers, Prompts) that your AI can autonomously pull from.
 
 ---
 
