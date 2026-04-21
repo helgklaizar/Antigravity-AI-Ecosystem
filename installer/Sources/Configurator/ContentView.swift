@@ -117,6 +117,7 @@ struct OnboardingFormView: View {
     @State private var selectedTools: Set<AITool> = [.antigravity]
     @State private var projectsPath: String = "~/Documents/PROJECTS"
     @State private var step: Int = 0
+    @State private var showReport: Bool = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -197,34 +198,83 @@ struct OnboardingFormView: View {
 
     // MARK: Step 1 — Profession
 
+    @State private var professionCategory: ProfessionCategory? = nil
+
     var stepProfession: some View {
         VStack(spacing: 20) {
-            stepLabel("What do you do?", icon: "💼", index: 2)
-            LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 3), spacing: 10) {
-                ForEach(Profession.allCases, id: \.self) { p in
-                    let selected = selectedProfession == p
-                    Button { withAnimation { selectedProfession = p } } label: {
-                        VStack(spacing: 6) {
-                            Text(p.icon).font(.system(size: 22))
-                            Text(p.displayName)
-                                .font(.system(size: 12, weight: .medium))
-                                .foregroundColor(selected ? .white : .white.opacity(0.6))
-                                .multilineTextAlignment(.center)
+            if let category = professionCategory {
+                // Role Selection
+                VStack(spacing: 8) {
+                    HStack {
+                        Button { withAnimation { professionCategory = nil; selectedProfession = nil } } label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(Color.white.opacity(0.5))
+                                .font(.system(size: 16, weight: .bold))
+                                .padding(8)
                         }
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 14)
-                        .background(selected
-                            ? LinearGradient(colors: [Color(hex: "A855F7").opacity(0.3), Color(hex: "6366F1").opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
-                            : LinearGradient(colors: [Color.white.opacity(0.06), Color.white.opacity(0.06)], startPoint: .topLeading, endPoint: .bottomTrailing)
-                        )
-                        .cornerRadius(10)
-                        .overlay(RoundedRectangle(cornerRadius: 10)
-                            .stroke(selected ? Color(hex: "A855F7") : Color.clear, lineWidth: 1.5))
+                        .buttonStyle(.plain)
+                        Spacer()
                     }
-                    .buttonStyle(.plain)
+                    .padding(.horizontal, 32)
+                    .padding(.bottom, -10)
+                    
+                    stepLabel(category.rawValue, icon: category.icon, index: 2)
+                }
+
+                ScrollView {
+                    LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 3), spacing: 10) {
+                        ForEach(category.professions, id: \.self) { p in
+                            let selected = selectedProfession == p
+                            Button { withAnimation { selectedProfession = p } } label: {
+                                VStack(spacing: 6) {
+                                    Text(p.icon).font(.system(size: 22))
+                                    Text(p.displayName)
+                                        .font(.system(size: 12, weight: .medium))
+                                        .foregroundColor(selected ? .white : .white.opacity(0.6))
+                                        .multilineTextAlignment(.center)
+                                }
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 14)
+                                .background(selected
+                                    ? LinearGradient(colors: [Color(hex: "A855F7").opacity(0.3), Color(hex: "6366F1").opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                    : LinearGradient(colors: [Color.white.opacity(0.06), Color.white.opacity(0.06)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                )
+                                .cornerRadius(10)
+                                .overlay(RoundedRectangle(cornerRadius: 10)
+                                    .stroke(selected ? Color(hex: "A855F7") : Color.clear, lineWidth: 1.5))
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                    .padding(.horizontal, 32)
+                    .padding(.bottom, 10)
+                }
+            } else {
+                // Category Selection
+                stepLabel("Choose Category", icon: "🗂", index: 2)
+                ScrollView {
+                    LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2), spacing: 10) {
+                        ForEach(ProfessionCategory.allCases, id: \.self) { cat in
+                            Button { withAnimation { professionCategory = cat } } label: {
+                                VStack(spacing: 8) {
+                                    Text(cat.icon).font(.system(size: 26))
+                                    Text(cat.rawValue)
+                                        .font(.system(size: 13, weight: .medium))
+                                        .foregroundColor(.white)
+                                        .multilineTextAlignment(.center)
+                                }
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 20)
+                                .background(LinearGradient(colors: [Color.white.opacity(0.06), Color.white.opacity(0.06)], startPoint: .topLeading, endPoint: .bottomTrailing))
+                                .cornerRadius(10)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                    .padding(.horizontal, 32)
+                    .padding(.bottom, 10)
                 }
             }
-            .padding(.horizontal, 32)
         }
         .id("profession")
     }
@@ -294,7 +344,7 @@ struct OnboardingFormView: View {
 
                 // Summary
                 if let prof = selectedProfession {
-                    VStack(alignment: .leading, spacing: 6) {
+                    VStack(alignment: .leading, spacing: 10) {
                         Text("What will be installed:")
                             .font(.system(size: 11))
                             .foregroundColor(.white.opacity(0.4))
@@ -303,6 +353,17 @@ struct OnboardingFormView: View {
                             pill("\(selectedTools.count) AI tools")
                             pill(prof.displayName)
                         }
+                        
+                        Button(action: { showReport = true }) {
+                            HStack(spacing: 6) {
+                                Image(systemName: "doc.text.magnifyingglass")
+                                Text("View Full Report")
+                            }
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundColor(Color(hex: "A855F7"))
+                        }
+                        .buttonStyle(.plain)
+                        .padding(.top, 4)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top, 4)
@@ -311,6 +372,12 @@ struct OnboardingFormView: View {
             .padding(.horizontal, 32)
         }
         .id("path")
+        .sheet(isPresented: $showReport) {
+            if let prof = selectedProfession {
+                DeploymentReportView(profession: prof, tools: selectedTools, rootPath: projectsPath)
+                    .frame(width: 450, height: 500)
+            }
+        }
     }
 
     // MARK: - Helpers
@@ -461,17 +528,25 @@ struct DeployView: View {
 
         log("📦 Downloading files from GitHub...")
         for file in manifest {
-            let dest = file.destinationURL(profile: profile)
+            let dests = file.destinationURLs(profile: profile)
             let url = file.source.rawURL(for: file.sourcePath)
-            if !FileManager.default.fileExists(atPath: dest.path) {
-                let dir = dest.deletingLastPathComponent()
-                try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
-                if let data = try? await URLSession.shared.data(from: url).0 {
-                    try? data.write(to: dest)
-                    log("  ✅ \(file.destinationRelative)")
+            
+            var fileData: Data? = nil
+            for dest in dests {
+                if !FileManager.default.fileExists(atPath: dest.path) {
+                    let dir = dest.deletingLastPathComponent()
+                    try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+                    
+                    if fileData == nil {
+                        fileData = try? await URLSession.shared.data(from: url).0
+                    }
+                    if let data = fileData {
+                        try? data.write(to: dest)
+                        log("  ✅ \(dest.lastPathComponent)")
+                    }
+                } else {
+                    log("  ⏭ \(dest.lastPathComponent)")
                 }
-            } else {
-                log("  ⏭ \(file.destinationRelative)")
             }
             done += 1
             let p = done / total
@@ -552,6 +627,97 @@ struct DoneView: View {
                 .font(.system(size: 12))
                 .foregroundColor(.white.opacity(0.8))
                 .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+}
+
+// MARK: - Report View
+
+struct DeploymentReportView: View {
+    let profession: Profession
+    let tools: Set<AITool>
+    let rootPath: String
+    @Environment(\.dismiss) var dismiss
+
+    var profile: UserProfile {
+        UserProfile(name: "Temp", profession: profession, aiTools: Array(tools), projectsRootPath: rootPath, onboardingComplete: false)
+    }
+
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack {
+                Text("Installation Report")
+                    .font(.title2.bold())
+                    .foregroundColor(.white)
+                Spacer()
+                Button("Done") { dismiss() }
+                    .foregroundColor(Color(hex: "A855F7"))
+                    .buttonStyle(.plain)
+            }
+            .padding()
+            .background(Color(hex: "1E1A2E"))
+
+            ScrollView {
+                VStack(alignment: .leading, spacing: 24) {
+                    ReportSection(title: "Global Setup (~/.gemini/antigravity)", files: profession.setupManifest.filter { $0.level == .user }, profile: profile)
+                    ReportSection(title: "Workspace Setup (\(rootPath))", files: profession.setupManifest.filter { $0.level == .workspace }, profile: profile)
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("AI Tool Configs").font(.headline).foregroundColor(.white)
+                        ForEach(Array(tools).sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { tool in
+                            ForEach(tool.projectRootFiles, id: \.self) { file in
+                                Text("• \(file) (Generated for every new project)")
+                                    .font(.system(size: 12, design: .monospaced))
+                                    .foregroundColor(.gray)
+                            }
+                        }
+                    }
+                }
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+        .background(Color(hex: "0A0A0F"))
+    }
+}
+
+struct ReportSection: View {
+    let title: String
+    let files: [EcosystemFile]
+    let profile: UserProfile
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(title)
+                .font(.headline)
+                .foregroundColor(.white)
+            
+            if files.isEmpty {
+                Text("No files").foregroundColor(.gray).font(.subheadline)
+            } else {
+                ForEach(files, id: \.id) { file in
+                    ForEach(file.destinationURLs(profile: profile), id: \.self) { url in
+                        let pathStr = url.path
+                        let display: String
+                        if pathStr.contains(".gemini") {
+                            display = ".gemini/.../\(url.lastPathComponent)"
+                        } else if pathStr.contains(".cursor") {
+                            display = ".cursor/rules/\(url.lastPathComponent)"
+                        } else if pathStr.contains(".claude") {
+                            display = ".claude/.../\(url.lastPathComponent)"
+                        } else if pathStr.contains(".github") {
+                            display = ".github/copilot-agents/\(url.lastPathComponent)"
+                        } else if pathStr.contains(".windsurf") {
+                            display = ".windsurf/rules/\(url.lastPathComponent)"
+                        } else {
+                            display = url.lastPathComponent
+                        }
+                        Text("• \(display)")
+                            .font(.system(size: 12, design: .monospaced))
+                            .foregroundColor(.gray)
+                    }
+                }
+            }
         }
     }
 }

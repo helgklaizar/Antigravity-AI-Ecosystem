@@ -49,22 +49,50 @@ struct EcosystemFile: Identifiable {
     let level: DeployLevel
     let source: EcosystemSource
 
-    func destinationURL(profile: UserProfile, projectName: String? = nil) -> URL {
+    func destinationURLs(profile: UserProfile, projectName: String? = nil) -> [URL] {
         let home = FileManager.default.homeDirectoryForCurrentUser.path
         let projectsRoot = (profile.projectsRootPath as NSString).expandingTildeInPath
+        var urls: [URL] = []
 
-        let base: String
-        switch level {
-        case .user:
-            base = "\(home)/.gemini/antigravity"
-        case .workspace:
-            base = "\(projectsRoot)/.gemini"
-        case .project:
-            let name = projectName ?? "default"
-            base = "\(projectsRoot)/\(name)"
+        if level == .user {
+            let base = "\(home)/.gemini/antigravity"
+            urls.append(URL(fileURLWithPath: "\(base)/\(destinationRelative)"))
+            return urls
         }
 
-        return URL(fileURLWithPath: "\(base)/\(destinationRelative)")
+        let baseProjectDir: String
+        if level == .workspace {
+            baseProjectDir = projectsRoot
+        } else {
+            let name = projectName ?? "default"
+            baseProjectDir = "\(projectsRoot)/\(name)"
+        }
+
+        if profile.aiTools.contains(.antigravity) || profile.aiTools.isEmpty {
+            urls.append(URL(fileURLWithPath: "\(baseProjectDir)/.gemini/\(destinationRelative)"))
+        }
+
+        if profile.aiTools.contains(.cursor) {
+            let filename = (destinationRelative as NSString).lastPathComponent
+            let nameWithoutExt = (filename as NSString).deletingPathExtension
+            urls.append(URL(fileURLWithPath: "\(baseProjectDir)/.cursor/rules/\(nameWithoutExt).mdc"))
+        }
+
+        if profile.aiTools.contains(.claude) {
+            urls.append(URL(fileURLWithPath: "\(baseProjectDir)/.claude/\(destinationRelative)"))
+        }
+
+        if profile.aiTools.contains(.copilot) {
+            urls.append(URL(fileURLWithPath: "\(baseProjectDir)/.github/copilot-agents/\(destinationRelative)"))
+        }
+
+        if profile.aiTools.contains(.windsurf) {
+            let filename = (destinationRelative as NSString).lastPathComponent
+            let nameWithoutExt = (filename as NSString).deletingPathExtension
+            urls.append(URL(fileURLWithPath: "\(baseProjectDir)/.windsurf/rules/\(nameWithoutExt).mdc"))
+        }
+
+        return urls
     }
 }
 
@@ -202,6 +230,9 @@ extension Profession {
                               destinationRelative: "skills/backend/sandbox-orchestrator/SKILL.md",
                               level: .user, source: source),
             ]
+            
+        default:
+            return []
         }
     }
 }

@@ -6,6 +6,8 @@ enum AITool: String, CaseIterable, Codable, Identifiable {
     case antigravity = "antigravity"
     case claude = "claude"
     case cursor = "cursor"
+    case copilot = "copilot"
+    case windsurf = "windsurf"
 
     var id: String { rawValue }
 
@@ -13,7 +15,9 @@ enum AITool: String, CaseIterable, Codable, Identifiable {
         switch self {
         case .antigravity: return "Antigravity (Gemini)"
         case .claude: return "Claude"
-        case .cursor: return "Cursor / Codex"
+        case .cursor: return "Cursor"
+        case .copilot: return "GitHub Copilot"
+        case .windsurf: return "Windsurf"
         }
     }
 
@@ -22,6 +26,8 @@ enum AITool: String, CaseIterable, Codable, Identifiable {
         case .antigravity: return "🟣"
         case .claude: return "🟠"
         case .cursor: return "🔵"
+        case .copilot: return "🤖"
+        case .windsurf: return "🏄‍♂️"
         }
     }
 
@@ -31,6 +37,43 @@ enum AITool: String, CaseIterable, Codable, Identifiable {
         case .antigravity: return ["GEMINI.md", "AGENTS.md", "DESIGN.md"]
         case .claude:      return ["CLAUDE.md", "AGENTS.md", "DESIGN.md"]
         case .cursor:      return [".cursorrules", ".cursorignore", "DESIGN.md"]
+        case .copilot:     return [".github/copilot-instructions.md", "DESIGN.md"]
+        case .windsurf:    return [".windsurfrules", "DESIGN.md"]
+        }
+    }
+}
+
+// MARK: - Profession Category
+
+enum ProfessionCategory: String, CaseIterable, Identifiable {
+    case software = "Software Development"
+    case data = "Data & AI"
+    case securityQa = "Security & QA"
+    case creative = "Design & Creative"
+    case management = "Management & Biz"
+    case research = "Research & Academia"
+    
+    var id: String { rawValue }
+    
+    var icon: String {
+        switch self {
+        case .software: return "💻"
+        case .data: return "🧠"
+        case .securityQa: return "🛡️"
+        case .creative: return "🎨"
+        case .management: return "💼"
+        case .research: return "🔬"
+        }
+    }
+    
+    var professions: [Profession] {
+        switch self {
+        case .software: return [.frontendDev, .backendDev, .fullstackDev, .iosDevs, .androidDev, .gameDev, .devops]
+        case .data: return [.mlEngineer, .dataScientist]
+        case .securityQa: return [.securityEng, .qaEng]
+        case .creative: return [.designer]
+        case .management: return [.productMgr, .indieHacker]
+        case .research: return [.researcher]
         }
     }
 }
@@ -42,9 +85,17 @@ enum Profession: String, CaseIterable, Codable, Identifiable {
     case backendDev     = "backend"
     case fullstackDev   = "fullstack"
     case mlEngineer     = "ml_engineer"
+    case dataScientist  = "data_scientist"
     case iosDevs        = "ios_macos"
+    case androidDev     = "android"
+    case gameDev        = "gamedev"
     case devops         = "devops"
+    case securityEng    = "security"
+    case qaEng          = "qa"
     case designer       = "designer"
+    case productMgr     = "product_mgr"
+    case researcher     = "researcher"
+    case indieHacker    = "indie_hacker"
 
     var id: String { rawValue }
 
@@ -54,9 +105,17 @@ enum Profession: String, CaseIterable, Codable, Identifiable {
         case .backendDev:   return "Backend Developer"
         case .fullstackDev: return "Full-stack Developer"
         case .mlEngineer:   return "ML / AI Engineer"
+        case .dataScientist:return "Data Scientist / Analyst"
         case .iosDevs:      return "iOS / macOS Developer"
-        case .devops:       return "DevOps / Platform"
-        case .designer:     return "Designer"
+        case .androidDev:   return "Android Developer"
+        case .gameDev:      return "Game Developer"
+        case .devops:       return "DevOps / SRE"
+        case .securityEng:  return "Security Engineer"
+        case .qaEng:        return "QA / Test Engineer"
+        case .designer:     return "UI / UX Designer"
+        case .productMgr:   return "Product Manager"
+        case .researcher:   return "Researcher / Academic"
+        case .indieHacker:  return "Indie Hacker"
         }
     }
 
@@ -66,9 +125,17 @@ enum Profession: String, CaseIterable, Codable, Identifiable {
         case .backendDev:   return "⚙️"
         case .fullstackDev: return "🔄"
         case .mlEngineer:   return "🧠"
+        case .dataScientist:return "📊"
         case .iosDevs:      return "🍎"
+        case .androidDev:   return "🤖"
+        case .gameDev:      return "🎮"
         case .devops:       return "🛠"
+        case .securityEng:  return "🛡️"
+        case .qaEng:        return "🧪"
         case .designer:     return "✏️"
+        case .productMgr:   return "📋"
+        case .researcher:   return "🎓"
+        case .indieHacker:  return "🚀"
         }
     }
 
@@ -78,9 +145,17 @@ enum Profession: String, CaseIterable, Codable, Identifiable {
         case .backendDev:   return "Node.js / Python, PostgreSQL, Docker, REST/gRPC"
         case .fullstackDev: return "TypeScript, React, Node.js, PostgreSQL"
         case .mlEngineer:   return "Python, MLX, Metal, PyTorch, uv"
+        case .dataScientist:return "Python, Pandas, Jupyter, SQL"
         case .iosDevs:      return "Swift, SwiftUI, XCTest, SPM"
+        case .androidDev:   return "Kotlin, Compose, Android Studio"
+        case .gameDev:      return "C#, Unity / C++, Unreal"
         case .devops:       return "Docker, K8s, Terraform, GitHub Actions, Bash"
+        case .securityEng:  return "Python, Bash, Kali, Wireshark, OWASP"
+        case .qaEng:        return "Playwright, Selenium, XCTest, Jest"
         case .designer:     return "Figma, CSS, Design Systems, Tokens"
+        case .productMgr:   return "Jira, Notion, Linear, Figma"
+        case .researcher:   return "LaTeX, Python, R, Jupyter"
+        case .indieHacker:  return "Next.js, Supabase, Vercel, Stripe"
         }
     }
 
@@ -92,9 +167,17 @@ enum Profession: String, CaseIterable, Codable, Identifiable {
         case .backendDev:   return common + [.devops, .zeroDayDefender]
         case .fullstackDev: return common + [.devops, .uiSpecialist]
         case .mlEngineer:   return common + [.mlxSpecialist, .quantAnalyst]
+        case .dataScientist:return common + [.quantAnalyst]
         case .iosDevs:      return common + [.iosSpecialist, .zeroDayDefender]
+        case .androidDev:   return common + [.uiSpecialist, .zeroDayDefender]
+        case .gameDev:      return common + [.developer, .tester]
         case .devops:       return [.architect, .devops, .zeroDayDefender]
+        case .securityEng:  return [.architect, .tester, .zeroDayDefender]
+        case .qaEng:        return [.tester, .devops]
         case .designer:     return [.developer, .uiSpecialist]
+        case .productMgr:   return [.architect, .tester]
+        case .researcher:   return [.architect, .developer]
+        case .indieHacker:  return common + [.uiSpecialist, .devops]
         }
     }
 
@@ -105,15 +188,23 @@ enum Profession: String, CaseIterable, Codable, Identifiable {
         case .backendDev:   return ["new-project", "safe-prod-sync", "pentest-qa", "self-healing-loop"]
         case .fullstackDev: return ["new-project", "ui-prototyping", "safe-prod-sync", "qa-orchestrator"]
         case .mlEngineer:   return ["mac-port-factory", "quant-laboratory", "new-module", "research-master"]
+        case .dataScientist:return ["quant-laboratory", "research-master"]
         case .iosDevs:      return ["new-project", "release-engine", "qa-orchestrator", "crash-detect"]
+        case .androidDev:   return ["new-project", "release-engine", "qa-orchestrator", "crash-detect"]
+        case .gameDev:      return ["new-project", "crash-detect", "qa-orchestrator"]
         case .devops:       return ["release-engine", "self-healing-loop", "safe-prod-sync", "git-hooks-qa"]
+        case .securityEng:  return ["pentest-qa", "issue-triage"]
+        case .qaEng:        return ["qa-orchestrator", "pentest-qa", "git-hooks-qa"]
         case .designer:     return ["ui-prototyping", "ui-spec-to-code", "new-project"]
+        case .productMgr:   return ["research-master", "issue-triage"]
+        case .researcher:   return ["research-master", "llm-wiki-compiler"]
+        case .indieHacker:  return ["new-project", "release-engine", "ui-prototyping", "api-integrations"]
         }
     }
 
     var gitignoreContent: String {
         switch self {
-        case .frontendDev, .fullstackDev:
+        case .frontendDev, .fullstackDev, .indieHacker:
             return """
             node_modules/
             .next/
@@ -124,7 +215,7 @@ enum Profession: String, CaseIterable, Codable, Identifiable {
             .DS_Store
             *.log
             """
-        case .backendDev:
+        case .backendDev, .mlEngineer, .dataScientist, .securityEng, .researcher:
             return """
             __pycache__/
             .venv/
@@ -133,19 +224,9 @@ enum Profession: String, CaseIterable, Codable, Identifiable {
             *.log
             dist/
             .DS_Store
-            """
-        case .mlEngineer:
-            return """
-            __pycache__/
-            *.pyc
-            .venv/
-            .env
             *.metallib
             *.bin
-            build/
-            dist/
-            .DS_Store
-            *.log
+            *.csv
             """
         case .iosDevs:
             return """
@@ -154,6 +235,22 @@ enum Profession: String, CaseIterable, Codable, Identifiable {
             *.xcuserdata
             *.xcworkspace/xcuserdata/
             DerivedData/
+            .DS_Store
+            """
+        case .androidDev:
+            return """
+            .gradle/
+            build/
+            local.properties
+            .DS_Store
+            """
+        case .gameDev:
+            return """
+            Library/
+            Temp/
+            Obj/
+            Build/
+            Builds/
             .DS_Store
             """
         case .devops:
@@ -166,7 +263,7 @@ enum Profession: String, CaseIterable, Codable, Identifiable {
             .DS_Store
             *.log
             """
-        case .designer:
+        case .designer, .productMgr, .qaEng:
             return """
             node_modules/
             dist/

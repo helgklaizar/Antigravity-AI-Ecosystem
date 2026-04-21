@@ -93,8 +93,10 @@ AI Ecosystem is not tied to one tool. During setup you pick what you use:
 | Tool | Config files generated |
 |---|---|
 | **Antigravity / Gemini** | `GEMINI.md`, `AGENTS.md`, `.gemini/` hierarchy |
-| **Claude** | `CLAUDE.md`, `AGENTS.md` |
-| **Cursor / Codex** | `.cursorrules`, `.cursorignore` |
+| **Claude** | `CLAUDE.md`, `AGENTS.md`, `.claude/` hierarchy |
+| **Cursor** | `.cursorrules`, `.cursorignore`, `.cursor/rules/` hierarchy |
+| **GitHub Copilot** | `.github/copilot-instructions.md`, `.github/copilot-agents/` hierarchy |
+| **Windsurf** | `.windsurfrules`, `.windsurf/rules/` hierarchy |
 
 ---
 
