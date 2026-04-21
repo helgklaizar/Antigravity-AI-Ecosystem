@@ -1,10 +1,10 @@
-# AI Ecosystem
+# AI Ecosystem (Updater & Sync Assistant)
 
-> A profession-aware AI development environment setup system.
+> Your personal assistant to keep your local AI environment updated and aligned with the latest "AI fashion."
 
-**AI Ecosystem** is a methodology + toolkit that configures your local machine for AI-assisted development — automatically, based on your role and tech stack.
+**AI Ecosystem** is not just a one-time setup script. It is an **ever-evolving Synchronization Service**. It ensures that your Cursor, Claude, Antigravity, and Copilot are always configured with the most cutting-edge prompts, the latest directory structures, and the newest agent workflows available on the market.
 
-You get the right agents, workflows, and skills for your profession. Nothing more, nothing less.
+You get the right agents, workflows, and skills for your profession. And when the industry invents something new (like a better `.mdc` syntax for Cursor), your local assistant updates all your projects instantly.
 
 ---
 
@@ -123,9 +123,14 @@ Key external sources:
 
 ---
 
-## Updates
+## Updates & Sync
 
-This repository is the source of truth for all configs. To update your local installation, simply ask your AI agent to run `AI_ONBOARDING.md` again. It will safely merge any new templates or agents without destroying your local project code.
+This repository is the source of truth for all cutting-edge AI configs. 
+
+To keep your machine up-to-date with the latest AI fashion:
+1. Simply type `/update` in any of your active AI IDEs.
+2. Your AI Assistant will automatically run `git pull` in your global `~/.ai-ecosystem/` folder.
+3. The AI will read the latest `AI_ONBOARDING.md` and safely inject any new agents, rules (like `DESIGN.md`), or syntax optimizations into your current workspace.
 
 ---
 
