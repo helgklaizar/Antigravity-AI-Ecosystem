@@ -1,4 +1,4 @@
-# Design Tokens
+# Design Tokens & Standards
 
 ## Colors
 primary: "#A855F7"
@@ -33,3 +33,13 @@ sm: "6px"
 md: "10px"
 lg: "16px"
 full: "9999px"
+
+## Animations & UX
+- Use subtle spring animations for interactivity (hover, active states).
+- Keep transitions short (e.g., 150ms-200ms) to ensure snappy UX.
+- Avoid linear animations; prefer ease-out or spring curves.
+
+## Component Library
+- **Core UI**: [e.g., Radix UI, shadcn/ui, Custom Vanilla]
+- **Styling**: [e.g., TailwindCSS, Vanilla CSS, Styled Components]
+- **Icons**: [e.g., Lucide React, SF Symbols]
