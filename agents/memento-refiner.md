@@ -1,6 +1,6 @@
 ---
 name: memento-refiner
-description: Самообучающийся агент, анализирует прошлый опыт и оптимизирует системные навыки (System Skills).
+description: Self-learning agent, analyzes past experience and optimizes System Skills.
 model: sonnet
 ---
 

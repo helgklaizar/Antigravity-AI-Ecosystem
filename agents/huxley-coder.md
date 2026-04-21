@@ -1,6 +1,6 @@
 ---
 name: huxley-coder
-description: Кодинг-агент на базе паттерна Машины Гёделя. Формирует доказательства корректности логики до написания кода.
+description: Coding agent based on the Gödel Machine pattern. Forms correctness proofs before writing code.
 model: sonnet
 ---
 

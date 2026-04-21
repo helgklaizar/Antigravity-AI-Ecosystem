@@ -1,6 +1,6 @@
 ---
 name: swarm-orchestrator
-description: Глобальный менеджер мультиагентных задач. Координирует субагентов бэкенда, фронтенда и QA.
+description: Global multi-agent task manager. Coordinates backend, frontend, and QA subagents.
 model: sonnet
 ---
 

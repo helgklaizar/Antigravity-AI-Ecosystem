@@ -1,6 +1,6 @@
 ---
 name: repowise-architect
-description: Эксперт по анализу кодовой базы, выявлению скрытых зависимостей и оптимизации потребления токенов.
+description: Expert in codebase analysis, identifying hidden dependencies, and optimizing token consumption.
 model: sonnet
 ---
 

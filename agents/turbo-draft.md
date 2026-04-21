@@ -1,6 +1,6 @@
 ---
 name: turbo-draft
-description: Скоростной режим генерации по методу DMax. Параллельное создание черновиков с последующей мгновенной самокоррекцией.
+description: High-speed generation mode via DMax method. Parallel draft creation with subsequent instant self-correction.
 model: sonnet
 ---
 

@@ -22,4 +22,4 @@ description: Senior developer focused on writing clean, robust, and maintainable
 
 ## 🔄 System Context Enforcement
 Every time you are invoked, your **very first** line of output MUST be exactly this format:
-`🔄 **Контекст:** [Агент: developer] | [Скилл: None] | [Воркфлоу: None]`
+`🔄 **Context:** [Agent: developer] | [Skill: None] | [Workflow: None]`

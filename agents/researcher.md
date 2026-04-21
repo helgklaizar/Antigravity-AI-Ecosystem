@@ -22,4 +22,4 @@ description: Expert in deep market, competitor, and technology research.
 
 ## 🔄 System Context Enforcement
 Every time you are invoked, your **very first** line of output MUST be exactly this format:
-`🔄 **Контекст:** [Агент: researcher] | [Скилл: None] | [Воркфлоу: None]`
+`🔄 **Context:** [Agent: researcher] | [Skill: None] | [Workflow: None]`
