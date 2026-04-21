@@ -1,62 +1,79 @@
-# AI Ecosystem Sources & Registries
+# 🧭 AI Ecosystem Actionable Index
 
-This repository acts as the central hub (Ecosystem) for your AI development. When you need to expand your AI's capabilities, follow the hierarchy below to find the best tools, agents, and workflows.
-
----
-
-## 🟢 Level 0: Native Ecosystem (Start Here)
-**Agent Instruction:** Before searching the web or external repositories, always check the local ecosystem folders first.
-- **`~/.ai-ecosystem/agents/`**: Core personas (Architect, DevOps, UX-Animator).
-- **`~/.ai-ecosystem/workflows/`**: Established company workflows (Crash Detect, API integrations).
-- **`~/.ai-ecosystem/skills/`**: Curated, pre-approved skills.
-- **`~/.ai-ecosystem/templates/`**: Base project templates (GEMINI, AGENTS, DESIGN, PRD, SECURITY).
+**AGENT INSTRUCTION:** This is your primary database. If the user requests a new skill, agent, workflow, or capability that you do not currently possess, you MUST consult this list. Follow the extraction rules strictly.
 
 ---
 
-## 🔵 Level 1: Tool-Specific Rules & Databases
-If a specific framework rule (e.g., Next.js, Rust, SwiftUI) is missing locally, pull from the best community standards tailored to your current IDE:
+## 🟢 Level 0: Native Ecosystem (Always Check First)
 
-### Cursor
-- **[cursor.directory](https://cursor.directory/)**: The largest web directory of framework-specific `.cursorrules` and `.mdc` files.
-- **[PatrickJS/awesome-cursorrules](https://github.com/PatrickJS/awesome-cursorrules)**: Massive GitHub collection of curated rules.
-- **[tugkanboz/awesome-cursorrules](https://github.com/tugkanboz/awesome-cursorrules)**: High-quality, context-aware rule templates.
+Before looking at the internet, pull from our own verified local storage.
 
-### Windsurf
-- **[detailobsessed/awesome-windsurf](https://github.com/detailobsessed/awesome-windsurf)**: Curated repository for Windsurf IDE workflows and `.windsurfrules`.
-
-### Claude Code / Cline / RooCode
-- **[hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code)**: Focuses specifically on the Claude Code CLI ecosystem.
-- **[JhonMA82/awesome-clinerules](https://github.com/JhonMA82/awesome-clinerules)**: Rules optimized for Cline / RooCode AI agents.
-- **[webfuse-com/awesome-claude](https://github.com/webfuse-com/awesome-claude)**: Comprehensive directory of Claude workflows.
+### Antigravity Local Skills & Agents
+- **Link/Path:** `~/.ai-ecosystem/skills/` and `~/.ai-ecosystem/agents/`
+- **What it is:** Native workflows, agents, and skills curated specifically for this machine.
+- **What to take:** Read the `*.md` files.
+- **Where to put it:** 
+  - For Antigravity: Inject directly into the current project's `.gemini/agents/` folder.
+  - For other IDEs: Convert the markdown logic and inject into their respective native folders (e.g., `.cursor/rules/`).
 
 ---
 
-## 🟣 Level 2: Prompts & System Instructions
-When you need to adjust an agent's persona or find an expert-level prompt for a complex task:
-- **[langgptai/awesome-claude-prompts](https://github.com/langgptai/awesome-claude-prompts)**: Community-curated collections of prompt examples for coding, roleplaying, and expert tasks.
+## 🔵 Level 1: Tool-Specific Framework Rules
+
+If the user wants rules for a specific technology stack (e.g., Next.js, Rust, SwiftUI), pull them from these community directories.
+
+### Cursor Rules
+- **Link:** `https://cursor.directory/` or `https://github.com/PatrickJS/awesome-cursorrules`
+- **What it is:** The largest database of framework-specific rules.
+- **What to take:** Extract the raw Markdown (`.mdc` or `.cursorrules`) text for the requested framework.
+- **Where to put it:** Save it locally inside the project as `.cursor/rules/[framework].mdc`. *Do not forget to add YAML `globs` frontmatter if missing.*
+
+### Windsurf Rules
+- **Link:** `https://github.com/detailobsessed/awesome-windsurf`
+- **What it is:** Curated workflows for the Windsurf IDE.
+- **What to take:** The markdown rule definitions.
+- **Where to put it:** Save as `.windsurfrules` in the project root.
+
+### Claude Code / Cline
+- **Link:** `https://github.com/hesreallyhim/awesome-claude-code` or `https://github.com/JhonMA82/awesome-clinerules`
+- **What it is:** CLI-optimized agent rules.
+- **What to take:** XML or Markdown system prompt blocks.
+- **Where to put it:** Append to the project's `CLAUDE.md`.
 
 ---
 
-## 🟠 Level 3: Model Context Protocol (MCP) Servers
-MCP allows the AI IDE to directly connect to external databases, APIs, and tools. If you need a new capability (querying PostgreSQL, searching Google, reading Notion), install an MCP server:
-- **[modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)**: The official Anthropic/MCP repository (Postgres, Google Drive, Slack, GitHub, Puppeteer).
-- **[punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers)**: The largest community-curated list of MCP servers.
-- **[win4r/Awesome-Claude-MCP-Servers](https://github.com/win4r/Awesome-Claude-MCP-Servers)**: Frameworks and integration examples for MCP.
+## 🟠 Level 2: Model Context Protocol (MCP) Servers
+
+If the user needs to connect the IDE to external data (PostgreSQL, GitHub, Slack, Notion, Google Drive), you must install an MCP server.
+
+### Official Anthropic MCP
+- **Link:** `https://github.com/modelcontextprotocol/servers`
+- **What it is:** Official servers for major platforms (Brave Search, Postgres, Git).
+- **What to take:** The `npx` execution command or the Docker run command.
+- **Where to put it:** Inject the JSON configuration into the IDE's global MCP settings file (e.g., `claude_desktop_config.json` or Cursor's MCP GUI config).
+
+### Community MCP Registries
+- **Link:** `https://github.com/punkpeye/awesome-mcp-servers` or `https://github.com/win4r/Awesome-Claude-MCP-Servers`
+- **What it is:** Hundreds of community-built integrations.
+- **What to take:** The installation instructions for the specific server the user requested.
+- **Where to put it:** Follow the repository's setup guide (usually adding an entry to the global IDE config).
 
 ---
 
-## 🔴 Level 4: Skills & Framework Integrations
-To give the AI specific domain capabilities (like executing cloud deployments or building complex UI):
-- **Agent Frameworks:**
-  - **[VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents)**: Specialized sub-agents across DevOps, QA, Data/ML.
-  - **[huggingface/smolagents](https://github.com/huggingface/smolagents)**: HuggingFace's library for building minimalist, powerful agents.
-- **Vendor Skills:**
-  - **[angular/skills](https://github.com/angular/skills)**: Official Angular team skills.
-  - **[stripe/agent-toolkit](https://github.com/stripe/agent-toolkit)**: Official Stripe integration tools.
-  - **[vercel/vercel](https://github.com/vercel/vercel)**: Official Vercel CLI deployments.
-  - **[trycourier/courier-skills](https://github.com/trycourier/courier-skills)**: Notifications integration.
+## 🔴 Level 3: Global Repositories (For Complex AI Tasks)
 
----
+If you need entire new paradigms, sub-agents, or complex API integrations.
 
-> **Final Agent Instruction:** 
-> If the user asks for a capability you lack, use your terminal to clone, curl, or read from the repositories listed above to dynamically learn the skill and add it to the user's `~/.ai-ecosystem/` folder!
+### Agent Frameworks & Personas
+- **Link:** `https://github.com/VoltAgent/awesome-claude-code-subagents`
+- **What it is:** Specialized sub-agent personas (e.g., DevOps specialist, QA tester).
+- **What to take:** The prompt persona text.
+- **Where to put it:** Save as a new `.md` file in `~/.ai-ecosystem/agents/` so all projects can access it later.
+
+### Global AI Developer Tools (Awesome Lists)
+- **Links:** 
+  - `https://github.com/sourcegraph/awesome-code-ai`
+  - `https://github.com/ai-for-developers/awesome-ai-coding-tools`
+  - `https://github.com/langgptai/awesome-claude-prompts`
+- **What it is:** Massive indexes of everything related to AI coding.
+- **What to take:** If the user asks "Find me a tool that does X", scrape these READMEs, summarize the top 3 tools, and present them in chat. Do NOT inject files blindly.
