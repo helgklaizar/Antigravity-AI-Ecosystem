@@ -1,139 +1,68 @@
-# AI Ecosystem (Updater & Sync Assistant)
+# 🌍 AI Ecosystem (The Ultimate Sync Assistant)
 
-> Your personal assistant to keep your local AI environment updated and aligned with the latest "AI fashion."
+> Your personal agent-driven assistant to keep your local AI environment updated, standardized, and aligned with the latest "AI fashion."
 
-**AI Ecosystem** is not just a one-time setup script. It is an **ever-evolving Synchronization Service**. It ensures that your Cursor, Claude, Antigravity, and Copilot are always configured with the most cutting-edge prompts, the latest directory structures, and the newest agent workflows available on the market.
-
-You get the right agents, workflows, and skills for your profession. And when the industry invents something new (like a better `.mdc` syntax for Cursor), your local assistant updates all your projects instantly.
-
----
-
-## How It Works
-
-## How It Works
-
-```
-1. Give this repository link to your AI (Antigravity, Cursor, Claude).
-2. Ask the AI to read `AI_ONBOARDING.md`.
-3. The AI will conduct a quick onboarding interview in the chat.
-4. The AI uses its terminal access to automatically deploy your environment:
-   ├── ~/.ai/            ← global AI config
-   ├── <projects>/.ai/   ← workspace agents
-   └── Copied from this repo:
-       ├── agents/           ← for your profession
-       ├── workflows/        ← for your stack
-       └── skills/           ← specific skills you need
-```
+**AI Ecosystem** is not just a repository. It is an **ever-evolving Synchronization Service**. It ensures that your IDEs (Cursor, Windsurf, Claude, Copilot, Antigravity) are always configured with the most cutting-edge prompts, the latest directory structures, and the newest agent workflows available on the market.
 
 No manual setup. No standalone installers. Just talk to your AI.
 
 ---
 
-## What Gets Installed
+## 🚀 How It Works (Agent-Driven Setup)
 
-The setup is profession-specific. Examples:
+We replaced traditional setup scripts with a pure Agentic workflow. Your AI configures itself.
 
-| Profession | Agents | Workflows | Skills |
-|---|---|---|---|
-| **ML Engineer** | architect, quant-analyst, developer | mac-port-factory, quant-scout, quant-backtest | python-async, mlx-optimizer |
-| **Frontend Dev** | architect, developer, tester | new-project, crash-detect | react-components, ui-ux-animator, tauri-integrator |
-| **iOS / macOS Dev** | architect, developer, tester | build-local, new-project | macos-native-dev |
-| **Backend Dev** | architect, developer, devops, tester | safe-prod-sync, pentest-qa | python-async, rust-systems, sandbox-orchestrator |
-| **DevOps** | architect, devops, tester | safe-prod-sync, deploy-prod | sandbox-orchestrator |
-| **Designer** | architect, developer | new-project | ui-ux-animator, react-components |
+1. Open your AI IDE (Antigravity, Cursor, Claude, etc.).
+2. Tell the AI: *"Read `AI_ONBOARDING.md` from the AI-Ecosystem repo and bootstrap my system."*
+3. The AI conducts a quick onboarding interview in the chat (asking for your profession, stack, and project paths).
+4. The AI uses its terminal access to automatically deploy your environment:
 
-All professions also receive a base set: `huxley-coder`, `swarm-orchestrator`, `code-reviewer`, `debugger`, `new-project`, `github-publish`, `crash-detect`.
+```text
+~/.ai-ecosystem/          ← Global Ecosystem (Source of Truth)
+├── agents/               ← Specialized AI Personas
+├── skills/               ← Framework-specific knowledge (React, Rust)
+├── templates/            ← Senior-level code standards (QA_RULES, PRD)
+└── workflows/            ← Standard operating procedures
+```
 
----
-
-## Repository Structure
-
-AI-Ecosystem/
-├── AI_ONBOARDING.md      ← The Agent Setup Script (Start here!)
-├── base/
-│   ├── STRUCTURE.md      ← the standard: what files go where and why
-│   └── SOURCES.md        ← attribution for external skills/workflows
-│
-├── agents/               ← AI agent definitions (.md)
-├── workflows/            ← global workflow guides (.md)
-├── skills/               ← modular skill packs by category
-│   ├── frontend/
-│   ├── backend/
-│   ├── ml/
-│   ├── qa/
-│   └── tools/
-└── templates/            ← base templates (GEMINI.md, AGENTS.md, CLAUDE.md)
+It is fully idempotent (safe to run multiple times) and automatically maps native configs (`.cursorrules`, `CLAUDE.md`, `.windsurfrules`) to this single source of truth.
 
 ---
 
-## The Methodology
+## ⚡ The `/update` Command (Sync Assistant)
 
-Every project configured by AI Ecosystem follows a 3-level structure:
+This repository is the central hub for cutting-edge AI configs.
 
-**Level 1 — User** (`~/.ai-ecosystem/`)
-Global config, templates, workflows, and skills shared across all your projects.
-
-**Level 2 — Workspace** (`<projects_root>/.ai/`)
-Workspace-wide agents available in every project in that folder.
-
-**Level 3 — Project** (`<project>/`)
-Project-specific files: `GEMINI.md`, `AGENTS.md`, `CLAUDE.md`, `.cursorrules`, `DESIGN.md`, local memory (`brain/`), git.
-
-This structure is defined in [`STRUCTURE.md`](./base/STRUCTURE.md) and evolves with each version of the app.
+To keep your machine up-to-date:
+1. Type `/update` in any of your active AI projects.
+2. Your AI Assistant will automatically run `git pull` in your global `~/.ai-ecosystem/` folder.
+3. The AI will read the latest `AI_ONBOARDING.md` and safely inject new agents, rules (like `DESIGN.md`), or syntax optimizations into your current workspace.
 
 ---
 
-## Supported AI Tools
+## 📚 The Actionable Sources Index
 
-AI Ecosystem is not tied to one tool. During setup you pick what you use:
+Where do AI agents get their skills? 
+
+We have compiled the **Ultimate AI Sources Index** in [`base/SOURCES.md`](./base/SOURCES.md). 
+
+This is an actionable database for your AI. If you ask your AI to do something it doesn't know how to do (e.g., "Connect to a PostgreSQL database" or "Give me a Next.js rule"), it will consult `SOURCES.md`, navigate to the top community repositories (like `awesome-mcp-servers` or `cursor.directory`), extract the exact code it needs, and install it into your local ecosystem.
+
+---
+
+## 🏛️ Supported AI Tools (Native Routing)
+
+AI Ecosystem is totally agnostic. During setup, the AI creates the exact files your specific tool expects:
 
 | Tool | Config files generated |
 |---|---|
-| **Antigravity / Gemini** | `GEMINI.md`, `AGENTS.md`, `.ai/` hierarchy |
-| **Claude** | `CLAUDE.md`, `AGENTS.md`, `.claude/` hierarchy |
-| **Cursor** | `.cursorrules`, `.cursorignore`, `.cursor/rules/` hierarchy |
-| **GitHub Copilot** | `.github/copilot-instructions.md`, `.github/copilot-agents/` hierarchy |
-| **Windsurf** | `.windsurfrules`, `.windsurf/rules/` hierarchy |
+| **Antigravity** | `GEMINI.md`, `.gemini/agents/`, `.ai/brain/` memory |
+| **Cursor** | `.cursorrules`, `.cursorignore`, `.cursor/rules/*.mdc` |
+| **Windsurf** | `.windsurfrules`, `.windsurfignore`, `.windsurf/rules/` |
+| **Claude / RooCode** | `CLAUDE.md`, `AGENTS.md` |
+| **GitHub Copilot** | `.github/copilot-instructions.md`, `.github/copilot-agents/` |
 
 ---
 
-## Agent-Driven Setup (Eat Your Own Dogfood)
-
-We replaced the standalone macOS installer with a pure Agentic workflow. 
-Why download a standalone app when an AI can just read a file and configure your system itself?
-
-**How to start:**
-1. Open Antigravity (or your preferred AI agent).
-2. Say: *"Read `AI_ONBOARDING.md` from the AI-Ecosystem repo and bootstrap my system."*
-3. The AI will ask where your projects are, scan the directory, and then ask you about your profession and stack.
-4. The AI will automatically run the bash commands needed to deploy the ecosystem across your machines.
-
-It is fully idempotent (safe to run multiple times) and automatically maps your tools (Cursor, Claude, Copilot) to the single source of truth.
-
-## Skill Sources
-
-Skills come from multiple curated sources. See [`SOURCES.md`](./base/SOURCES.md) for full attribution.
-
-Key external sources:
-- [angular/skills](https://github.com/angular/skills) — Angular Team
-- [stripe/agent-toolkit](https://github.com/stripe/agent-toolkit) — Stripe Team  
-- [vercel/vercel](https://github.com/vercel/vercel) — Vercel Team
-- [trycourier/courier-skills](https://github.com/trycourier/courier-skills) — Courier Team
-- [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) — community index
-
----
-
-## Updates & Sync
-
-This repository is the source of truth for all cutting-edge AI configs. 
-
-To keep your machine up-to-date with the latest AI fashion:
-1. Simply type `/update` in any of your active AI IDEs.
-2. Your AI Assistant will automatically run `git pull` in your global `~/.ai-ecosystem/` folder.
-3. The AI will read the latest `AI_ONBOARDING.md` and safely inject any new agents, rules (like `DESIGN.md`), or syntax optimizations into your current workspace.
-
----
-
-## License
-
+## 📄 License
 MIT
