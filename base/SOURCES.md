@@ -15,8 +15,8 @@
 - **[TheRealSeanDonahoe/agents-md](https://github.com/TheRealSeanDonahoe/agents-md)**:
   - *Что взяли*: Концепцию **Compound Memory** (Секция 11: Project Learnings).
   - *Как адаптировали*: Вместо использования файла `AGENTS.md`, мы интегрировали этот паттерн напрямую в наш фирменный стандарт `GEMINI.md`. Теперь ИИ накапливает проектный опыт без создания конфликтующих файлов.
-- **[Piebald-AI/claude-code-system-prompts](https://github.com/Piebald-AI/claude-code-system-prompts)**:
-  - *Что взяли*: Лучшие системные промпты от инженеров Anthropic.
+- **[Piebald-AI/system-prompts](https://github.com/Piebald-AI/claude-code-system-prompts)**:
+  - *Что взяли*: Лучшие системные промпты от инженеров AI лабораторий.
   - *Как адаптировали*: Вытащили оттуда роли `Verification Specialist`, `Explore Agent` и `Plan Mode`, переписали их под наши стандарты и разместили в папках `skills/` и `global_workflows/`.
 - **[openai/symphony] & [automazeio/ccpm]**:
   - *Что взяли*: Изоляцию ИИ-агентов.
@@ -32,16 +32,13 @@
 
 ### MCP Servers (Model Context Protocol)
 - **🔗 [punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers)** (85k+ Stars)
-- **🔗 [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)** (Official Anthropic servers)
-- **🔗 [ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills)** (55k+ Stars)
+- **🔗 [ComposioHQ/awesome-ai-skills](https://github.com/ComposioHQ/awesome-ai-skills)**
 - **🎯 What to take:** `npx` or Docker installation commands.
-- **📥 Where to put it:** Add to the global `claude_desktop_config.json` or Cursor MCP settings.
+- **📥 Where to put it:** Add to the global Antigravity IDE MCP settings.
 
 ### Antigravity & Local Skills
 - **🔗 [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills)** (34k+ Stars)
-- **🔗 [anthropics/skills](https://github.com/anthropics/skills)** — Official Anthropic repository for Agent Skills. High-signal, official prompts.
 - **🔗 [mgechev/skills-best-practices](https://github.com/mgechev/skills-best-practices)** — Best practices for writing professional-grade skills and maintaining lean contexts.
-- **🔗 [Piebald-AI/claude-code-system-prompts](https://github.com/Piebald-AI/claude-code-system-prompts)** — All 40+ original system prompts from Claude Code (Plan, Explore, Task).
 - **🎯 What to take:** Markdown files (`*.md`) from the `/skills/` folder.
 - **📥 Where to put it:** Save locally in `~/.gemini/antigravity/skills/`.
 
@@ -51,7 +48,6 @@
 *If the user asks to add a QA tester, DevOps engineer, or other specialized AI colleague.*
 
 ### Sub-Agents & Personas
-- **🔗 [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents)** (17k+ Stars)
 - **🔗 [huggingface/smolagents](https://github.com/huggingface/smolagents)**
 - **🎯 What to take:** System prompt text (agent persona).
 - **📥 Where to put it:** Create a new `.md` file in `~/.gemini/antigravity/agents/`.
@@ -61,18 +57,9 @@
 ## 🔄 3. Workflows and Rules (Where to get Workflows & Rules)
 *If the user needs coding standards for React, Rust, Python, Next.js, or general pipelines.*
 
-### Cursor & Windsurf Rules
-- **🔗 [cursor.directory](https://cursor.directory/)**
-- **🔗 [PatrickJS/awesome-cursorrules](https://github.com/PatrickJS/awesome-cursorrules)** (39k+ Stars)
-- **🔗 [detailobsessed/awesome-windsurf](https://github.com/detailobsessed/awesome-windsurf)**
-- **🎯 What to take:** Raw Markdown text (`.mdc` or `.cursorrules`).
-- **📥 Where to put it:** Save to `.cursor/rules/[name].mdc` (do not forget the YAML `globs` header) or to `.windsurfrules`.
-
-### Claude & Cline Rules
-- **🔗 [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code)** (40k+ Stars)
-- **🔗 [JhonMA82/awesome-clinerules](https://github.com/JhonMA82/awesome-clinerules)**
-- **🎯 What to take:** XML blocks or Markdown rules.
-- **📥 Where to put it:** Append to the `CLAUDE.md` file in the project root.
+### IDE Rules & Snippets
+- **🎯 What to take:** Raw Markdown text.
+- **📥 Where to put it:** Append to the `GEMINI.md` file in the project root.
 
 ---
 
@@ -81,7 +68,6 @@
 
 ### Global Prompt Libraries
 - **🔗 [f/prompts.chat](https://github.com/f/prompts.chat)** (160k+ Stars)
-- **🔗 [langgptai/awesome-claude-prompts](https://github.com/langgptai/awesome-claude-prompts)**
 - **🎯 What to take:** Role model text (e.g., "Act as a Linux Terminal").
 - **📥 Where to put it:** Use directly in chat or save to `~/.gemini/antigravity/workflows/`.
 
