@@ -17,7 +17,7 @@ Read this entire document before taking ANY action. Do not skip steps.
 
 **Background (Terminal):**
 - Run `uname -a` (OS info)
-- Run `which git node python brew gh swift` (Installed tools)
+- Run `which git node python gh` (Installed tools)
 - **Auto-Detection**: Scan the current active directory for manifest files (`package.json`, `next.config.js`, `Package.swift`, `requirements.txt`). This allows you to infer their stack immediately.
 
 ---
@@ -25,7 +25,7 @@ Read this entire document before taking ANY action. Do not skip steps.
 ## STAGE 2: The Stack Interview & Guide Review
 
 **Frontend (Chat):**
-1. Present your findings: *"I noticed you have a [Framework] project open. Is this your primary tech stack, or would you like to configure something else? (e.g., Swift/macOS, Next.js, Python, etc.)"*
+1. Present your findings: *"I noticed you have a [Framework] project open. Is this your primary tech stack, or would you like to configure something else? (e.g., Rust, Next.js, Python, Go, etc.)"*
 2. Inform them: *"I am cross-referencing your stack with `ECOSYSTEM_GUIDE.md` to find the best matching skills."*
 
 **Background (Terminal):**
@@ -44,7 +44,7 @@ Execute the following setup:
 
 ### 1. Build Antigravity Bar
 - Navigate to `status-bar/` and run `sh build-app.sh`.
-- The Status Bar requires macOS permissions. Advise the user to accept the upcoming prompts for Accessibility and Full Disk Access.
+- The Status Bar may require OS-level permissions. Advise the user to accept any upcoming system prompts.
 
 ### 2. Legacy Backup & System Audit
 - Using terminal commands, create a backup directory: `~/.gemini/antigravity/legacy_backup/$(date +%Y%m%d_%H%M%S)/`
@@ -77,7 +77,7 @@ Conclude the onboarding by explaining the 5 Architectural Pillars that the Statu
 1. **Context Switching**: The Status Bar will swap your skills dynamically based on the project you have open.
 2. **Sync & Updates**: It will fetch updates directly from GitHub.
 3. **Garbage Collection**: It will audit your `~/.gemini/antigravity/` folder and suggest removing dormant skills.
-4. **Permissions**: It natively manages macOS script execution permissions.
+4. **Permissions**: It natively manages OS-level script execution permissions.
 5. **Security Guardrails**: It enforces Safe Mode for execution.
 
 **Final Action**: Output a markdown summary of their new Profile and announce that the ecosystem is fully optimized!
