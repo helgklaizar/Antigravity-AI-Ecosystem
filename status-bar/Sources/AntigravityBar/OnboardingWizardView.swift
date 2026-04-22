@@ -139,6 +139,14 @@ struct OnboardingWizardView: View {
         let fm = FileManager.default
         try? fm.createDirectory(atPath: artifactsDir, withIntermediateDirectories: true)
         
+        // 🔒 BACKUP LEGACY PROFILE
+        let oldProfilePath = artifactsDir + "/PROFILE.md"
+        if fm.fileExists(atPath: oldProfilePath) {
+            let timestamp = ISO8601DateFormatter().string(from: Date()).replacingOccurrences(of: ":", with: "-")
+            let backupPath = artifactsDir + "/PROFILE_legacy_\\(timestamp).md"
+            try? fm.copyItem(atPath: oldProfilePath, toPath: backupPath)
+        }
+        
         let metadata = """
         {
           "title": "Global User Ecosystem Profile & Active Stack",
@@ -152,39 +160,39 @@ struct OnboardingWizardView: View {
         
         if usesWeb {
             stackList += "- **Frontend:** Next.js, React, HTML/CSS\\n"
-            skillsList += "- `skills/frontend/nextjs-app-router.md`\\n"
+            skillsList += "- `skills/frontend/nextjs-app-router.md`\\n- `skills/frontend/react-nextjs-development.md`\\n- `skills/frontend/frontend_best_practices.md`\\n- `skills/frontend/shadcn.md`\\n"
         }
         if usesBackend {
             stackList += "- **Backend:** Node, Go, DBs\\n"
-            skillsList += "- `skills/backend/api-design-guidelines.md`\\n"
+            skillsList += "- `skills/backend/api-design-guidelines.md`\\n- `skills/backend/node-best-practices.md`\\n- `skills/databases/database-design.md`\\n"
         }
         if usesApple {
             stackList += "- **Apple Native:** Swift, SwiftUI\\n"
-            skillsList += "- `skills/frontend/swiftui-guidelines.md`\\n"
+            skillsList += "- `skills/frontend/swiftui-guidelines.md`\\n- `skills/backend/macos-native-dev.md`\\n- `skills/frontend/hig-components-system.md`\\n"
         }
         if usesAI {
             stackList += "- **AI:** Python, MLX, LLMs\\n"
-            skillsList += "- `skills/backend/python-fastapi-development.md`\\n"
+            skillsList += "- `skills/backend/python-fastapi-development.md`\\n- `skills/ai-ml/prompt-engineering.md`\\n- `skills/ai-ml/llm-integration.md`\\n"
         }
         if usesMobile {
             stackList += "- **Mobile:** React Native, Flutter\\n"
-            skillsList += "- `skills/mobile/react-native-best-practices.md`\\n"
+            skillsList += "- `skills/mobile/react-native-best-practices.md`\\n- `skills/mobile/flutter-architecture.md`\\n"
         }
         if usesCloud {
             stackList += "- **Cloud:** Docker, CI/CD\\n"
-            skillsList += "- `skills/cloud-devops/docker-compose-guide.md`\\n"
+            skillsList += "- `skills/cloud-devops/docker-expert.md`\\n- `skills/cloud-devops/deployment-pipeline-design.md`\\n"
         }
         if usesSecurity {
             stackList += "- **Security:** Testing, Pentest\\n"
-            skillsList += "- `skills/security/OWASP-TOP-10.md`\\n"
+            skillsList += "- `skills/security/OWASP-TOP-10.md`\\n- `skills/security/penetration-testing-guide.md`\\n"
         }
         if usesDesign {
             stackList += "- **Design:** UI/UX, Figma\\n"
-            skillsList += "- `skills/design-ui/ui-taste-design.md`\\n"
+            skillsList += "- `skills/design-ui/ui-taste-design.md`\\n- `skills/design-ui/figma-components.md`\\n"
         }
         if usesProduct {
             stackList += "- **Product:** Strategy, Agile\\n"
-            skillsList += "- `skills/business-agile/agile-workflows.md`\\n"
+            skillsList += "- `skills/business-agile/agile-workflows.md`\\n- `skills/business-agile/clean-agile.md`\\n"
         }
         
         let profile = """
