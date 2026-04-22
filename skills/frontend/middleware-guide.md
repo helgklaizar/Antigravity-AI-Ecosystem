@@ -209,5 +209,5 @@ app.use(Sentry.Handlers.errorHandler());
 
 **Related Files:**
 - SKILL.md
-- [routing-and-controllers.md](routing-and-controllers.md)
-- [async-and-errors.md](async-and-errors.md)
+- [routing-and-controllers.md](../databases/routing-and-controllers.md)
+- [async-and-errors.md](../backend/async-and-errors.md)

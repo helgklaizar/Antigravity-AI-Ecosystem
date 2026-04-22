@@ -183,7 +183,7 @@ sentinel.store(true, std::memory_order_relaxed);
 | Using `volatile` for thread safety in C++ | `volatile` is not a memory ordering tool; use `atomic` |
 | Assuming sequential consistency without SeqCst | Each platform has different default consistency |
 
-For memory ordering rules and happens-before reference, see [references/cpp-memory-ordering.md](references/cpp-memory-ordering.md).
+For memory ordering rules and happens-before reference, see [references/cpp-memory-ordering.md](cpp-memory-ordering.md).
 
 ## Related skills
 

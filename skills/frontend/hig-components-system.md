@@ -62,15 +62,15 @@ Check for `.gemini/apple-design-context.md` before asking questions. Use existin
 
 | Reference | Topic | Key content |
 |---|---|---|
-| [widgets.md](references/widgets.md) | Widgets | Glanceable info, sizes, deep linking, timeline |
-| [live-activities.md](references/live-activities.md) | Live Activities | Real-time tracking, Dynamic Island, Lock Screen |
-| [notifications.md](references/notifications.md) | Notifications | Attention, actions, grouping, content |
-| [complications.md](references/complications.md) | Complications | Watch face data, families, budgeted updates |
-| [home-screen-quick-actions.md](references/home-screen-quick-actions.md) | Quick actions | Haptic Touch, common tasks, SF Symbols |
-| [top-shelf.md](references/top-shelf.md) | Top shelf | Featured content, showcase |
-| [app-clips.md](references/app-clips.md) | App Clips | Instant use, lightweight, focused task, NFC/QR |
-| [watch-faces.md](references/watch-faces.md) | Watch faces | Custom complications, face sharing |
-| [app-shortcuts.md](references/app-shortcuts.md) | App Shortcuts | Siri, Spotlight, voice triggers |
+| [widgets.md](../design-ui/widgets.md) | Widgets | Glanceable info, sizes, deep linking, timeline |
+| [live-activities.md](../design-ui/live-activities.md) | Live Activities | Real-time tracking, Dynamic Island, Lock Screen |
+| [notifications.md](../design-ui/notifications.md) | Notifications | Attention, actions, grouping, content |
+| [complications.md](complications.md) | Complications | Watch face data, families, budgeted updates |
+| [home-screen-quick-actions.md](home-screen-quick-actions.md) | Quick actions | Haptic Touch, common tasks, SF Symbols |
+| [top-shelf.md](top-shelf.md) | Top shelf | Featured content, showcase |
+| [app-clips.md](app-clips.md) | App Clips | Instant use, lightweight, focused task, NFC/QR |
+| [watch-faces.md](../design-ui/watch-faces.md) | Watch faces | Custom complications, face sharing |
+| [app-shortcuts.md](../design-ui/app-shortcuts.md) | App Shortcuts | Siri, Spotlight, voice triggers |
 
 ## Output Format
 

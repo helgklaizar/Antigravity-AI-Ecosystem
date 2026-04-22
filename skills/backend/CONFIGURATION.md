@@ -272,4 +272,4 @@ const jwtSecret = config.tokens.jwt;
 
 **Related Files:**
 - SKILL.md
-- [testing-guide.md](testing-guide.md)
+- [testing-guide.md](../frontend/testing-guide.md)

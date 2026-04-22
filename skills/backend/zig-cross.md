@@ -195,7 +195,7 @@ wasmtime myapp.wasm
 wasm-opt -Oz myapp.wasm -o myapp.opt.wasm
 ```
 
-For target triple reference and embedded linker script setup, see [references/zig-target-triples.md](references/zig-target-triples.md).
+For target triple reference and embedded linker script setup, see [references/zig-target-triples.md](../mobile/zig-target-triples.md).
 
 ## Related skills
 

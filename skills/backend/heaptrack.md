@@ -173,7 +173,7 @@ cargo build --profile release-with-debug
 heaptrack ./target/release-with-debug/myapp
 ```
 
-For heaptrack_print output reference and GUI usage, see [references/heaptrack-analysis.md](references/heaptrack-analysis.md).
+For heaptrack_print output reference and GUI usage, see [references/heaptrack-analysis.md](../design-ui/heaptrack-analysis.md).
 
 ## Related skills
 

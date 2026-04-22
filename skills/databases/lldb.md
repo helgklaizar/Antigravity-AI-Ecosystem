@@ -209,7 +209,7 @@ def __lldb_init_module(debugger, internal_dict):
 
 Load: `command script import /path/to/myscript.py`
 
-For a full GDB↔LLDB command map, see [references/gdb-lldb-map.md](references/gdb-lldb-map.md).
+For a full GDB↔LLDB command map, see [references/gdb-lldb-map.md](gdb-lldb-map.md).
 
 ## Related skills
 

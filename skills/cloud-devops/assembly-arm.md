@@ -169,7 +169,7 @@ Naming convention: `v<op><q>_<type>`
 - `q` suffix: 128-bit (quad) vector
 - `_f32`: float32, `_s32`: int32, `_u8`: uint8, etc.
 
-For a register reference, see [references/reference.md](references/reference.md).
+For a register reference, see [references/reference.md](../frontend/reference.md).
 
 ## Related skills
 

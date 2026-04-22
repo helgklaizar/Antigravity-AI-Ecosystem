@@ -234,7 +234,7 @@ valgrind --tool=dhat ./target/debug/myapp args
 # Open dhat-out.* with dh_view.html
 ```
 
-For flamegraph setup and Criterion configuration, see [references/cargo-flamegraph-setup.md](references/cargo-flamegraph-setup.md).
+For flamegraph setup and Criterion configuration, see [references/cargo-flamegraph-setup.md](cargo-flamegraph-setup.md).
 
 ## Related skills
 

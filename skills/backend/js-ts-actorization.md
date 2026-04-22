@@ -90,7 +90,7 @@ For web servers, use standby mode in actor.json:
 }
 ```
 
-Then implement readiness probe. See [standby-mode.md](../../apify-actor-development/references/standby-mode.md).
+Then implement readiness probe. See [standby-mode.md](../databases/standby-mode.md).
 
 ## Batch Processing Scripts
 

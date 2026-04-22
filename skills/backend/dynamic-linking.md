@@ -230,7 +230,7 @@ gcc -shared -fPIC -fvisibility=hidden \
 | `relocation R_X86_64_32 against .rodata` | Non-PIC code in shared lib | Add `-fPIC` to compilation |
 | `version 'GLIBC_2.29' not found` | Binary built on newer glibc | Rebuild on older system or use `-static` |
 
-For RPATH, soname, and `ld.so` configuration details, see [references/ld-rpath-soname.md](references/ld-rpath-soname.md).
+For RPATH, soname, and `ld.so` configuration details, see [references/ld-rpath-soname.md](../frontend/ld-rpath-soname.md).
 
 ## Related skills
 

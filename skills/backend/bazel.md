@@ -226,7 +226,7 @@ bazel build //src:main --spawn_strategy=local
 bazel build //src:main --subcommands
 ```
 
-For Bazel C++ toolchain configuration, see [references/bazel-cpp-toolchain.md](references/bazel-cpp-toolchain.md).
+For Bazel C++ toolchain configuration, see [references/bazel-cpp-toolchain.md](bazel-cpp-toolchain.md).
 
 ## Related skills
 

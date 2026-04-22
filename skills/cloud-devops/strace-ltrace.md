@@ -202,7 +202,7 @@ strace -e trace=all ./myapp 2>&1 | tail -5
 # Often shows the last syscall before SIGSYS
 ```
 
-For strace output patterns and ltrace filtering examples, see [references/strace-patterns.md](references/strace-patterns.md).
+For strace output patterns and ltrace filtering examples, see [references/strace-patterns.md](strace-patterns.md).
 
 ## Related skills
 

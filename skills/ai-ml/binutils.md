@@ -169,7 +169,7 @@ aarch64-linux-gnu-addr2line -e prog 0x400a12
 arm-none-eabi-nm libfirmware.a
 ```
 
-For a complete command cheatsheet covering all tools (ar, strip, objcopy, addr2line, strings, c++filt), see [references/cheatsheet.md](references/cheatsheet.md).
+For a complete command cheatsheet covering all tools (ar, strip, objcopy, addr2line, strings, c++filt), see [references/cheatsheet.md](cheatsheet.md).
 
 ## Related skills
 

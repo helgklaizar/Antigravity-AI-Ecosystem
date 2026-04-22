@@ -219,7 +219,7 @@ class MyAppConan(ConanFile):
 | SQLite | `sqlite3` | `sqlite3/3.44.0` |
 | protobuf | `protobuf` | `protobuf/4.25.1` |
 
-For vcpkg baseline pinning and Conan binary cache setup, see [references/package-manager-patterns.md](references/package-manager-patterns.md).
+For vcpkg baseline pinning and Conan binary cache setup, see [references/package-manager-patterns.md](../business-agile/package-manager-patterns.md).
 
 ## Related skills
 

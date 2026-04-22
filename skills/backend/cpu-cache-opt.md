@@ -211,7 +211,7 @@ void matrix_mult_blocked(float *C, float *A, float *B, int N) {
 }
 ```
 
-For perf cache event reference and false sharing detection patterns, see [references/cache-counters.md](references/cache-counters.md).
+For perf cache event reference and false sharing detection patterns, see [references/cache-counters.md](../frontend/cache-counters.md).
 
 ## Related skills
 

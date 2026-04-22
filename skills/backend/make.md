@@ -194,7 +194,7 @@ build/lib_%.o: lib/%.c
 | Rebuilds everything every time | Timestamps wrong, or PHONY missing | Check `date`; ensure `all` is `.PHONY` |
 | Header change not detected | No dep tracking | Add `-MMD -MP` and `-include $(DEPS)` |
 
-For a full variable and function reference, see [references/cheatsheet.md](references/cheatsheet.md).
+For a full variable and function reference, see [references/cheatsheet.md](../ai-ml/cheatsheet.md).
 
 ## Related skills
 

@@ -34,7 +34,7 @@ Source code dependencies must point only **inward** (toward higher-level policie
 
 ### Component design (summary)
 
-For grouping classes into components: **REP** (reuse/release equivalence), **CCP** (common closure), **CRP** (common reuse); **ADP** (acyclic dependencies), **SDP** (stable dependencies), **SAP** (stable abstractions). See [references/clean-architecture.md](./references/clean-architecture.md) for brief definitions.
+For grouping classes into components: **REP** (reuse/release equivalence), **CCP** (common closure), **CRP** (common reuse); **ADP** (acyclic dependencies), **SDP** (stable dependencies), **SAP** (stable abstractions). See [references/clean-architecture.md](clean-architecture.md) for brief definitions.
 
 ---
 

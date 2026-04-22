@@ -361,4 +361,4 @@ export default UserPage;
 **See Also:**
 - [component-patterns.md](component-patterns.md) - Lazy loading patterns
 - [loading-and-error-states.md](loading-and-error-states.md) - SuspenseLoader usage
-- [complete-examples.md](complete-examples.md) - Full route examples
+- [complete-examples.md](../databases/complete-examples.md) - Full route examples

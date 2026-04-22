@@ -1,11 +1,11 @@
 # Everything Server - Project Structure
 
-**[Architecture](architecture.md)
+**[Architecture](../frontend/architecture.md)
 | Project Structure
-| [Startup Process](startup.md)
+| [Startup Process](../business-agile/startup.md)
 | [Server Features](features.md)
-| [Extension Points](extension.md)
-| [How It Works](how-it-works.md)**
+| [Extension Points](../mobile/extension.md)
+| [How It Works](../frontend/how-it-works.md)**
 
 ```
 src/everything

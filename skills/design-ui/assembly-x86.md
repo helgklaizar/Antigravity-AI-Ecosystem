@@ -166,7 +166,7 @@ _mm256_storeu_ps(result, c);
 Check CPU support at compile time: `-mavx2` or `-march=native`.
 Check at runtime: `__builtin_cpu_supports("avx2")`.
 
-For a full register and instruction reference, see [references/reference.md](references/reference.md).
+For a full register and instruction reference, see [references/reference.md](../frontend/reference.md).
 
 ## Related skills
 

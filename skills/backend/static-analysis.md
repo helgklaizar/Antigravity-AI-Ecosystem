@@ -182,7 +182,7 @@ scan-build finds deeper bugs than clang-tidy: use-after-free across functions, d
              src/
 ```
 
-For clang-tidy check details, see [references/clang-tidy-checks.md](references/clang-tidy-checks.md).
+For clang-tidy check details, see [references/clang-tidy-checks.md](clang-tidy-checks.md).
 
 ## Related skills
 

@@ -21,7 +21,7 @@ This skill provides a set of best practices and patterns for creating ViewModels
 ## Guides
 
 - [ViewModels & Commands](viewmodels.md): Creating robust ViewModels and handling commands.
-- [Wizards & Flows](wizards.md): Building multi-step wizards with `SlimWizard`.
+- [Wizards & Flows](../databases/wizards.md): Building multi-step wizards with `SlimWizard`.
 - [Navigation & Sections](navigation_sections.md): Managing navigation and section-based UIs.
 - [Composition & Mapping](composition.md): Best practices for View-ViewModel wiring and DI.
 

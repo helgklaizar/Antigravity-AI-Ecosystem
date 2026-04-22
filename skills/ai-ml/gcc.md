@@ -87,7 +87,7 @@ Use `gcc-ar` / `gcc-ranlib` instead of `ar` / `ranlib` when archiving LTO object
 
 For parallel LTO: `-flto=auto` (uses `make`-style jobserver) or `-flto=N`.
 
-See [references/flags.md](references/flags.md) for full flag reference. See `skills/binaries/linkers-lto` for linker-level LTO configuration.
+See [references/flags.md](../frontend/flags.md) for full flag reference. See `skills/binaries/linkers-lto` for linker-level LTO configuration.
 
 ### 6. Profile-guided optimisation (PGO)
 
@@ -141,7 +141,7 @@ gcc -v -E - < /dev/null 2>&1 | grep -A20 '#include <...>'
 gcc -Q --help=target | grep march
 ```
 
-For a complete flag cheatsheet, see [references/flags.md](references/flags.md).
+For a complete flag cheatsheet, see [references/flags.md](../frontend/flags.md).
 For common error patterns and examples, see [references/examples.md](references/examples.md).
 
 ## Related skills

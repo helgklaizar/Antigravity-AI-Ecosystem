@@ -153,7 +153,7 @@ export OBJDUMP=aarch64-linux-gnu-objdump
 ./configure --host=aarch64-linux-gnu --prefix=/usr
 ```
 
-For a reference on ARM-specific GCC flags, see [references/arm-flags.md](references/arm-flags.md).
+For a reference on ARM-specific GCC flags, see [references/arm-flags.md](../frontend/arm-flags.md).
 
 ## Related skills
 

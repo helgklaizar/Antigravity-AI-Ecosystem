@@ -20,19 +20,19 @@ Instead of cluttering the system with thousands of unused skills, we only use th
 
 ### 1. Essential Global Workflows (`~/.gemini/antigravity/global_workflows/`)
 These define how our AI operates on a macro level:
-- `acceptance-orchestrator.md` — End-to-end task validation before completion.
-- `github-workflow-automation.md` — Syncing projects and managing GitHub.
-- `pr-writer.md` — Automates Pull Request creation and code review.
-- `qa-orchestrator.md` — Autonomous QA node for code quality.
-- `build-local.md` — Fast local builds, especially for desktop (Tauri/Swift) apps.
+- `global_workflows/agent-orchestration/acceptance-orchestrator.md` — End-to-end task validation before completion.
+- `global_workflows/ci-cd/github-workflow-automation.md` — Syncing projects and managing GitHub.
+- `global_workflows/code-review/pr-writer.md` — Automates Pull Request creation and code review.
+- `global_workflows/qa-testing/qa-orchestrator.md` — Autonomous QA node for code quality.
+- `global_workflows/ci-cd/build-local.md` — Fast local builds, especially for desktop (Tauri/Swift) apps.
 
 ### 2. High-Priority Skills (`~/.gemini/antigravity/skills/`)
 These give the AI specialized knowledge for our specific stack:
-- `swiftui-guidelines.md` & `macos-native-dev.md` — For building perfect native Mac apps.
-- `python-fastapi-development.md` — Backend standards and patterns.
-- `nextjs-app-router.md` & `frontend_best_practices.md` — For high-end UI creation.
-- `ui-taste-design.md` — Enforces premium, non-generic design principles.
-- `bash-scripting.md` — For safe, defensive shell operations.
+- `skills/frontend/swiftui-guidelines.md` & `skills/backend/macos-native-dev.md` — For building perfect native Mac apps.
+- `skills/backend/python-fastapi-development.md` — Backend standards and patterns.
+- `skills/frontend/nextjs-app-router.md` & `skills/frontend/frontend_best_practices.md` — For high-end UI creation.
+- `skills/design-ui/ui-taste-design.md` — Enforces premium, non-generic design principles.
+- `skills/automation-tools/bash-scripting.md` — For safe, defensive shell operations.
 
 ### 3. Core Agents (`~/.gemini/antigravity/agents/`)
 Specialized personas:

@@ -284,7 +284,7 @@ cargo tree -i serde          # Who depends on serde?
 cargo metadata --format-version 1 | jq '.packages[].name'
 ```
 
-For workspace patterns and dependency resolution details, see [references/workspace-patterns.md](references/workspace-patterns.md).
+For workspace patterns and dependency resolution details, see [references/workspace-patterns.md](../frontend/workspace-patterns.md).
 
 ## Related skills
 

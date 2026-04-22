@@ -298,7 +298,7 @@ sudo mokutil --import signing_cert.pem
 # (requires reboot and MOK enrollment at UEFI)
 ```
 
-For Kbuild system details, see [references/kbuild-basics.md](references/kbuild-basics.md).
+For Kbuild system details, see [references/kbuild-basics.md](../frontend/kbuild-basics.md).
 
 ## Related skills
 

@@ -354,7 +354,7 @@ When pagination is detected and user wants multiple pages:
 ## Phase 4: Extract
 
 Execute the selected strategy using mode-specific patterns.
-See [references/extraction-patterns.md](references/extraction-patterns.md)
+See [references/extraction-patterns.md](../frontend/extraction-patterns.md)
 for CSS selectors and JavaScript snippets.
 
 ## Table Mode
@@ -479,7 +479,7 @@ When extracting from multiple URLs:
 ## Phase 5: Transform
 
 Clean, normalize, and enrich extracted data before validation.
-See [references/data-transforms.md](references/data-transforms.md) for patterns.
+See [references/data-transforms.md](../databases/data-transforms.md) for patterns.
 
 ## Automatic Transforms (Always Apply)
 
@@ -570,7 +570,7 @@ Inform user of any irrecoverable gaps with specific details.
 ## Phase 7: Format And Deliver
 
 Structure results according to user preference.
-See [references/output-templates.md](references/output-templates.md)
+See [references/output-templates.md](../business-agile/output-templates.md)
 for complete formatting templates.
 
 ## Delivery Envelope
@@ -730,13 +730,13 @@ When extraction fails or is blocked:
 
 ## References
 
-- **Extraction patterns**: [references/extraction-patterns.md](references/extraction-patterns.md)
+- **Extraction patterns**: [references/extraction-patterns.md](../frontend/extraction-patterns.md)
   CSS selectors, JavaScript snippets, JSON-LD parsing, domain tips.
 
-- **Output templates**: [references/output-templates.md](references/output-templates.md)
+- **Output templates**: [references/output-templates.md](../business-agile/output-templates.md)
   Markdown, JSON, CSV templates with complete examples.
 
-- **Data transforms**: [references/data-transforms.md](references/data-transforms.md)
+- **Data transforms**: [references/data-transforms.md](../databases/data-transforms.md)
   Cleaning, normalization, deduplication, enrichment patterns.
 
 ## Best Practices

@@ -186,7 +186,7 @@ rustc --print target-features --target x86_64-unknown-linux-gnu
 rustc --explain E0382
 ```
 
-For RUSTFLAGS reference and Cargo profile patterns, see [references/rustflags-profiles.md](references/rustflags-profiles.md).
+For RUSTFLAGS reference and Cargo profile patterns, see [references/rustflags-profiles.md](rustflags-profiles.md).
 
 ## Related skills
 

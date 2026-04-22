@@ -209,7 +209,7 @@ bpftool btf dump file /sys/kernel/btf/vmlinux format c > vmlinux.h
 ls /sys/kernel/btf/vmlinux
 ```
 
-For the full map types reference, see [references/ebpf-map-types.md](references/ebpf-map-types.md).
+For the full map types reference, see [references/ebpf-map-types.md](../ai-ml/ebpf-map-types.md).
 
 ## Related skills
 

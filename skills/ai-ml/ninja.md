@@ -162,7 +162,7 @@ ninja -t rules
 | Very slow parallel build | `-j` too high for I/O-bound build | Use `-l$(nproc)` to limit by load |
 | Circular dependency | Rule depends on itself | Check CMake target dependencies |
 
-For the full Ninja command reference, `build.ninja` format details, and CMake integration patterns, see [references/cheatsheet.md](references/cheatsheet.md).
+For the full Ninja command reference, `build.ninja` format details, and CMake integration patterns, see [references/cheatsheet.md](cheatsheet.md).
 
 ## Related skills
 

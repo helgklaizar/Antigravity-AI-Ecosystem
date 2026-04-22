@@ -635,4 +635,4 @@ Controller formats response
 - SKILL.md
 - [routing-and-controllers.md](routing-and-controllers.md)
 - [services-and-repositories.md](services-and-repositories.md)
-- [validation-patterns.md](validation-patterns.md)
+- [validation-patterns.md](../backend/validation-patterns.md)

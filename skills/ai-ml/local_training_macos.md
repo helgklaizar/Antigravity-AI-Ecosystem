@@ -226,6 +226,6 @@ For general training issues, see [troubleshooting.md](troubleshooting.md).
 ## See Also
 
 - [troubleshooting.md](troubleshooting.md) — General TRL troubleshooting
-- [hardware_guide.md](hardware_guide.md) — GPU selection for HF Jobs
+- [hardware_guide.md](../frontend/hardware_guide.md) — GPU selection for HF Jobs
 - [gguf_conversion.md](gguf_conversion.md) — Export for on-device inference
 - [training_methods.md](training_methods.md) — SFT, DPO, GRPO overview

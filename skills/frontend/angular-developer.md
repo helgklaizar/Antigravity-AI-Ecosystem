@@ -45,7 +45,7 @@ When asked to create a new Angular project, you must determine the correct execu
 
 When working with Angular components, consult the following references based on the task:
 
-- **Fundamentals**: Anatomy, metadata, core concepts, and template control flow (@if, @for, @switch). Read [components.md](references/components.md)
+- **Fundamentals**: Anatomy, metadata, core concepts, and template control flow (@if, @for, @switch). Read [components.md](components.md)
 - **Inputs**: Signal-based inputs, transforms, and model inputs. Read [inputs.md](references/inputs.md)
 - **Outputs**: Signal-based outputs and custom event best practices. Read [outputs.md](references/outputs.md)
 - **Host Elements**: Host bindings and attribute injection. Read [host-elements.md](references/host-elements.md)
@@ -125,5 +125,5 @@ When writing or updating tests, consult the following references based on the ta
 
 When working with Angular tooling, consult the following references:
 
-- **Angular CLI**: Creating applications, generating code (components, routes, services), serving, and building. Read [cli.md](references/cli.md)
-- **Angular MCP Server**: Available tools, configuration, and experimental features. Read [mcp.md](references/mcp.md)
+- **Angular CLI**: Creating applications, generating code (components, routes, services), serving, and building. Read [cli.md](cli.md)
+- **Angular MCP Server**: Available tools, configuration, and experimental features. Read [mcp.md](mcp.md)

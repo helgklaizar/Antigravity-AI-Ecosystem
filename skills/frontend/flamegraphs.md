@@ -147,7 +147,7 @@ flamegraph.pl --title "My App" \
 
 ## References
 
-For tool installation, stackcollapse scripts, and palette options, see [references/tools.md](references/tools.md).
+For tool installation, stackcollapse scripts, and palette options, see [references/tools.md](../backend/tools.md).
 
 ## Related skills
 

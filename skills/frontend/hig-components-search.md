@@ -32,9 +32,9 @@ Check for `.gemini/apple-design-context.md` before asking questions. Use existin
 
 | Reference | Topic | Key content |
 |---|---|---|
-| [search-fields.md](references/search-fields.md) | Search fields | Scopes, tokens, instant results, placement |
-| [page-controls.md](references/page-controls.md) | Page controls | Dot indicators, flat page sequences |
-| [path-controls.md](references/path-controls.md) | Path controls | Breadcrumbs, ancestor navigation |
+| [search-fields.md](search-fields.md) | Search fields | Scopes, tokens, instant results, placement |
+| [page-controls.md](page-controls.md) | Page controls | Dot indicators, flat page sequences |
+| [path-controls.md](../design-ui/path-controls.md) | Path controls | Breadcrumbs, ancestor navigation |
 
 ## Output Format
 

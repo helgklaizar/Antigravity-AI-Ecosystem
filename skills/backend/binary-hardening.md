@@ -193,7 +193,7 @@ objdump -d prog | grep "endbr64"   # IBT end-branch instructions
 cat /proc/cpuinfo | grep shstk     # CPU support
 ```
 
-For the full hardening flags reference, see [references/hardening-flags.md](references/hardening-flags.md).
+For the full hardening flags reference, see [references/hardening-flags.md](../frontend/hardening-flags.md).
 
 ## Related skills
 

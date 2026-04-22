@@ -210,7 +210,7 @@ arm-zephyr-eabi-gdb build/zephyr/zephyr.elf
 (gdb) thread 2         # switch to thread
 ```
 
-For west manifest details, see [references/west-manifest.md](references/west-manifest.md).
+For west manifest details, see [references/west-manifest.md](../frontend/west-manifest.md).
 
 ## Related skills
 

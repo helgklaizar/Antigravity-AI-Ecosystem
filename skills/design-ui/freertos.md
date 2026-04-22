@@ -205,7 +205,7 @@ printf("Stack headroom: %lu words\n", uxHighWaterMark);
 ```
 
 For OpenOCD setup details, see `skills/embedded/openocd-jtag`.
-For FreeRTOSConfig.h reference, see [references/freertos-config.md](references/freertos-config.md).
+For FreeRTOSConfig.h reference, see [references/freertos-config.md](../ai-ml/freertos-config.md).
 
 ## Related skills
 

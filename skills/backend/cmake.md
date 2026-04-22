@@ -231,7 +231,7 @@ cmake --build --preset release
 | `Cannot find source file` | Typo or wrong relative path | Check path relative to `CMakeLists.txt` |
 | `generator expression` error | Wrong `$<>` syntax | Check CMake docs for expression name |
 
-For a complete CMakeLists.txt template, see [references/templates.md](references/templates.md).
+For a complete CMakeLists.txt template, see [references/templates.md](templates.md).
 
 ## Related skills
 

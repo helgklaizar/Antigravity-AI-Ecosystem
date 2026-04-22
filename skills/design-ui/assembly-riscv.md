@@ -218,7 +218,7 @@ riscv64-linux-gnu-gdb prog
 (gdb) continue
 ```
 
-For the RISC-V psABI calling convention details, see [references/riscv-abi.md](references/riscv-abi.md).
+For the RISC-V psABI calling convention details, see [references/riscv-abi.md](../frontend/riscv-abi.md).
 
 ## Related skills
 

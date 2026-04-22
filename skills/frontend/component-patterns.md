@@ -499,4 +499,4 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
 **See Also:**
 - [data-fetching.md](data-fetching.md) - useSuspenseQuery details
 - [loading-and-error-states.md](loading-and-error-states.md) - Suspense best practices
-- [complete-examples.md](complete-examples.md) - Full working examples
+- [complete-examples.md](../databases/complete-examples.md) - Full working examples

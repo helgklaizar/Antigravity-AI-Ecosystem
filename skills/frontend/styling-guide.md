@@ -425,4 +425,4 @@ const styles = {
 
 **See Also:**
 - [component-patterns.md](component-patterns.md) - Component structure
-- [complete-examples.md](complete-examples.md) - Full styling examples
+- [complete-examples.md](../databases/complete-examples.md) - Full styling examples

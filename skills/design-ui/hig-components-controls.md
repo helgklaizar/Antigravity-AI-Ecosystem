@@ -38,20 +38,20 @@ Check for `.gemini/apple-design-context.md` before asking questions. Use existin
 
 | Reference | Topic | Key content |
 |---|---|---|
-| [controls.md](references/controls.md) | General controls | States, affordance, system controls |
-| [toggles.md](references/toggles.md) | Toggles | On/off, immediate effect |
-| [segmented-controls.md](references/segmented-controls.md) | Segmented controls | 2-5 options, equal weight |
-| [sliders.md](references/sliders.md) | Sliders | Continuous range, min/max labels |
-| [steppers.md](references/steppers.md) | Steppers | Fixed steps, bounded values |
-| [pickers.md](references/pickers.md) | Pickers | Dates, times, long option sets |
-| [combo-boxes.md](references/combo-boxes.md) | Combo boxes | macOS, type or select, custom values |
-| [text-fields.md](references/text-fields.md) | Text fields | Short input, keyboard types, validation |
-| [text-views.md](references/text-views.md) | Text views | Multi-line, comments, descriptions |
-| [labels.md](references/labels.md) | Labels | Placement, VoiceOver support |
-| [token-fields.md](references/token-fields.md) | Token fields | macOS, chips, tags, recipients |
-| [virtual-keyboards.md](references/virtual-keyboards.md) | Virtual keyboards | Email, URL, number keyboard types |
-| [rating-indicators.md](references/rating-indicators.md) | Rating indicators | Star ratings, display-only |
-| [gauges.md](references/gauges.md) | Gauges | Level indicators, range display |
+| [controls.md](controls.md) | General controls | States, affordance, system controls |
+| [toggles.md](../frontend/toggles.md) | Toggles | On/off, immediate effect |
+| [segmented-controls.md](../backend/segmented-controls.md) | Segmented controls | 2-5 options, equal weight |
+| [sliders.md](sliders.md) | Sliders | Continuous range, min/max labels |
+| [steppers.md](../frontend/steppers.md) | Steppers | Fixed steps, bounded values |
+| [pickers.md](../frontend/pickers.md) | Pickers | Dates, times, long option sets |
+| [combo-boxes.md](../frontend/combo-boxes.md) | Combo boxes | macOS, type or select, custom values |
+| [text-fields.md](../frontend/text-fields.md) | Text fields | Short input, keyboard types, validation |
+| [text-views.md](../frontend/text-views.md) | Text views | Multi-line, comments, descriptions |
+| [labels.md](../frontend/labels.md) | Labels | Placement, VoiceOver support |
+| [token-fields.md](../frontend/token-fields.md) | Token fields | macOS, chips, tags, recipients |
+| [virtual-keyboards.md](../frontend/virtual-keyboards.md) | Virtual keyboards | Email, URL, number keyboard types |
+| [rating-indicators.md](../frontend/rating-indicators.md) | Rating indicators | Star ratings, display-only |
+| [gauges.md](../frontend/gauges.md) | Gauges | Level indicators, range display |
 
 ## Output Format
 

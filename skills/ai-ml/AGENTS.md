@@ -82,7 +82,7 @@ Use backticks for skill references:
 - **Correct**: `skills/compilers/gcc`
 - **Incorrect**: "the gcc skill" or `[gcc](skills/compilers/gcc)`
 
-For internal references: `[references/flags.md](references/flags.md)`
+For internal references: `[references/flags.md](../frontend/flags.md)`
 
 ### Naming Conventions
 

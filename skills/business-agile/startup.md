@@ -1,11 +1,11 @@
 # Everything Server - Startup Process
 
-**[Architecture](architecture.md)
-| [Project Structure](structure.md)
+**[Architecture](../frontend/architecture.md)
+| [Project Structure](../ai-ml/structure.md)
 | Startup Process
-| [Server Features](features.md)
-| [Extension Points](extension.md)
-| [How It Works](how-it-works.md)**
+| [Server Features](../ai-ml/features.md)
+| [Extension Points](../mobile/extension.md)
+| [How It Works](../frontend/how-it-works.md)**
 
 ## 1. Everything Server Launcher
 

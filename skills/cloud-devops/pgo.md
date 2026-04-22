@@ -166,7 +166,7 @@ perf record ./prog_pgo < workload.input
 perf report --stdio | head -30
 ```
 
-For full workflow details and Clang vs GCC profile format notes, see [references/pgo-workflow.md](references/pgo-workflow.md).
+For full workflow details and Clang vs GCC profile format notes, see [references/pgo-workflow.md](../backend/pgo-workflow.md).
 
 ## Related skills
 

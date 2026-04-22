@@ -189,7 +189,7 @@ sched:sched_switch
 syscalls:sys_enter_read
 ```
 
-For a counter reference and interpretation guide, see [references/events.md](references/events.md).
+For a counter reference and interpretation guide, see [references/events.md](../frontend/events.md).
 
 ## Related skills
 

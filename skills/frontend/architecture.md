@@ -1,10 +1,10 @@
 # Everything Server – Architecture
 
 **Architecture
-| [Project Structure](structure.md)
-| [Startup Process](startup.md)
-| [Server Features](features.md)
-| [Extension Points](extension.md)
+| [Project Structure](../ai-ml/structure.md)
+| [Startup Process](../business-agile/startup.md)
+| [Server Features](../ai-ml/features.md)
+| [Extension Points](../mobile/extension.md)
 | [How It Works](how-it-works.md)**
 
 This documentation summarizes the current layout and runtime architecture of the `src/everything` package.
@@ -33,12 +33,12 @@ resource subscriptions and simulated logging.
 - The `build` script copies `docs/` into `dist/` so instruction files ship alongside the compiled server.
 - The CLI bin is configured in `package.json` as `mcp-server-everything` → `dist/index.js`.
 
-## [Project Structure](structure.md)
+## [Project Structure](../ai-ml/structure.md)
 
-## [Startup Process](startup.md)
+## [Startup Process](../business-agile/startup.md)
 
-## [Server Features](features.md)
+## [Server Features](../ai-ml/features.md)
 
-## [Extension Points](extension.md)
+## [Extension Points](../mobile/extension.md)
 
 ## [How It Works](how-it-works.md)

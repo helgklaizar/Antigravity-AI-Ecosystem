@@ -21,10 +21,10 @@ Master guide for embedding interactive 3D scenes from [Spline.design](https://sp
 
 | Task                              | Guide                                                          |
 | --------------------------------- | -------------------------------------------------------------- |
-| Vanilla HTML/JS embed             | [guides/VANILLA_INTEGRATION.md](guides/VANILLA_INTEGRATION.md) |
-| React / Next.js / Vue embed       | [guides/REACT_INTEGRATION.md](guides/REACT_INTEGRATION.md)     |
+| Vanilla HTML/JS embed             | [guides/VANILLA_INTEGRATION.md](../design-ui/VANILLA_INTEGRATION.md) |
+| React / Next.js / Vue embed       | [guides/REACT_INTEGRATION.md](REACT_INTEGRATION.md)     |
 | Performance & mobile optimization | [guides/PERFORMANCE.md](guides/PERFORMANCE.md)                 |
-| Debugging & common problems       | [guides/COMMON_PROBLEMS.md](guides/COMMON_PROBLEMS.md)         |
+| Debugging & common problems       | [guides/COMMON_PROBLEMS.md](COMMON_PROBLEMS.md)         |
 
 ## Working Examples
 

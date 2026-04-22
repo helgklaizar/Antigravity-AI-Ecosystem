@@ -1,6 +1,6 @@
 # Use Cases
 
-Common workflows and what VideoDB enables. For code details, see [api-reference.md](api-reference.md), [capture.md](capture.md), [editor.md](editor.md), and [search.md](search.md).
+Common workflows and what VideoDB enables. For code details, see [api-reference.md](api-reference.md), [capture.md](../automation-tools/capture.md), [editor.md](../design-ui/editor.md), and [search.md](../ai-ml/search.md).
 
 ---
 

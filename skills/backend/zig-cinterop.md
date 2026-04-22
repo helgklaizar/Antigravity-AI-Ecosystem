@@ -221,7 +221,7 @@ _ = c.printf("value: %d\n", @as(c_int, 42));
 extern fn my_log(level: c_int, fmt: [*:0]const u8, ...) void;
 ```
 
-For translate-c output guide and C ABI types reference, see [references/translate-c-guide.md](references/translate-c-guide.md).
+For translate-c output guide and C ABI types reference, see [references/translate-c-guide.md](translate-c-guide.md).
 
 ## Related skills
 

@@ -262,7 +262,7 @@ fn main() {
 }
 ```
 
-For bindgen and cbindgen configuration details, see [references/bindgen-cbindgen.md](references/bindgen-cbindgen.md).
+For bindgen and cbindgen configuration details, see [references/bindgen-cbindgen.md](bindgen-cbindgen.md).
 
 ## Related skills
 

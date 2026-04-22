@@ -274,7 +274,7 @@ const install_config = b.addInstallFile(
 b.getInstallStep().dependOn(&install_config.step);
 ```
 
-For advanced build.zig patterns, see [references/build-zig-patterns.md](references/build-zig-patterns.md).
+For advanced build.zig patterns, see [references/build-zig-patterns.md](build-zig-patterns.md).
 
 ## Related skills
 

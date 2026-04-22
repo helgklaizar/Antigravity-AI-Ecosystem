@@ -211,6 +211,6 @@ uv run scripts/paper_manager.py link --help
 ## Additional Resources
 
 - [Full documentation](../SKILL.md)
-- [Usage examples](../examples/example_usage.md)
+- [Usage examples](../ai-ml/example_usage.md)
 - [HF Paper Pages](https://huggingface.co/papers)
 - [tfrere's template](https://huggingface.co/spaces/tfrere/research-article-template)

@@ -170,7 +170,7 @@ nm -S --defined-only prog | sort -k2 -nr | head -20
 objdump -d prog | awk '/^[0-9a-f]+ </{fn=$2} /^[0-9a-f]/{count[fn]++} END{for(f in count) print count[f], f}' | sort -nr | head -20
 ```
 
-For a quick reference, see [references/cheatsheet.md](references/cheatsheet.md).
+For a quick reference, see [references/cheatsheet.md](../ai-ml/cheatsheet.md).
 
 ## Related skills
 

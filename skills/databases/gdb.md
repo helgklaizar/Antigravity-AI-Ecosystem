@@ -175,8 +175,8 @@ set pagination off
 set confirm off
 ```
 
-For a command cheatsheet, see [references/cheatsheet.md](references/cheatsheet.md).
-For pretty-printers and Python scripting, see [references/scripting.md](references/scripting.md).
+For a command cheatsheet, see [references/cheatsheet.md](../ai-ml/cheatsheet.md).
+For pretty-printers and Python scripting, see [references/scripting.md](../backend/scripting.md).
 
 ## Related skills
 

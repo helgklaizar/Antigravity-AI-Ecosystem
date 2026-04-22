@@ -219,7 +219,7 @@ meson compile -C builddir-arm
 | `add_subdirectory` | `subdir()` |
 | `install(TARGETS ...)` | `install : true` in target |
 
-For wrap patterns and subproject configuration, see [references/meson-wrap.md](references/meson-wrap.md).
+For wrap patterns and subproject configuration, see [references/meson-wrap.md](../databases/meson-wrap.md).
 
 ## Related skills
 

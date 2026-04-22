@@ -200,7 +200,7 @@ zig env
 zig env | grep lib_dir
 ```
 
-For optimization mode details and target triple reference, see [references/zig-optimize-modes.md](references/zig-optimize-modes.md).
+For optimization mode details and target triple reference, see [references/zig-optimize-modes.md](../cloud-devops/zig-optimize-modes.md).
 
 ## Related skills
 

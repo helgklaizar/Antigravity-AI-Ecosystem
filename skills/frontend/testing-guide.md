@@ -231,5 +231,5 @@ npm test -- --coverage
 
 **Related Files:**
 - SKILL.md
-- [services-and-repositories.md](services-and-repositories.md)
-- [complete-examples.md](complete-examples.md)
+- [services-and-repositories.md](../databases/services-and-repositories.md)
+- [complete-examples.md](../databases/complete-examples.md)

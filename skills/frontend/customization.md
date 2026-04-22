@@ -135,7 +135,7 @@ module.exports = {
 
 ## Customizing Components
 
-See also: [rules/styling.md](./rules/styling.md) for Incorrect/Correct examples.
+See also: [rules/styling.md](styling.md) for Incorrect/Correct examples.
 
 Prefer these approaches in order:
 

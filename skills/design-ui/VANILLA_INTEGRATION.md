@@ -200,4 +200,4 @@ Add to `<head>` to start fetching the scene file before scripts run:
 ```
 
 See [PERFORMANCE.md](PERFORMANCE.md) for full optimization strategy.
-See [COMMON_PROBLEMS.md](COMMON_PROBLEMS.md) for debugging.
+See [COMMON_PROBLEMS.md](../frontend/COMMON_PROBLEMS.md) for debugging.

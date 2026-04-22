@@ -151,7 +151,7 @@ Valgrind Memcheck runs ~10-50x slower than native. Mitigations:
 - Use ASan (`-fsanitize=address`) for faster memory checking during development
 - Reserve Valgrind for cases where ASan can't be used (old toolchains, production-like environments)
 
-For a comparison of Valgrind vs ASan, see [references/valgrind-vs-asan.md](references/valgrind-vs-asan.md).
+For a comparison of Valgrind vs ASan, see [references/valgrind-vs-asan.md](../ai-ml/valgrind-vs-asan.md).
 
 ## Related skills
 

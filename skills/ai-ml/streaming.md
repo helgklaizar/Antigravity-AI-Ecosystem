@@ -100,7 +100,7 @@ print(f"Composed stream: {stream_url}")
 
 **Important:** `add_inline()` only accepts `VideoAsset`. Use `add_overlay()` for `AudioAsset`, `ImageAsset`, and `TextAsset`.
 
-For detailed timeline editing, see [editor.md](editor.md).
+For detailed timeline editing, see [editor.md](../design-ui/editor.md).
 
 ## Streaming Search Results
 

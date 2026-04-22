@@ -183,7 +183,7 @@ export using ::cJSON;
 export using ::cJSON_Parse;
 ```
 
-For CMake module support details, see [references/modules-cmake-support.md](references/modules-cmake-support.md).
+For CMake module support details, see [references/modules-cmake-support.md](../frontend/modules-cmake-support.md).
 
 ## Related skills
 

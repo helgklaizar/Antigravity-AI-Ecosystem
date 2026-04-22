@@ -764,4 +764,4 @@ useSuspenseQuery({
 **See Also:**
 - [component-patterns.md](component-patterns.md) - Suspense integration
 - [loading-and-error-states.md](loading-and-error-states.md) - SuspenseLoader usage
-- [complete-examples.md](complete-examples.md) - Full working examples
+- [complete-examples.md](../databases/complete-examples.md) - Full working examples

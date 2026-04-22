@@ -218,7 +218,7 @@ emcc prog.c -o prog.wasm --target=wasi
 wasmtime prog.wasm
 ```
 
-For Emscripten linker flags reference, see [references/emscripten-linker-flags.md](references/emscripten-linker-flags.md).
+For Emscripten linker flags reference, see [references/emscripten-linker-flags.md](../frontend/emscripten-linker-flags.md).
 
 ## Related skills
 

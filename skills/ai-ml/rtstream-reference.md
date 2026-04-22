@@ -1,6 +1,6 @@
 # RTStream Reference
 
-Code-level details for RTStream operations. For workflow guide, see [rtstream.md](rtstream.md).
+Code-level details for RTStream operations. For workflow guide, see [rtstream.md](../mobile/rtstream.md).
 
 Based on [docs.videodb.io](https://docs.videodb.io/pages/ingest/live-streams/realtime-apis.md).
 
@@ -510,7 +510,7 @@ All real-time AI results are delivered via WebSocket. Pass `ws_connection_id` to
 | `audio_index` | `index_audio()` | Audio analysis results |
 | `alert` | `create_alert()` | Alert notifications |
 
-For WebSocket event structures and ws_listener usage, see [capture-reference.md](capture-reference.md).
+For WebSocket event structures and ws_listener usage, see [capture-reference.md](../automation-tools/capture-reference.md).
 
 ---
 

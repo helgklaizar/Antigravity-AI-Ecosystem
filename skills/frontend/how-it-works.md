@@ -1,10 +1,10 @@
 # Everything Server - How It Works
 
 **[Architecture](architecture.md)
-| [Project Structure](structure.md)
-| [Startup Process](startup.md)
-| [Server Features](features.md)
-| [Extension Points](extension.md)
+| [Project Structure](../ai-ml/structure.md)
+| [Startup Process](../business-agile/startup.md)
+| [Server Features](../ai-ml/features.md)
+| [Extension Points](../mobile/extension.md)
 | How It Works**
 
 # Conditional Tool Registration

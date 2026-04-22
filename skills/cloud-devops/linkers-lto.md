@@ -169,7 +169,7 @@ less prog.map
 
 Useful for debugging binary size and symbol placement.
 
-For a comprehensive linker and LTO flags reference, see [references/flags.md](references/flags.md).
+For a comprehensive linker and LTO flags reference, see [references/flags.md](../frontend/flags.md).
 
 ## Related skills
 

@@ -527,8 +527,8 @@ const pipe = await pipeline('automatic-speech-recognition', 'model-id', {
 ## Related Documentation
 
 - [Configuration Reference](./CONFIGURATION.md) - Environment configuration with `env` object
-- [Text Generation Guide](./TEXT_GENERATION.md) - Text generation options and streaming
-- [Model Architectures](./MODEL_ARCHITECTURES.md) - Supported models and selection tips
+- [Text Generation Guide](../ai-ml/TEXT_GENERATION.md) - Text generation options and streaming
+- [Model Architectures](../ai-ml/MODEL_ARCHITECTURES.md) - Supported models and selection tips
 - [Main Skill Guide](../SKILL.md) - Getting started with Transformers.js
 
 ## Best Practices

@@ -214,7 +214,7 @@ On macOS Apple Silicon (M-series): use `pthread_jit_write_protect_np()` or `MAP_
 6. **Specialisation:** Generate specialised handler variants for common type combinations (int+int add vs generic add)
 7. **Trace recording:** Trace JITs (LuaJIT approach) compile hot traces instead of full functions
 
-For a benchmark of dispatch strategies, see [references/benchmarks.md](references/benchmarks.md).
+For a benchmark of dispatch strategies, see [references/benchmarks.md](../frontend/benchmarks.md).
 
 ## Related skills
 

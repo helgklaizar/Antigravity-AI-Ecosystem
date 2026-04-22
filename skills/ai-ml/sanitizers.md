@@ -194,8 +194,8 @@ endif()
     ctest --test-dir build -j$(nproc) --output-on-failure
 ```
 
-For a quick flag reference, see [references/flags.md](references/flags.md).
-For report interpretation examples, see [references/reports.md](references/reports.md).
+For a quick flag reference, see [references/flags.md](../frontend/flags.md).
+For report interpretation examples, see [references/reports.md](../frontend/reports.md).
 
 ## Related skills
 

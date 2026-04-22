@@ -225,7 +225,7 @@ __m256 v = _mm256_load_ps(aligned_ptr);    // requires 32-byte alignment
 __m256 v = _mm256_loadu_ps(unaligned_ptr); // any alignment, slightly slower on old CPUs
 ```
 
-For Intel Intrinsics Guide reference and NEON lookup tables, see [references/intel-intrinsics-guide.md](references/intel-intrinsics-guide.md).
+For Intel Intrinsics Guide reference and NEON lookup tables, see [references/intel-intrinsics-guide.md](intel-intrinsics-guide.md).
 
 ## Related skills
 

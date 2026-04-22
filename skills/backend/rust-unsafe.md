@@ -238,7 +238,7 @@ Legitimate uses:
 └── Implementing safe abstractions (the standard library itself)
 ```
 
-For unsafe patterns and audit examples, see [references/unsafe-patterns.md](references/unsafe-patterns.md).
+For unsafe patterns and audit examples, see [references/unsafe-patterns.md](../frontend/unsafe-patterns.md).
 
 ## Related skills
 

@@ -209,7 +209,7 @@ kw6="\xff\xfe"
 
 ## References
 
-For fuzz target templates, corpus seed examples, and OSS-Fuzz integration guidance, see [references/targets.md](references/targets.md).
+For fuzz target templates, corpus seed examples, and OSS-Fuzz integration guidance, see [references/targets.md](../frontend/targets.md).
 
 ## Related skills
 

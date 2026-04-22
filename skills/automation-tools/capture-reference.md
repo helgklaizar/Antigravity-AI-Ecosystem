@@ -150,7 +150,7 @@ kill $(cat /tmp/videodb_ws_pid)
 | Function | Purpose |
 |----------|---------|
 | `conn.create_capture_session()` | Session lifecycle events |
-| RTStream methods | See [rtstream-reference.md](rtstream-reference.md) |
+| RTStream methods | See [rtstream-reference.md](../ai-ml/rtstream-reference.md) |
 
 **Output files** (in output directory, default `/tmp`):
 - `videodb_ws_id` - WebSocket connection ID
@@ -350,7 +350,7 @@ Without `store = True`, streams are processed in real-time but not saved.
 
 After session is active, retrieve RTStream objects with `session.get_rtstream()`.
 
-For RTStream methods (indexing, transcription, alerts, batch config), see [rtstream-reference.md](rtstream-reference.md).
+For RTStream methods (indexing, transcription, alerts, batch config), see [rtstream-reference.md](../ai-ml/rtstream-reference.md).
 
 ---
 

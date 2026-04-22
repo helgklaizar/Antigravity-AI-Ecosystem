@@ -132,7 +132,7 @@ REM Compiler version
 cl /?  2>&1 | findstr /i "version"
 ```
 
-For flag details, see [references/flags.md](references/flags.md).
+For flag details, see [references/flags.md](../frontend/flags.md).
 
 ## Related skills
 

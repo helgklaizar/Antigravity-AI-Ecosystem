@@ -1,11 +1,11 @@
 # Everything Server - Extension Points
 
-**[Architecture](architecture.md)
-| [Project Structure](structure.md)
-| [Startup Process](startup.md)
-| [Server Features](features.md)
+**[Architecture](../frontend/architecture.md)
+| [Project Structure](../ai-ml/structure.md)
+| [Startup Process](../business-agile/startup.md)
+| [Server Features](../ai-ml/features.md)
 | Extension Points
-| [How It Works](how-it-works.md)**
+| [How It Works](../frontend/how-it-works.md)**
 
 ## Adding Tools
 

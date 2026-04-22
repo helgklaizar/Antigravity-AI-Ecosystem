@@ -231,7 +231,7 @@ arm-none-eabi-objdump -h firmware.elf
 arm-none-eabi-readelf -S firmware.elf | grep -A2 "\.data"
 ```
 
-For linker script anatomy details, see [references/linker-script-anatomy.md](references/linker-script-anatomy.md).
+For linker script anatomy details, see [references/linker-script-anatomy.md](../frontend/linker-script-anatomy.md).
 
 ## Related skills
 

@@ -499,4 +499,4 @@ src/
 **See Also:**
 - [component-patterns.md](component-patterns.md) - Component structure
 - [data-fetching.md](data-fetching.md) - API service patterns
-- [complete-examples.md](complete-examples.md) - Full feature example
+- [complete-examples.md](../databases/complete-examples.md) - Full feature example

@@ -214,7 +214,7 @@ panic-halt = "0.2"           # or:
 panic-probe = { version = "0.3", features = ["print-defmt"] }
 ```
 
-For embedded Rust target triples reference, see [references/embedded-rust-targets.md](references/embedded-rust-targets.md).
+For embedded Rust target triples reference, see [references/embedded-rust-targets.md](embedded-rust-targets.md).
 
 ## Related skills
 

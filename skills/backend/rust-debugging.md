@@ -227,7 +227,7 @@ tokio-console  # Connects to running Rust process at port 6669
 
 tokio-console shows: task states, waker activity, blocked tasks, poll durations.
 
-For GDB/LLDB command reference and pretty-printer setup, see [references/rust-gdb-pretty-printers.md](references/rust-gdb-pretty-printers.md).
+For GDB/LLDB command reference and pretty-printer setup, see [references/rust-gdb-pretty-printers.md](rust-gdb-pretty-printers.md).
 
 ## Related skills
 

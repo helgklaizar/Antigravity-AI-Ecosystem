@@ -203,7 +203,7 @@ fix_include < iwyu.log --nosafe_headers
 
 See `skills/build-systems/include-what-you-use` for full IWYU workflow.
 
-For ccache configuration options, see [references/ccache-config.md](references/ccache-config.md).
+For ccache configuration options, see [references/ccache-config.md](ccache-config.md).
 
 ## Related skills
 

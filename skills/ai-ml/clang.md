@@ -150,8 +150,8 @@ On macOS, `clang` is the system compiler (Apple LLVM). Key points:
 - Sanitizers on macOS use `DYLD_INSERT_LIBRARIES`; do not strip the binary
 - `xcrun clang` resolves to the Xcode toolchain clang
 
-For flag reference, see [references/flags.md](references/flags.md).
-For clang-tidy config examples, see [references/clang-tidy.md](references/clang-tidy.md).
+For flag reference, see [references/flags.md](../frontend/flags.md).
+For clang-tidy config examples, see [references/clang-tidy.md](../backend/clang-tidy.md).
 
 ## Related skills
 

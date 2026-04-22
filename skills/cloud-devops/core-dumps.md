@@ -184,7 +184,7 @@ gdb -batch -ex 'info registers' ./prog core
 gdb -batch -ex 'info signal' ./prog core
 ```
 
-For a full cheatsheet covering core pattern tokens, coredumpctl, GDB/LLDB commands, debuginfod servers, and strip/symbol workflows, see [references/cheatsheet.md](references/cheatsheet.md).
+For a full cheatsheet covering core pattern tokens, coredumpctl, GDB/LLDB commands, debuginfod servers, and strip/symbol workflows, see [references/cheatsheet.md](../ai-ml/cheatsheet.md).
 
 ## Related skills
 
