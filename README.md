@@ -1,10 +1,10 @@
 # 🌍 Antigravity AI Ecosystem
 
-> **The ultimate native macOS hub and command center for AI-driven development. Zero bloat, zero context hallucinations, maximum Apple Silicon performance.**
+> **The ultimate universal hub and command center for AI-driven development. Zero bloat, zero context hallucinations, maximum performance across any operating system.**
 
 ![Architecture](https://img.shields.io/badge/Architecture-Flat_Global_Topology-blue.svg)
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success.svg)
-![macOS](https://img.shields.io/badge/Platform-macOS_Native-black.svg)
+![Platform](https://img.shields.io/badge/Platform-Cross--Platform-black.svg)
 
 ## 🎯 Что это за проект? (What is this project?)
 
@@ -35,13 +35,13 @@ Unlike older setups where every project had its own messy `.gemini/` hidden fold
 
 ## ⚡ The Antigravity Bar (Status Bar App)
 
-This project includes a native macOS menu bar application written in Swift, which acts as the bridge between this GitHub repository and your Local System.
+This project includes a lightweight native background application which acts as the bridge between this GitHub repository and your Local System.
 
 **Core Capabilities:**
 - **Zero-Prompt Onboarding**: Drop the GitHub repo link into the chat, and the AI will analyze your local system (`uname`, `package.json`, `Cargo.toml`), select the relevant skills, and build your environment automatically.
 - **Ecosystem Syncing**: Automatically fetches and updates the latest workflows and skills directly from GitHub.
 - **Context Switching**: The Status Bar detects the active IDE window and dynamically swaps your active `PROFILE.md` pre-sets to prevent AI context hallucination.
-- **macOS Permissions Management**: Natively handles requesting required system permissions (Accessibility, Full Disk Access) before running scripts.
+- **System Permissions Management**: Natively handles requesting required OS permissions before running scripts.
 - **Security Guardrails**: Enforces "Safe Mode" blocking rogue `npm` scripts and requiring strict `pnpm`/`cargo` validation.
 
 ---
@@ -57,7 +57,7 @@ There are two ways to set up your perfectly tailored environment:
 
 ### Flow B: Visual Setup
 1. Compile and launch the **Antigravity Bar** from the `status-bar/` folder.
-2. Follow the sleek macOS setup wizard.
+2. Follow the sleek setup wizard.
 3. Select your tech stack. The Status Bar will pull ONLY the necessary assets from this Global Database into your `~/.gemini/antigravity/` folder to keep your IDE blazing fast.
 
 ---
