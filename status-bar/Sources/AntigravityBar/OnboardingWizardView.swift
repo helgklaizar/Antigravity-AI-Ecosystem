@@ -5,6 +5,9 @@ struct OnboardingWizardView: View {
     @State private var usesAppleNative: Bool = false
     @State private var usesWeb: Bool = false
     @State private var usesAI: Bool = false
+    @State private var usesProjectManagement: Bool = false
+    @State private var usesDesign: Bool = false
+    @State private var usesAutomation: Bool = false
     
     @State private var isConfiguring: Bool = false
     
@@ -51,13 +54,21 @@ struct OnboardingWizardView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Select Your Tech Stack")
+                    Text("Select Your Focus Areas")
                         .font(.system(size: 13, weight: .medium))
                         .foregroundColor(.secondary)
                     
-                    StackToggle(title: "Apple Native", icon: "applelogo", description: "Swift, SwiftUI, macOS apps", isOn: $usesAppleNative)
-                    StackToggle(title: "Modern Web", icon: "globe", description: "Next.js, React, Node.js", isOn: $usesWeb)
-                    StackToggle(title: "AI & Systems", icon: "brain", description: "Python, MLX, Rust", isOn: $usesAI)
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 12) {
+                            StackToggle(title: "Apple Native", icon: "applelogo", description: "Swift, SwiftUI, macOS apps", isOn: $usesAppleNative)
+                            StackToggle(title: "Modern Web", icon: "globe", description: "Next.js, React, Node.js", isOn: $usesWeb)
+                            StackToggle(title: "AI & Systems", icon: "brain", description: "Python, MLX, Rust", isOn: $usesAI)
+                            StackToggle(title: "Product & Strategy", icon: "chart.bar.doc.horizontal", description: "PM, Agile, Business", isOn: $usesProjectManagement)
+                            StackToggle(title: "Design & UI/UX", icon: "paintpalette", description: "Figma, Animations, Taste", isOn: $usesDesign)
+                            StackToggle(title: "Hardware & Automation", icon: "gearshape.2", description: "Robotics, Scripts, CI/CD", isOn: $usesAutomation)
+                        }
+                    }
+                    .frame(maxHeight: 280)
                 }
             }
             .padding(.horizontal, 40)
@@ -89,7 +100,7 @@ struct OnboardingWizardView: View {
                     )
                     .foregroundColor(.white)
                     .cornerRadius(16)
-                    .disabled(isConfiguring || userName.trimmingCharacters(in: .whitespaces).isEmpty || (!usesAppleNative && !usesWeb && !usesAI))
+                    .disabled(isConfiguring || userName.trimmingCharacters(in: .whitespaces).isEmpty || (!usesAppleNative && !usesWeb && !usesAI && !usesProjectManagement && !usesDesign && !usesAutomation))
                     
                     Spacer()
                 }
@@ -134,15 +145,27 @@ struct OnboardingWizardView: View {
         
         if usesAppleNative {
             stackList += "- **Apple Native:** Swift, SwiftUI\\n"
-            skillsList += "- `macos-native-dev.md`\\n"
+            skillsList += "- `skills/frontend/swiftui-guidelines.md`\\n"
         }
         if usesWeb {
             stackList += "- **Web:** Next.js, React, Node.js\\n"
-            skillsList += "- `frontend_best_practices.md`\\n"
+            skillsList += "- `skills/frontend/nextjs-app-router.md`\\n"
         }
         if usesAI {
             stackList += "- **AI:** Python, MLX, Rust\\n"
-            skillsList += "- `python-fastapi-development.md`\\n"
+            skillsList += "- `skills/backend/python-fastapi-development.md`\\n"
+        }
+        if usesProjectManagement {
+            stackList += "- **Product:** Strategy, Agile, Management\\n"
+            skillsList += "- `skills/business-agile/agile-workflows.md`\\n"
+        }
+        if usesDesign {
+            stackList += "- **Design:** UI/UX, Figma, Taste\\n"
+            skillsList += "- `skills/design-ui/ui-taste-design.md`\\n"
+        }
+        if usesAutomation {
+            stackList += "- **Automation:** Scripts, Hardware, Robotics\\n"
+            skillsList += "- `skills/automation-tools/bash-scripting.md`\\n"
         }
         
         let profile = """
@@ -159,8 +182,8 @@ struct OnboardingWizardView: View {
         *(Note for Agent: This profile is dynamically managed by the Antigravity Status Bar.)*
 
         **Loaded Workflows:**
-        - `github-workflow-automation.md`
-        - `qa-orchestrator.md`
+        - `global_workflows/ci-cd/github-workflow-automation.md`
+        - `global_workflows/qa-testing/qa-orchestrator.md`
 
         **Loaded Skills:**
         \\(skillsList)
