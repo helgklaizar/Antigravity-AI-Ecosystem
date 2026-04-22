@@ -343,15 +343,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     // MARK: - Ecosystem Actions
 
     @objc private func openAgents() {
-        openInAntigravity(ecosystemDir + "/agents")
+        openInAntigravity(antigravityDir + "/agents")
     }
     
     @objc private func openSkills() {
-        openInAntigravity(ecosystemDir + "/skills")
+        openInAntigravity(antigravityDir + "/skills")
     }
     
     @objc private func openWorkflows() {
-        openInAntigravity(ecosystemDir + "/workflows")
+        openInAntigravity(antigravityDir + "/global_workflows")
     }
 
     @objc private func syncEcosystem() {
