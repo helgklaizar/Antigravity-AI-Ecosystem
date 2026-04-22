@@ -287,6 +287,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
         // Ecosystem Actions
         menu.addItem(makeItem("👤 My Ecosystem Profile", action: #selector(openProfile)))
+        menu.addItem(makeItem("🪄 Auto-Configure Ecosystem", action: #selector(autoConfigureEcosystem)))
         menu.addItem(makeItem("🧬 Agents", action: #selector(openAgents)))
         menu.addItem(makeItem("🛠️ Skills", action: #selector(openSkills)))
         menu.addItem(makeItem("🔀 Workflows", action: #selector(openWorkflows)))
@@ -343,6 +344,23 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 
     // MARK: - Ecosystem Actions
+
+    @objc private func autoConfigureEcosystem() {
+        let prompt = "Please analyze my project folders in ~/Documents/PROJECTS/WORK. Based on the languages and frameworks you find, determine my Tech Stack. Then read ~/Documents/PROJECTS/WORK/AI-Ecosystem/ECOSYSTEM_GUIDE.md, copy the necessary skills into ~/.gemini/antigravity/, and generate my ~/.gemini/antigravity/PROFILE.md."
+        let script = "'\(antigravityCLI)' chat \\\"\(prompt)\\\""
+        let appleScript = """
+            tell application "Terminal"
+                activate
+                do script "\(script)"
+            end tell
+        """
+        let task = Process()
+        task.launchPath = "/usr/bin/osascript"
+        task.arguments = ["-e", appleScript]
+        task.standardOutput = FileHandle.nullDevice
+        task.standardError = FileHandle.nullDevice
+        try? task.run()
+    }
 
     @objc private func openProfile() {
         openInAntigravity(antigravityDir + "/PROFILE.md")
