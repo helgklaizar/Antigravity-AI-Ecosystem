@@ -1,60 +1,69 @@
-# 🌍 AI Ecosystem & Antigravity Bar
+# 🌍 Antigravity AI Ecosystem
 
-> **The ultimate native macOS hub and command center for AI-driven development.**
+> **The ultimate native macOS hub and command center for AI-driven development. Zero bloat, zero context hallucinations, maximum Apple Silicon performance.**
 
-## 🎯 The Architecture: Global Database vs Local System
+![Architecture](https://img.shields.io/badge/Architecture-Flat_Global_Topology-blue.svg)
+![Status](https://img.shields.io/badge/Status-Production_Ready-success.svg)
+![macOS](https://img.shields.io/badge/Platform-macOS_Native-black.svg)
 
-To understand how this project works, you must understand the two-tier architecture:
+## 🎯 What is this project?
 
-1. **The Global Database (This Repository):**
-   `AI-Ecosystem` on GitHub acts as the master database. It contains over 1,800+ specialized skills, agents, and global workflows. It is beautifully documented and constantly updated, but **you should not install all of them**.
-   
-2. **Your Local System (`~/.gemini/antigravity/`):**
-   This is your native Antigravity IDE environment. It is tailored **specifically to you**. Instead of being bloated with thousands of files, it only contains the exact tools you need for your current project stack (e.g., Swift, Next.js, Python), ensuring maximum IDE speed and AI context relevance.
+This repository is a **master orchestration database** for the Antigravity IDE. It transforms a standard AI coding assistant into a fully autonomous, context-aware development team. 
 
-## ⚡ The Antigravity Bar (Status Bar App)
-
-This project includes a native macOS menu bar application called the **Antigravity Bar**, which acts as the bridge between the Global Database and your Local System.
-
-**What does it do?**
-- **Native Quick Access**: Dropdown access to your local Agents, Skills, and Workflows.
-- **Ecosystem Syncing**: Automatically fetches and updates the latest workflows and skills directly from GitHub.
-- **👤 My Ecosystem Profile**: A dynamic configuration file (`knowledge/user_ecosystem_profile/artifacts/PROFILE.md`) that tracks your stack and loaded skills.
-
-## 🚀 First-Time Onboarding & Installation
-
-There are two ways to set up your perfectly tailored environment. **Do not manually copy folders.**
-
-### Flow A: Zero-Prompt AI Onboarding (For IDE Users)
-1. Open **Antigravity** (your native IDE).
-2. Simply drop the repository link into the AI chat:
-   `https://github.com/helgklaizar/AI-Ecosystem`
-3. The Agent will autonomously find the `AI_ONBOARDING.md`, read the instructions, install the Status Bar, and interactively set up your system based on your stack.
-
-### Flow B: UI-Driven Onboarding (For Visual Setup)
-1. Download and launch the **Antigravity Bar** macOS application.
-2. A sleek macOS setup wizard will appear.
-3. Select your tech stack (e.g., Swift, Next.js, Python).
-4. The Status Bar will directly clone the necessary assets from this Global Database into your `~/.gemini/antigravity/` folders.
-
-## 🏛️ Advanced Architectural Pillars
-
-To maintain a pristine and secure environment, the ecosystem relies on the following mechanics managed by the Status Bar:
-
-1. **Context Switching**: The Status Bar detects the active IDE window (e.g., a Swift project vs. a Python backend) and dynamically swaps your active `PROFILE.md` pre-sets to prevent AI context hallucination.
-2. **Ecosystem Sync & Updates**: Direct, smart fetching from GitHub. When `AI-Ecosystem` updates globally, the Status Bar prompts you to update your local skills while handling merge conflicts for locally modified files.
-3. **Garbage Collection**: Unused skills clutter the AI's context. The Status Bar periodically audits your projects and suggests removing dormant skills (e.g., *"You haven't opened a Next.js project in a month. Remove Next.js skills?"*).
-4. **macOS Permissions Management**: The Status Bar elegantly handles requesting required system permissions (Accessibility, Full Disk Access) before attempting to run scripts or build apps.
-5. **Security Guardrails**: **Safe Mode** ensures that new, unverified workflows (especially those performing git commits or file deletions) require your explicit approval before the AI can execute them.
-
-## 🧠 Documentation Links
-
-- 📖 **[The Ecosystem Guide](ECOSYSTEM_GUIDE.md)** — The curated list of the most valuable stacks to pull from the database.
-- 🚀 **[The Onboarding Script](AI_ONBOARDING.md)** — AI agent instructions for analyzing your system and generating your Profile.
-- 🏗️ **[Base Architecture](base/STRUCTURE.md)** — Project structuring rules for new repos.
-- 🖥️ **[Antigravity Bar Source](status-bar/README.md)** — Source code for the native macOS status bar plugin.
+Instead of relying on basic LLM prompts, this ecosystem provides:
+1. **Curated Skills (`/skills`)**: Highly specific technical instructions (e.g., Swift Native Apple APIs, Next.js App Router, Rust lifetimes).
+2. **Global Workflows (`/global_workflows`)**: Step-by-step CI/CD and orchestration pipelines triggered via `/slash-commands` (e.g., `/qa-start`, `/pr-writer`).
+3. **Specialized Agents (`/agents`)**: Distinct AI personas (Architect, QA, DevOps) that can be swapped dynamically.
+4. **Architectural Templates (`/templates`)**: Standardized project configurations like `SWARM_STATE.md` (for agent handovers) and `SECRETS_MAP.md` (for strict environment security).
 
 ---
 
+## 🏛️ The "Lean Architecture" Paradigm
+
+**We strictly enforce the Flat Global Architecture Rule.**
+Unlike older setups where every project had its own messy `.gemini/` hidden folder full of duplicate prompts, this ecosystem runs centrally from `~/.gemini/antigravity/`. 
+
+* **No Duplicates**: A skill is updated here, and it instantly applies to all your projects.
+* **No Blind Spots**: The IDE parses the exact same workflows regardless of what directory your terminal is in.
+* **Auto-Formatting Hooks**: Seamless integration with `prettier`, `rustfmt`, and `ruff` on the IDE level.
+
+---
+
+## ⚡ The Antigravity Bar (Status Bar App)
+
+This project includes a native macOS menu bar application written in Swift, which acts as the bridge between this GitHub repository and your Local System.
+
+**Core Capabilities:**
+- **Zero-Prompt Onboarding**: Drop the GitHub repo link into the chat, and the AI will analyze your local system (`uname`, `package.json`, `Cargo.toml`), select the relevant skills, and build your environment automatically.
+- **Ecosystem Syncing**: Automatically fetches and updates the latest workflows and skills directly from GitHub.
+- **Context Switching**: The Status Bar detects the active IDE window and dynamically swaps your active `PROFILE.md` pre-sets to prevent AI context hallucination.
+- **macOS Permissions Management**: Natively handles requesting required system permissions (Accessibility, Full Disk Access) before running scripts.
+- **Security Guardrails**: Enforces "Safe Mode" blocking rogue `npm` scripts and requiring strict `pnpm`/`cargo` validation.
+
+---
+
+## 🚀 First-Time Onboarding
+
+There are two ways to set up your perfectly tailored environment:
+
+### Flow A: AI-Driven Onboarding (Recommended)
+1. Open **Antigravity IDE**.
+2. Drop the repository link into the AI chat: `https://github.com/helgklaizar/AI-Ecosystem`
+3. The Agent will autonomously find `AI_ONBOARDING.md`, read the instructions, install the Status Bar, and interactively compile your `settings.json` based on your stack.
+
+### Flow B: Visual Setup
+1. Compile and launch the **Antigravity Bar** from the `status-bar/` folder.
+2. Follow the sleek macOS setup wizard.
+3. Select your tech stack. The Status Bar will pull ONLY the necessary assets from this Global Database into your `~/.gemini/antigravity/` folder to keep your IDE blazing fast.
+
+---
+
+## 🧠 Documentation & Standards
+
+- 📖 **[The Ecosystem Guide](ECOSYSTEM_GUIDE.md)** — The curated list of essential stacks and architectural rules.
+- 🚀 **[The Onboarding Script](AI_ONBOARDING.md)** — Core AI instructions for generating dynamic configurations.
+- 🏗️ **[Templates & Security](templates/)** — Explore the Swarm State protocols and Secrets mapping.
+
+---
 ## 📄 License
 MIT
