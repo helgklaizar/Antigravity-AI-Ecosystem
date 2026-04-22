@@ -25,6 +25,7 @@ These define how our AI operates on a macro level:
 - `global_workflows/code-review/pr-writer.md` — Automates Pull Request creation and code review.
 - `global_workflows/qa-testing/qa-orchestrator.md` — Autonomous QA node for code quality.
 - `global_workflows/ci-cd/build-local.md` — Fast local builds, especially for desktop (Tauri/Swift) apps.
+- `global_workflows/planning-design/session-recap.md` — (`/recap`) Saves session context to `SWARM_STATE.md` to prevent AI amnesia.
 
 ### 2. High-Priority Skills (`~/.gemini/antigravity/skills/`)
 These give the AI specialized knowledge for our specific stack:

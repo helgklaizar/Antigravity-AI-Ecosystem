@@ -12,7 +12,7 @@ This repository is a **master orchestration database** for the Antigravity IDE. 
 
 Instead of relying on basic LLM prompts, this ecosystem provides:
 1. **Curated Skills (`/skills`)**: Highly specific technical instructions (e.g., Swift Native Apple APIs, Next.js App Router, Rust lifetimes).
-2. **Global Workflows (`/global_workflows`)**: Step-by-step CI/CD and orchestration pipelines triggered via `/slash-commands` (e.g., `/qa-start`, `/pr-writer`).
+2. **Global Workflows (`/global_workflows`)**: Step-by-step CI/CD and orchestration pipelines triggered via `/slash-commands` (e.g., `/qa-start`, `/pr-writer`, and `/recap` to save session states).
 3. **Specialized Agents (`/agents`)**: Distinct AI personas (Architect, QA, DevOps) that can be swapped dynamically.
 4. **Architectural Templates (`/templates`)**: Standardized project configurations like `SWARM_STATE.md` (for agent handovers) and `SECRETS_MAP.md` (for strict environment security).
 
