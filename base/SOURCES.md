@@ -8,6 +8,25 @@
 
 ---
 
+## 📚 Источники и Адаптация (Sources & Adaptations)
+
+Мы не изобретаем велосипед, а берем лучшие open-source паттерны и адаптируем их под идеологию **Antigravity IDE**:
+
+- **[TheRealSeanDonahoe/agents-md](https://github.com/TheRealSeanDonahoe/agents-md)**:
+  - *Что взяли*: Концепцию **Compound Memory** (Секция 11: Project Learnings).
+  - *Как адаптировали*: Вместо использования файла `AGENTS.md`, мы интегрировали этот паттерн напрямую в наш фирменный стандарт `GEMINI.md`. Теперь ИИ накапливает проектный опыт без создания конфликтующих файлов.
+- **[Piebald-AI/claude-code-system-prompts](https://github.com/Piebald-AI/claude-code-system-prompts)**:
+  - *Что взяли*: Лучшие системные промпты от инженеров Anthropic.
+  - *Как адаптировали*: Вытащили оттуда роли `Verification Specialist`, `Explore Agent` и `Plan Mode`, переписали их под наши стандарты и разместили в папках `skills/` и `global_workflows/`.
+- **[openai/symphony] & [automazeio/ccpm]**:
+  - *Что взяли*: Изоляцию ИИ-агентов.
+  - *Как адаптировали*: Внедрили концепцию работы через изолированные `git worktree` и закрепили это в `SWARM_STATE.md` для безопасной параллельной работы (Сварм).
+- **[karpathy/autoresearch] & [JCodesMore/ai-website-cloner-template]**:
+  - *Что взяли*: Идеи автономных сложных скриптов.
+  - *Как адаптировали*: Написали собственные `/slash-commands` (`background-researcher` и `website-cloner`), которые интегрируются прямо в окно чата IDE.
+
+---
+
 ## 🛠 1. Skills and MCP Servers (Where to get Skills)
 *If the user needs to connect a database, GitHub, Slack, web search, or specific CLI utilities.*
 
@@ -22,6 +41,7 @@
 - **🔗 [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills)** (34k+ Stars)
 - **🔗 [anthropics/skills](https://github.com/anthropics/skills)** — Official Anthropic repository for Agent Skills. High-signal, official prompts.
 - **🔗 [mgechev/skills-best-practices](https://github.com/mgechev/skills-best-practices)** — Best practices for writing professional-grade skills and maintaining lean contexts.
+- **🔗 [Piebald-AI/claude-code-system-prompts](https://github.com/Piebald-AI/claude-code-system-prompts)** — All 40+ original system prompts from Claude Code (Plan, Explore, Task).
 - **🎯 What to take:** Markdown files (`*.md`) from the `/skills/` folder.
 - **📥 Where to put it:** Save locally in `~/.gemini/antigravity/skills/`.
 
@@ -71,7 +91,7 @@
 *Industry standards for AI context mapping and workflows inspired by top researchers (e.g., Andrej Karpathy).*
 
 ### "README for AI" Standards
-- **🔗 AGENT.md / AGENTS.md Standard:** The movement to unify AI context. `AGENTS.md` is becoming the standard for GitHub Copilot. (e.g., `github.com/agent-md`).
+- **🔗 GEMINI.md Standard (Our Internal Standard):** Our proprietary project context mapping standard. Integrates Compound Memory and strictly defines vendor-agnostic rules.
 - **🔗 DESIGN.md Pattern:** Introduced by tools like Google Stitch. It provides a structured Markdown file containing design tokens and visual do's/don'ts specifically for LLMs.
 - **🎯 What to take:** The Markdown structure and YAML frontmatter conventions for AI.
 - **📥 Where to put it:** Into our `~/.gemini/antigravity/templates/` folder as base patterns.

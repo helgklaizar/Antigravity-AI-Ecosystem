@@ -19,13 +19,15 @@ Our projects typically revolve around the following technologies:
 Instead of cluttering the system with thousands of unused skills, we only use the following high-value tools. **If a tool is not on this list, do not install it by default.**
 
 ### 1. Essential Global Workflows (`~/.gemini/antigravity/global_workflows/`)
-These define how our AI operates on a macro level:
+Эти воркфлоу определяют макро-операции ИИ:
 - `global_workflows/agent-orchestration/acceptance-orchestrator.md` — End-to-end task validation before completion.
 - `global_workflows/ci-cd/github-workflow-automation.md` — Syncing projects and managing GitHub.
 - `global_workflows/code-review/pr-writer.md` — Automates Pull Request creation and code review.
 - `global_workflows/qa-testing/qa-orchestrator.md` — Autonomous QA node for code quality.
 - `global_workflows/ci-cd/build-local.md` — Fast local builds, especially for desktop (Tauri/Swift) apps.
 - `global_workflows/planning-design/session-recap.md` — (`/recap`) Saves session context to `SWARM_STATE.md` to prevent AI amnesia.
+- `global_workflows/ai-automation/background-researcher.md` — Фоновый ИИ-исследователь для глубокого анализа документации и конкурентов (Deep Research).
+- `global_workflows/ai-automation/website-cloner.md` — Автоматизированный реверс-инжиниринг и клонирование верстки веб-сайтов.
 
 ### 2. High-Priority Skills (`~/.gemini/antigravity/skills/`)
 These give the AI specialized knowledge for our specific stack:
@@ -59,6 +61,11 @@ When coordinating multiple agents on the same project simultaneously (e.g., one 
 
 **CRITICAL:** Do NOT create `.gemini/agents/` or `.gemini/skills/` folders inside individual project repositories (e.g., `PROD/my-app/.gemini/`). 
 All AI assets MUST be stored centrally in `~/.gemini/antigravity/`. This prevents version drift, avoids context fragmentation ("blind spots"), and ensures the IDE's Status Bar tools work seamlessly across all your projects.
+
+## 🧠 Compound Memory (Project Learnings)
+
+Вместо того чтобы писать сотни правил в `GEMINI.md`, используйте **Секцию 11: Project Learnings**.
+Когда агент допускает ошибку (например, использует неправильный импорт или ломает архитектуру), вы не пишете новое правило в глобальный файл. Вы просите агента: *"Исправь это и запиши правило в Project Learnings в GEMINI.md"*. Это позволяет проекту накапливать память и делает агента умнее с каждой задачей.
 
 ## ⚙️ How to Clean Your System
 

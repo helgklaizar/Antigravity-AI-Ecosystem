@@ -6,15 +6,19 @@
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success.svg)
 ![macOS](https://img.shields.io/badge/Platform-macOS_Native-black.svg)
 
-## 🎯 What is this project?
+## 🎯 Что это за проект? (What is this project?)
 
-This repository is a **master orchestration database** for the Antigravity IDE. It transforms a standard AI coding assistant into a fully autonomous, context-aware development team. 
+This repository is the **Global Master Database** for the Antigravity IDE and all your AI coding agents. It transforms a standard AI coding assistant into a fully autonomous, context-aware development team (Swarm). 
 
-Instead of relying on basic LLM prompts, this ecosystem provides:
-1. **Curated Skills (`/skills`)**: Highly specific technical instructions (e.g., Swift Native Apple APIs, Next.js App Router, Rust lifetimes).
-2. **Global Workflows (`/global_workflows`)**: Step-by-step CI/CD and orchestration pipelines triggered via `/slash-commands` (e.g., `/qa-start`, `/pr-writer`, and `/recap` to save session states).
+Its primary purpose is to **prevent context fragmentation**. Instead of each project having its own isolated, outdated, and conflicting AI instructions (like local `.gemini/` folders), this ecosystem centralizes everything into a single, highly-curated repository.
+
+### Core Features:
+1. **Curated Skills (`/skills`)**: Highly specific technical instructions for your local stack (MLX, Swift, Next.js).
+2. **Global Workflows (`/global_workflows`)**: Orchestration pipelines triggered via `/slash-commands` (e.g., website cloning, background research, PR reviews).
 3. **Specialized Agents (`/agents`)**: Distinct AI personas (Architect, QA, DevOps) that can be swapped dynamically.
-4. **Architectural Templates (`/templates`)**: Standardized project configurations like `SWARM_STATE.md` (for agent handovers) and `SECRETS_MAP.md` (for strict environment security).
+4. **Architectural Templates (`/templates`)**: Standardized project configurations:
+   - `GEMINI.md`: The universal project constitution featuring **Compound Memory** (Project Learnings).
+   - `SWARM_STATE.md`: For agent handovers and parallel **Git Worktree** execution.
 
 ---
 
