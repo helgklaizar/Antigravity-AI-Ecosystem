@@ -61,4 +61,22 @@
 - **🔗 [f/prompts.chat](https://github.com/f/prompts.chat)** (160k+ Stars)
 - **🔗 [langgptai/awesome-claude-prompts](https://github.com/langgptai/awesome-claude-prompts)**
 - **🎯 What to take:** Role model text (e.g., "Act as a Linux Terminal").
-- **📥 Where to put it:** Use directly in chat or save to `~/.ai-ecosystem/workflows/`.
+- **📥 Where to put it:** Use directly in chat or save to `~/.gemini/antigravity/workflows/`.
+
+---
+
+## 🏛️ 5. Emerging AI Standards & "Illuminati" Workflows
+*Industry standards for AI context mapping and workflows inspired by top researchers (e.g., Andrej Karpathy).*
+
+### "README for AI" Standards
+- **🔗 AGENT.md / AGENTS.md Standard:** The movement to unify AI context. `AGENTS.md` is becoming the standard for GitHub Copilot. (e.g., `github.com/agent-md`).
+- **🔗 DESIGN.md Pattern:** Introduced by tools like Google Stitch. It provides a structured Markdown file containing design tokens and visual do's/don'ts specifically for LLMs.
+- **🎯 What to take:** The Markdown structure and YAML frontmatter conventions for AI.
+- **📥 Where to put it:** Into our `~/.gemini/antigravity/templates/` folder as base patterns.
+
+### The "Karpathy" Approach (Software 2.0 / Flat Context)
+Andrej Karpathy (former Tesla AI / OpenAI) advocates for ultra-clean, flat C-style code and high-signal, low-noise context for LLMs.
+- **🔗 [karpathy/llm.c](https://github.com/karpathy/llm.c)** — A masterclass in writing minimal, dependency-free code that LLMs can digest entirely in one shot.
+- **🔗 [karpathy/minGPT](https://github.com/karpathy/minbpe)** — Clean, instructional implementations.
+- **🎯 What to take:** The principle of "Dry Context" (no OOP bloat, flat topologies, pure C/Python patterns). This perfectly aligns with our `Flat Global Architecture Rule`.
+- **📥 Where to put it:** Embed these principles directly into our `GEMINI.md` architectural rules.
