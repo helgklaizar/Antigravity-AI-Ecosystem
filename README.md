@@ -1,10 +1,18 @@
-# 🌍 Antigravity AI Ecosystem
+<div align="center">
+  <h1>🌍 Antigravity AI Ecosystem</h1>
+  <h3>The Ultimate Command Center for Autonomous Development</h3>
+  <p>
+    <b>Deploy the latest skills, workflows, and configurations fine-tuned for maximum productivity in agentic mode.</b>
+  </p>
+  <br/>
+  <p>
+    <img src="https://img.shields.io/badge/Architecture-Flat_Global_Topology-blue.svg" alt="Architecture">
+    <img src="https://img.shields.io/badge/Status-Production_Ready-success.svg" alt="Status">
+    <img src="https://img.shields.io/badge/Platform-Cross--Platform-black.svg" alt="Platform">
+  </p>
+</div>
 
-> **The ultimate workspace setup for Antigravity IDE. Deploy the latest skills, workflows, and configurations fine-tuned for maximum productivity in autonomous agentic mode.**
-
-![Architecture](https://img.shields.io/badge/Architecture-Flat_Global_Topology-blue.svg)
-![Status](https://img.shields.io/badge/Status-Production_Ready-success.svg)
-![Platform](https://img.shields.io/badge/Platform-Cross--Platform-black.svg)
+<br/>
 
 ## 🎯 What is this project?
 
