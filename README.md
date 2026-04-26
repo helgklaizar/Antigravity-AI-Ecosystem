@@ -30,18 +30,17 @@ We solve this by centralizing the "brain". The AI-Ecosystem provides a unified, 
 
 ---
 
-## ⚡ The AntigravityBar (Status Bar App)
+## ⚡ AntigravityBar: Your AI Command Center
 
-A cornerstone of this ecosystem is the **AntigravityBar**, a lightweight native macOS application that acts as the bridge between this GitHub repository and your Local System.
+Forget digging through terminals. The **AntigravityBar** is a native, ultra-lightweight macOS status bar app that bridges this GitHub ecosystem directly to your machine. It's the ultimate remote control for your AI agents.
 
-![Antigravity Bar Menu](status-bar/assets/screenshots/context-menu.png)
+![Antigravity Bar Menu](status-bar/assets/screenshots/dashboard.png)
 
-### What it does:
-- **Dashboard & System Metrics**: Acts as a professional dashboard, providing real-time monitoring of your machine's **CPU, GPU, and RAM** with visual, color-coded load indicators.
-- **Process & Context Manager**: Dynamically detects your active IDE window and intelligently swaps out the AI `PROFILE.md` pre-sets to prevent context cross-contamination.
-- **Ecosystem Syncing**: Automatically fetches and updates the latest workflows, agent personas, and skills directly from this GitHub repository.
-- **Zero-Prompt Setup Wizards**: Offers a sleek, native visual wizard to configure your entire development environment—no terminal commands required.
-- **Model Quota Tracking**: Keeps track of your active model limits (Gemini 3.1 Pro, Claude 3.5 Sonnet, O1, etc.) directly in the menu bar.
+### Why you'll love it:
+- **Live System Telemetry:** Professional, color-coded monitoring for CPU, GPU, and RAM, right where you need it.
+- **Context-Aware Autopilot:** It dynamically watches your IDE and automatically injects the correct `PROFILE.md` so your AI never hallucinates context across different projects.
+- **Real-Time Quota Tracking:** Never guess your API limits again. Live tracking for Gemini 3.1 Pro, Claude Sonnet, and local models.
+- **One-Click Ecosystem Sync:** Instantly pull the newest agents, workflows, and skills from this repo without touching a single terminal command.
 
 ---
 
