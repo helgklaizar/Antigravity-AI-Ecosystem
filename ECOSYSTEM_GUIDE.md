@@ -47,9 +47,9 @@ These govern project-level AI operations, context sharing, and multi-agent concu
 - `GEMINI.md` — Base configuration template for initializing new repos.
 
 #### Parallel Swarm Execution (Git Worktrees)
-When coordinating multiple agents on the same project simultaneously (e.g., one agent building the UI, another writing backend tests), we use **Git Worktrees** to prevent merge conflicts and file locking.
+When coordinating multiple tasks on the same project simultaneously, we use **Git Worktrees** to prevent merge conflicts and file locking.
 - **Pattern:** `git worktree add ../feature-branch feature-branch`
-- **Execution:** Agent A operates in `/PROJECT`, Agent B operates in `/feature-branch`. They coordinate via GitHub Issues or `SWARM_STATE.md` before merging back.
+- **Antigravity Execution:** Antigravity operates as a linear agent per session. To execute parallel work, you must open separate chat sessions (one for `/PROJECT`, one for `/feature-branch`). They coordinate via GitHub Issues or `SWARM_STATE.md` before merging back.
 
 ---
 
@@ -58,10 +58,11 @@ When coordinating multiple agents on the same project simultaneously (e.g., one 
 **CRITICAL:** Do NOT create `.gemini/agents/` or `.gemini/skills/` folders inside individual project repositories (e.g., `PROD/my-app/.gemini/`). 
 All AI assets MUST be stored centrally in `~/.gemini/antigravity/`. This prevents version drift, avoids context fragmentation ("blind spots"), and ensures the IDE's Status Bar tools work seamlessly across all your projects.
 
-## 🧠 Compound Memory (Project Learnings)
+## 🧠 Compound Memory (Knowledge Items)
 
-Вместо того чтобы писать сотни правил в `GEMINI.md`, используйте **Секцию 11: Project Learnings**.
-Когда агент допускает ошибку (например, использует неправильный импорт или ломает архитектуру), вы не пишете новое правило в глобальный файл. Вы просите агента: *"Исправь это и запиши правило в Project Learnings в GEMINI.md"*. Это позволяет проекту накапливать память и делает агента умнее с каждой задачей.
+Вместо того чтобы писать сотни правил в `GEMINI.md`, используйте нативную систему **Knowledge Items (KI)**.
+Когда агент допускает ошибку (например, использует неправильный импорт или ломает архитектуру), вы не пишете новое правило в глобальный файл. Вы просите агента: *"Исправь это и создай Knowledge Item (KI) с этим правилом, чтобы не забыть"*.
+Агент сохранит это в своей локальной базе знаний (`~/.gemini/antigravity/knowledge/`), и система автоматически будет подгружать эти знания во все будущие сессии с этим проектом, делая агента умнее с каждой задачей.
 
 ## ⚙️ How to Clean Your System
 

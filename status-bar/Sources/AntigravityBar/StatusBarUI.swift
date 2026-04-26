@@ -34,33 +34,72 @@ struct StatusBarUI {
         return img
     }
 
-    static func makeBarTitle(models: [ModelQuota], daemonOnline: Bool, cacheFormatted: String, cacheMB: Double) -> NSAttributedString {
-        let result = NSMutableAttributedString()
-        let pctFont = NSFont.monospacedSystemFont(ofSize: 13, weight: .bold)
-        let sepFont = NSFont.systemFont(ofSize: 11, weight: .regular)
+    static func makeSparkline(history: [Int], color: NSColor, size: NSSize = NSSize(width: 30, height: 12)) -> NSImage {
+        let img = NSImage(size: size, flipped: false) { rect in
+            let count = max(history.count, 2)
+            let stepX = rect.width / CGFloat(count - 1)
+            
+            var points: [NSPoint] = []
+            for (i, val) in history.enumerated() {
+                let x = CGFloat(i) * stepX
+                let y = (CGFloat(val) / 100.0) * rect.height
+                points.append(NSPoint(x: x, y: y))
+            }
+            
+            let fillPath = NSBezierPath()
+            fillPath.move(to: NSPoint(x: 0, y: 0))
+            fillPath.line(to: points[0])
+            for pt in points.dropFirst() {
+                fillPath.line(to: pt)
+            }
+            fillPath.line(to: NSPoint(x: rect.width, y: 0))
+            fillPath.close()
+            
+            color.withAlphaComponent(0.85).setFill()
+            fillPath.fill()
+            
+            return true
+        }
+        img.isTemplate = false
+        return img
+    }
 
+    static func colorForResourceUsage(_ pct: Int) -> NSColor {
+        if pct > 85 { return NSColor.systemRed }
+        if pct > 65 { return NSColor.systemOrange }
+        if pct > 40 { return NSColor.systemYellow }
+        return NSColor.systemGreen
+    }
+
+    static func makeBarTitle(models: [ModelQuota], daemonOnline: Bool, cacheFormatted: String, cacheMB: Double, cpu: Int, gpu: Int, ram: Int, historyCPU: [Int], historyGPU: [Int], historyRAM: [Int]) -> NSAttributedString {
+        let result = NSMutableAttributedString()
+        let pctFont = NSFont.monospacedDigitSystemFont(ofSize: 13, weight: .regular)
+        let sepFont = NSFont.systemFont(ofSize: 12, weight: .regular)
+        let sep = NSAttributedString(string: "  |  ", attributes: [
+            .font: sepFont, .foregroundColor: NSColor.tertiaryLabelColor
+        ])
+
+        // 1. Cache
         let cacheColor = colorForCacheMB(cacheMB)
         let cacheStr = NSAttributedString(string: cacheFormatted, attributes: [
             .font: pctFont, .foregroundColor: cacheColor
         ])
         result.append(cacheStr)
+        result.append(sep)
 
+        // 2. Models
         if models.isEmpty {
             if !daemonOnline {
-                let offStr = NSAttributedString(string: "  |  OFF", attributes: [
+                let offStr = NSAttributedString(string: "OFF", attributes: [
                     .font: pctFont, .foregroundColor: NSColor.tertiaryLabelColor
                 ])
                 result.append(offStr)
+                result.append(sep)
             }
         } else {
             let grouped = groupModels(models)
             for g in grouped {
                 let color = colorForPercentage(g.pct)
-
-                let sep = NSAttributedString(string: "  |  ", attributes: [
-                    .font: sepFont, .foregroundColor: NSColor.tertiaryLabelColor
-                ])
-                result.append(sep)
 
                 let circleImg = makeTimerCircle(secondsLeft: g.secsLeft)
                 let attachment = NSTextAttachment()
@@ -69,10 +108,50 @@ struct StatusBarUI {
                 result.append(NSAttributedString(attachment: attachment))
                 result.append(NSAttributedString(string: " ", attributes: [.font: sepFont]))
 
-                let pctStr = NSAttributedString(string: "\(g.pct)%", attributes: [
+                var formattedPctStr = "\(g.pct)%"
+                if g.pct < 10 {
+                    formattedPctStr = "\u{2007}\u{2007}\(g.pct)%"
+                } else if g.pct < 100 {
+                    formattedPctStr = "\u{2007}\(g.pct)%"
+                }
+                
+                let pctStr = NSAttributedString(string: formattedPctStr, attributes: [
                     .font: pctFont, .foregroundColor: color
                 ])
                 result.append(pctStr)
+                result.append(sep)
+            }
+        }
+
+        // 3. Stats
+        let stats: [(String, Int, [Int], NSColor)] = [
+            ("CPU", cpu, historyCPU, NSColor.systemBlue),
+            ("GPU", gpu, historyGPU, colorForResourceUsage(gpu)),
+            ("RAM", ram, historyRAM, colorForResourceUsage(ram))
+        ]
+        for (idx, stat) in stats.enumerated() {
+            let color = stat.3
+            
+            let sparkImg = makeSparkline(history: stat.2, color: color)
+            let attachment = NSTextAttachment()
+            attachment.image = sparkImg
+            attachment.bounds = CGRect(x: 0, y: -1, width: sparkImg.size.width, height: sparkImg.size.height)
+            result.append(NSAttributedString(attachment: attachment))
+            result.append(NSAttributedString(string: " ", attributes: [.font: sepFont]))
+            
+            var formattedPctStr = "\(stat.1)"
+            if stat.1 < 10 {
+                formattedPctStr = "\u{2007}\u{2007}\(stat.1)"
+            } else if stat.1 < 100 {
+                formattedPctStr = "\u{2007}\(stat.1)"
+            }
+            
+            result.append(NSAttributedString(string: formattedPctStr, attributes: [
+                .font: pctFont, .foregroundColor: NSColor.labelColor
+            ]))
+            
+            if idx < stats.count - 1 {
+                result.append(sep)
             }
         }
 
@@ -85,11 +164,9 @@ struct StatusBarUI {
             let keywords: [String]
         }
         let groups = [
-            Group(name: "Flash", keywords: ["flash"]),
             Group(name: "Pro", keywords: ["pro"]),
-            Group(name: "Claude", keywords: ["claude", "sonnet", "opus"]),
-            Group(name: "O1", keywords: ["o1", "o3"]),
-            Group(name: "Gemma", keywords: ["gemma"])
+            Group(name: "Flash", keywords: ["flash"]),
+            Group(name: "Claude", keywords: ["claude", "sonnet", "opus"])
         ]
 
         var result: [(name: String, pct: Int, secsLeft: Double)] = []
@@ -108,9 +185,10 @@ struct StatusBarUI {
     }
 
     static func colorForPercentage(_ pct: Int) -> NSColor {
-        if pct > 70 { return NSColor.systemGreen }
-        if pct > 40 { return NSColor.systemYellow }
-        if pct > 15 { return NSColor.systemOrange }
+        if pct == 100 { return NSColor.white }
+        if pct >= 80 { return NSColor.systemGreen }
+        if pct >= 60 { return NSColor.systemYellow }
+        if pct >= 40 { return NSColor.systemOrange }
         return NSColor.systemRed
     }
 

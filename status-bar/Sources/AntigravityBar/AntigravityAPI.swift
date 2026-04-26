@@ -53,8 +53,32 @@ class AntigravityAPI: @unchecked Sendable {
     
     let env: SystemEnvironment
     
+    private var cachedDaemon: DaemonInfo?
+    private var cachedCacheSize: (String, Double) = ("0 B", 0.0)
+    private var cacheTimer: Timer?
+    
     init(env: SystemEnvironment = DefaultSystemEnvironment()) {
         self.env = env
+        startCacheSizeUpdater()
+    }
+    
+    private func startCacheSizeUpdater() {
+        updateCacheSize()
+        cacheTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
+            self?.updateCacheSize()
+        }
+    }
+    
+    private func updateCacheSize() {
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let self = self else { return }
+            let total = self.dirSize(self.brainDir) + self.dirSize(self.conversationsDir) + self.dirSize(self.htmlArtsDir)
+            let formatted = self.formatDirSize(total)
+            let mb = Double(total) / (1024 * 1024)
+            DispatchQueue.main.async {
+                self.cachedCacheSize = (formatted, mb)
+            }
+        }
     }
 
     private let brainDir = URL(fileURLWithPath: NSHomeDirectory())
@@ -75,10 +99,17 @@ class AntigravityAPI: @unchecked Sendable {
     // MARK: - Daemon Discovery (process-based + JSON fallback)
 
     func findActiveDaemon() -> DaemonInfo? {
+        if let cached = cachedDaemon, isHTTPReachable(port: cached.httpPort, csrfToken: cached.csrfToken) {
+            return cached
+        }
+        
         // Primary: find running language_server process and extract info
         if let info = findDaemonFromProcess() {
+            cachedDaemon = info
             return info
         }
+        
+        cachedDaemon = nil
         return nil
     }
 
@@ -312,8 +343,7 @@ class AntigravityAPI: @unchecked Sendable {
     }
 
     func cacheSize() -> (formatted: String, megabytes: Double) {
-        let total = dirSize(brainDir) + dirSize(conversationsDir) + dirSize(htmlArtsDir)
-        return (formatDirSize(total), Double(total) / (1024 * 1024))
+        return cachedCacheSize
     }
 
     func recordingsSize() -> String {
