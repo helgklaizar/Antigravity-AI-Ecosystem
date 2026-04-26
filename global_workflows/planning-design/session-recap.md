@@ -16,6 +16,7 @@ To prevent context loss when closing the IDE or switching to a new agent. This w
 - Review the current conversation history to understand the user's initial request and the problem being solved.
 - Run `git status` and `git diff --stat` to identify exactly which files were created or modified during this session.
 - Identify the core architectural or design decisions that were made.
+- **Identify Failure Trajectories:** Note any approaches that were tried and failed during this session (Reasoning Memory).
 
 ### 2. Recap Generation
 Formulate a concise summary containing:
@@ -24,6 +25,10 @@ Formulate a concise summary containing:
 - **📂 Modified Files:** A list of key files touched.
 - **🧠 Key Decisions:** Why certain technical choices were made (e.g., "Chose context API over Redux for simplicity").
 - **🚀 Next Steps:** What is left to do in the next session?
+
+### 3. Experience Extraction (Reasoning Memory)
+- If the session involved significant debugging, roadblocks, or failed attempts before finding a solution, you **MUST** create a Knowledge Item (KI) in `~/.gemini/antigravity/knowledge/`.
+- This KI should document the **Failure Trajectory**: what was attempted, why it failed, and the final successful reasoning. This ensures future agents do not repeat the same mistakes.
 
 ### 3. State Persistence
 - Open or create `SWARM_STATE.md` in the project root (or `.gemini/recap.md` if the user prefers).

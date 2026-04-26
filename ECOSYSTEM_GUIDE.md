@@ -58,11 +58,16 @@ When coordinating multiple tasks on the same project simultaneously, we use **Gi
 **CRITICAL:** Do NOT create `.gemini/agents/` or `.gemini/skills/` folders inside individual project repositories (e.g., `PROD/my-app/.gemini/`). 
 All AI assets MUST be stored centrally in `~/.gemini/antigravity/`. This prevents version drift, avoids context fragmentation ("blind spots"), and ensures the IDE's Status Bar tools work seamlessly across all your projects.
 
-## 🧠 Compound Memory (Knowledge Items)
+## 🧠 Experience Bank (Reasoning Memory & Knowledge Items)
 
-Вместо того чтобы писать сотни правил в `GEMINI.md`, используйте нативную систему **Knowledge Items (KI)**.
-Когда агент допускает ошибку (например, использует неправильный импорт или ломает архитектуру), вы не пишете новое правило в глобальный файл. Вы просите агента: *"Исправь это и создай Knowledge Item (KI) с этим правилом, чтобы не забыть"*.
-Агент сохранит это в своей локальной базе знаний (`~/.gemini/antigravity/knowledge/`), и система автоматически будет подгружать эти знания во все будущие сессии с этим проектом, делая агента умнее с каждой задачей.
+Вместо того чтобы писать сотни сухих правил в `GEMINI.md`, мы используем продвинутую систему **Reasoning Memory** (база знаний `~/.gemini/antigravity/knowledge/`).
+Наша память основана на концепции *Experience-driven scaling*: агент учится не только на успешных паттернах, но и на ошибках.
+Когда агент сталкивается со сложной задачей или допускает ошибку, он создает Knowledge Item (KI), в котором фиксирует **Траекторию Рассуждений**:
+1. Что мы пытались сделать.
+2. Какие подходы **провалились** и почему (ошибки, тупики).
+3. Какая цепочка рассуждений привела к **успехy**.
+
+Приступая к новой задаче, агенты (особенно Developer и QA) запрашивают эту базу, чтобы избежать повторения известных ошибок (Memory-Aware Test-Time Scaling).
 
 ## ⚙️ How to Clean Your System
 
