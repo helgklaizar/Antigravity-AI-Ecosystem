@@ -1,23 +1,28 @@
 # 🌍 Antigravity AI Ecosystem
 
-> **The ultimate universal hub and command center for AI-driven development. Zero bloat, zero context hallucinations, maximum performance across any operating system.**
+> **The ultimate workspace setup for Antigravity IDE. Deploy the latest skills, workflows, and configurations fine-tuned for maximum productivity in autonomous agentic mode.**
 
 ![Architecture](https://img.shields.io/badge/Architecture-Flat_Global_Topology-blue.svg)
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success.svg)
 ![Platform](https://img.shields.io/badge/Platform-Cross--Platform-black.svg)
 
-## 🎯 What is this project and what is it for?
+<p align="center">
+  <img src="assets/preview.png" width="100%" alt="Antigravity AI Dashboard">
+</p>
 
-This repository serves as the **Global Master Database** for the Antigravity IDE and your AI coding agents. It transforms a standard AI coding assistant into a fully autonomous, context-aware development team—often referred to as a **Swarm**.
+## 🎯 What is this project?
+
+This repository is the **Global Master Database** that powers your entire AI-driven development lifecycle. It upgrades your standard AI assistant into a fully autonomous, hyper-optimized **Swarm**.
 
 ### The Problem It Solves
-Historically, AI assistants suffer from **context fragmentation** and **hallucinations**. Developers usually have isolated, hidden `.gemini/` or `.cursor/` folders scattered across hundreds of repositories. When you update a prompt in one project, the others remain outdated. The AI forgets rules, repeats mistakes, and constantly requires manual hand-holding.
+Most AI setups are fragmented: hidden `.gemini` folders scattered across dozens of projects, leading to outdated prompts, forgotten rules, and constant "hallucinations". Developers waste hours doing manual prompt engineering instead of coding.
 
-### The Solution: The Flat Global Architecture
-Its primary purpose is to **provide a universal standard**. Instead of each project having its own isolated and outdated AI instructions, this ecosystem centralizes everything into a single, highly-curated repository located at `~/.gemini/antigravity/`. 
-- **No Duplicates**: A skill is updated here, and it instantly applies to all your active projects.
-- **No Blind Spots**: The IDE parses the exact same workflows regardless of what directory your terminal is in.
-- **Compound Memory**: It actively learns from mistakes and records them into localized `Knowledge Items (KI)`, preventing repeated errors across the entire ecosystem.
+### The Solution: Zero-Bloat Global Architecture
+We solve this by centralizing the "brain". The AI-Ecosystem provides a unified, highly-curated repository located at `~/.gemini/antigravity/` that dictates exactly *how* your agents should behave, code, and test.
+
+- **Deploy the Best Tools:** Instantly pull the most cutting-edge workflows, prompt updates, and skills specifically tailored for Antigravity.
+- **Agentic Mode Ready:** Fine-tuned to allow your AI agents to execute massive, end-to-end tasks autonomously without getting stuck.
+- **Experience Bank (Reasoning Memory):** Agents don't just remember static rules—they actively log their "failure trajectories" into Knowledge Items, ensuring mistakes are never repeated across your entire ecosystem.
 
 ---
 
