@@ -1,74 +1,74 @@
-Извлечение словаря "Вездесущего Языка" (Ubiquitous Language) в стиле DDD из текущей беседы, выявление неоднозначностей и предложение каноничных терминов. Сохраняет результат в `UBIQUITOUS_LANGUAGE.md`. Используй, когда пользователь хочет определить терминологию домена, создать глоссарий, закрепить термины или упоминает "domain model" / "DDD".
+Extract a DDD-style ubiquitous language glossary from the current conversation, flag ambiguities, and propose canonical terms. Saves to `UBIQUITOUS_LANGUAGE.md`. Use when the user wants to define domain terms, create a glossary, harden terminology, or mentions "domain model" / "DDD".
 
 # Ubiquitous Language
 
-Извлеки и формализуй терминологию предметной области (домена) из текущего контекста и беседы в последовательный глоссарий, который будет сохранен в локальный файл.
+Extract and formalize domain terminology from the current context and conversation into a consistent glossary, saved to a local file.
 
-## Процесс (Process)
+## Process
 
-1. **Просканируй беседу** на наличие существительных, глаголов и концепций, релевантных домену.
-2. **Выяви проблемы**:
-   - Одно и то же слово используется для разных концепций (неоднозначность).
-   - Разные слова используются для одной и той же концепции (синонимы).
-   - Размытые или перегруженные смыслом термины.
-3. **Предложи каноничный глоссарий**, сделав уверенный выбор в пользу лучших терминов.
-4. **Запиши в файл `UBIQUITOUS_LANGUAGE.md`** в корне проекта, используя формат ниже.
-5. **Выведи краткое резюме** прямо в беседу.
+1. **Scan the conversation** for domain-relevant nouns, verbs, and concepts.
+2. **Identify problems**:
+   - Same word used for different concepts (ambiguity).
+   - Different words used for the same concept (synonyms).
+   - Vague or overloaded terms.
+3. **Propose a canonical glossary**, making confident choices for the best terms.
+4. **Write to `UBIQUITOUS_LANGUAGE.md`** in the project root using the format below.
+5. **Output a brief summary** directly in the conversation.
 
-## Формат вывода (Output Format)
+## Output Format
 
-Создай файл `UBIQUITOUS_LANGUAGE.md` со следующей структурой:
+Create a `UBIQUITOUS_LANGUAGE.md` file with the following structure:
 
 ```md
 # Ubiquitous Language
 
-## Жизненный цикл заказа (Order lifecycle)
+## Order lifecycle
 
-| Термин      | Определение                                             | Избегать алиасов      |
+| Term        | Definition                                              | Aliases to avoid      |
 | ----------- | ------------------------------------------------------- | --------------------- |
-| **Order**   | Запрос клиента на покупку одного или нескольких товаров | Purchase, transaction |
-| **Invoice** | Запрос на оплату, отправляемый клиенту после доставки   | Bill, payment request |
+| **Order**   | A customer's request to purchase one or more items      | Purchase, transaction |
+| **Invoice** | A request for payment sent to a customer after delivery | Bill, payment request |
 
-## Люди (People)
+## People
 
-| Термин       | Определение                                | Избегать алиасов       |
-| ------------ | ------------------------------------------ | ---------------------- |
-| **Customer** | Лицо или организация, размещающая заказы   | Client, buyer, account |
-| **User**     | Идентификатор аутентификации в системе     | Login, account         |
+| Term         | Definition                                  | Aliases to avoid       |
+| ------------ | ------------------------------------------- | ---------------------- |
+| **Customer** | A person or organization that places orders | Client, buyer, account |
+| **User**     | An authentication identity in the system    | Login, account         |
 
-## Отношения (Relationships)
+## Relationships
 
-- Один **Invoice** принадлежит ровно одному **Customer**
-- Один **Order** производит один или несколько **Invoices**
+- An **Invoice** belongs to exactly one **Customer**
+- An **Order** produces one or more **Invoices**
 
-## Пример диалога (Example dialogue)
+## Example dialogue
 
-> **Dev:** "Когда **Customer** размещает **Order**, создаем ли мы **Invoice** сразу же?"
-> **Domain expert:** "Нет — **Invoice** генерируется только после подтверждения **Fulfillment**. Один **Order** может произвести несколько **Invoices**, если товары доставляются в разных **Shipments**."
-> **Dev:** "То есть, если **Shipment** отменен до отправки, для него не существует **Invoice**?"
-> **Domain expert:** "Именно. Жизненный цикл **Invoice** привязан к **Fulfillment**, а не к **Order**."
+> **Dev:** "When a **Customer** places an **Order**, do we create the **Invoice** immediately?"
+> **Domain expert:** "No — an **Invoice** is only generated once a **Fulfillment** is confirmed. A single **Order** can produce multiple **Invoices** if items ship in separate **Shipments**."
+> **Dev:** "So if a **Shipment** is cancelled before dispatch, no **Invoice** exists for it?"
+> **Domain expert:** "Exactly. The **Invoice** lifecycle is tied to the **Fulfillment**, not the **Order**."
 
-## Отмеченные неоднозначности (Flagged ambiguities)
+## Flagged ambiguities
 
-- Слово "account" использовалось как для **Customer**, так и для **User** — это разные концепции: **Customer** размещает заказы, в то время как **User** это просто идентификатор в системе, который может быть, а может и не быть **Customer**.
+- "account" was used to mean both **Customer** and **User** — these are distinct concepts: a **Customer** places orders, while a **User** is an authentication identity that may or may not represent a **Customer**.
 ```
 
-## Правила (Rules)
+## Rules
 
-- **Будь категоричен.** Когда для одной концепции существует несколько слов, выбери лучшее, а остальные укажи как алиасы, которых следует избегать.
-- **Явно указывай на конфликты.** Если термин используется двусмысленно в беседе, отметь это в секции "Отмеченные неоднозначности" с четкой рекомендацией.
-- **Включай только термины, важные для экспертов домена.** Пропускай названия модулей или классов, если они не несут смысла в самом языке домена.
-- **Определения должны быть краткими.** Максимум одно предложение. Определяй, чем это ЯВЛЯЕТСЯ, а не что оно делает.
-- **Показывай отношения.** Используй выделение жирным для терминов и выражай кардинальность там, где она очевидна.
-- **Только термины домена.** Пропускай общие концепции программирования (массив, функция, эндпоинт), если они не имеют специфического значения в домене.
-- **Группируй термины в несколько таблиц**, когда появляются естественные кластеры (например, по субдоменам, жизненным циклам или акторам).
-- **Напиши пример диалога.** Короткий разговор (3-5 реплик) между разработчиком и экспертом домена, который показывает, как термины взаимодействуют в естественной речи.
+- **Be opinionated.** When multiple words exist for the same concept, pick the best one and list the others as aliases to avoid.
+- **Flag conflicts explicitly.** If a term is used ambiguously in the conversation, call it out in the "Flagged ambiguities" section with a clear recommendation.
+- **Only include terms relevant for domain experts.** Skip the names of modules or classes unless they have meaning in the domain language.
+- **Keep definitions tight.** One sentence max. Define what it IS, not what it does.
+- **Show relationships.** Use bold term names and express cardinality where obvious.
+- **Only include domain terms.** Skip generic programming concepts (array, function, endpoint) unless they have domain-specific meaning.
+- **Group terms into multiple tables** when natural clusters emerge (e.g. by subdomain, lifecycle, or actor).
+- **Write an example dialogue.** A short conversation (3-5 exchanges) between a dev and a domain expert that demonstrates how the terms interact naturally.
 
-## При повторном запуске (Re-running)
+## Re-running
 
-Если вызвано повторно в той же беседе:
-1. Прочитай существующий `UBIQUITOUS_LANGUAGE.md`.
-2. Включи новые термины из последующего обсуждения.
-3. Обнови определения, если понимание эволюционировало.
-4. Отметь новые неоднозначности.
-5. Перепиши пример диалога, чтобы включить новые термины.
+When invoked again in the same conversation:
+1. Read the existing `UBIQUITOUS_LANGUAGE.md`.
+2. Incorporate any new terms from subsequent discussion.
+3. Update definitions if understanding has evolved.
+4. Re-flag any new ambiguities.
+5. Rewrite the example dialogue to incorporate new terms.

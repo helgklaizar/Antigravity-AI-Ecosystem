@@ -1,7 +1,7 @@
-Безжалостное интервью пользователя по поводу плана или дизайна до достижения общего понимания и разрешения каждой ветви дерева решений. Используй, когда пользователь хочет протестировать план, пройти "прожарку" архитектуры или пишет "grill me".
+Relentlessly interview the user about a plan or design until a shared understanding is reached, resolving every branch of the decision tree. Use when the user wants to stress-test a plan, get grilled on their architecture, or invokes `/grill-me`.
 
-Интервьюируй пользователя безжалостно о каждом аспекте его плана, пока не будет достигнуто абсолютное общее понимание. Пройдись по каждой ветви дерева дизайна, разрешая зависимости между решениями одно за другим. Для каждого вопроса предлагай свой рекомендуемый вариант ответа.
+Interview the user relentlessly about every aspect of their plan until you reach an absolute shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one by one. For each question, provide your recommended answer.
 
-Задавай вопросы строго по одному.
+Ask questions strictly one at a time.
 
-Если ответ на вопрос можно найти, исследовав кодовую базу — исследуй кодовую базу вместо того, чтобы спрашивать пользователя.
+If a question can be answered by exploring the codebase, explore the codebase instead of asking the user.
