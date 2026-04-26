@@ -6,10 +6,6 @@
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success.svg)
 ![Platform](https://img.shields.io/badge/Platform-Cross--Platform-black.svg)
 
-<p align="center">
-  <img src="assets/preview.png" width="100%" alt="Antigravity AI Dashboard">
-</p>
-
 ## 🎯 What is this project?
 
 This repository is the **Global Master Database** that powers your entire AI-driven development lifecycle. It upgrades your standard AI assistant into a fully autonomous, hyper-optimized **Swarm**.
