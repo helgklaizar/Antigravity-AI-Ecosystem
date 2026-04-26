@@ -44,35 +44,19 @@ Forget digging through terminals. The **AntigravityBar** is a native, ultra-ligh
 
 ---
 
-## 📂 Ecosystem Structure (What Does What?)
+## 📂 Ecosystem Structure
 
-The ecosystem is strictly divided by responsibility. Here is how the AI navigates this repository:
+To ensure zero bloat and maximum performance, the ecosystem is strictly divided by responsibility. 
 
-### 1. `/global_workflows` (Macro Operations)
-These are high-level orchestrations triggered via `/slash-commands`. They tell the AI *what* process to run.
-- **Planning & Design**: Workflows like `/grill-me` (relentless architecture stress-testing), `/request-refactor-plan` (planning safe incremental refactoring), and `/ubiquitous-language` (extracting DDD terminology).
-- **Communication**: `/caveman` (ultra-compressed communication to save tokens and skip the fluff).
-- **CI/CD & DevOps**: Scripts for setting up GitHub Actions, automating PR generation (`/pr-writer`), and local deployments (`/build-local`).
+> 📖 **Explore the Capabilities:** For a full, curated list of all active skills, agents, and macro-workflows, read the **[Ecosystem Guide](ECOSYSTEM_GUIDE.md)**.
 
-### 2. `/skills` (Micro Instructions)
-These are stack-specific rules that teach the AI *how* to write code for your specific language.
-- Contains highly specific technical instructions covering modern tech stacks (`React`, `Swift`, `Python`, `Rust`).
-- Enforces best practices (e.g., "Never use Tailwind unless requested", "Always use `Result` types in Rust").
-
-### 3. `/agents` (AI Personas)
-Distinct AI identities that can be swapped dynamically to handle specialized tasks:
-- **Architect**: Focuses purely on system design and database models.
-- **Developer**: Focuses on clean, bug-free execution.
-- **QA Tester**: Operates the `/qa-orchestrator` to find edge cases and write automated tests.
-
-### 4. `/templates` (System Files)
-Standardized blueprints used to format project execution:
-- `GEMINI.md`: The universal project constitution featuring Compound Memory.
-- `SWARM_STATE.md`: Used for "Agent Handovers" and parallel execution via Git Worktrees.
-- `SECRETS_MAP.md`: A mapping of local environment variables to prevent accidental hardcoding.
-
-### 5. `/status-bar` (Source Code)
-The Swift source code for the AntigravityBar application.
+| Directory | Purpose | Examples |
+| :--- | :--- | :--- |
+| 🌍 **`/global_workflows`** | **Macro Operations.** High-level orchestrations triggered via `/slash-commands`. They tell the AI *what* process to run. | `/qa-orchestrator`, `/pr-writer`, `/session-recap` |
+| 🧠 **`/skills`** | **Micro Instructions.** Stack-specific rules that teach the AI *how* to write code for your specific language. | `React`, `Swift`, `Python`, `Rust` best practices |
+| 🎭 **`/agents`** | **AI Personas.** Distinct AI identities that can be swapped dynamically to handle specialized tasks. | `Architect`, `Developer`, `QA Tester` |
+| 📋 **`/templates`** | **System Files.** Standardized blueprints used to format project execution and share context. | `GEMINI.md`, `SWARM_STATE.md`, `SECRETS_MAP.md` |
+| ⚡ **`/status-bar`** | **Source Code.** The Swift source code for the native macOS AntigravityBar application. | App UI, System Telemetry logic |
 
 ---
 
