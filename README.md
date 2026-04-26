@@ -33,7 +33,7 @@ Its primary purpose is to **provide a universal standard**. Instead of each proj
 
 A cornerstone of this ecosystem is the **AntigravityBar**, a lightweight native macOS application that acts as the bridge between this GitHub repository and your Local System.
 
-![Antigravity Bar Icon](status-bar/assets/icon.png)
+![Antigravity Bar Menu](status-bar/assets/screenshots/context-menu.png)
 
 ### What it does:
 - **Dashboard & System Metrics**: Acts as a professional dashboard, providing real-time monitoring of your machine's **CPU, GPU, and RAM** with visual, color-coded load indicators.
