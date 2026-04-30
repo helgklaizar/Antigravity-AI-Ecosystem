@@ -53,7 +53,13 @@ When coordinating multiple tasks on the same project simultaneously, we use **Gi
 
 ---
 
-## 🏗️ The Flat Global Architecture Rule
+## 🏗️ The 3-Layer Ecosystem Architecture (Separation of Concerns)
+
+Our ecosystem strictly follows a 3-layer architecture to prevent hallucinations and avoid overengineering:
+
+1. **System Prompts (`GEMINI.md`, `RULES.md`)**: *The Rulebook*. These files define the agent's persona, global rules (e.g., "Simplicity First", "Use Russian"), and formatting. They DO NOT contain complex logic or bash scripts. They teach the AI *how* to act, not *what* to execute.
+2. **Skills & Workflows (`global_workflows/`)**: *The Orchestrators*. These markdown files are routing steps. They tell the AI: "Run script A, check result, then run script B." They coordinate tools but do not execute logic internally.
+3. **Tools (Local Scripts & Bash)**: *The Executors*. The actual work (fetching URLs, parsing logs, making API calls) is done by small, dedicated `.py` or `.sh` scripts. We use native terminal execution instead of bloated MCP servers (because we already have local filesystem access). Tools are "dumb couriers" that return JSON or text.
 
 **CRITICAL:** Do NOT create `.gemini/agents/` or `.gemini/skills/` folders inside individual project repositories (e.g., `PROD/my-app/.gemini/`). 
 All AI assets MUST be stored centrally in `~/.gemini/antigravity/`. This prevents version drift, avoids context fragmentation ("blind spots"), and ensures the IDE's Status Bar tools work seamlessly across all your projects.

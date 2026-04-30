@@ -3,8 +3,6 @@ import Foundation
 import ServiceManagement
 import SwiftUI
 
-@_silgen_name("CGSMainConnectionID") func CGSMainConnectionID() -> CInt
-@_silgen_name("CGSSetWindowLevel") func CGSSetWindowLevel(_ connection: CInt, _ window: CInt, _ level: CInt) -> CInt
 
 struct EnvPaths {
     static let geminiDir = NSHomeDirectory() + "/.gemini"
@@ -198,12 +196,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         menu.addItem(makeAppsHorizontalItem())
 
         menu.addItem(.separator())
-        menu.addItem(makeWorkflowsRadarItem())
-
-        menu.addItem(.separator())
-        menu.addItem(makeDynamicSkillsItem())
-
-        menu.addItem(.separator())
         menu.addItem(makeHorizontalToolbarItem())
         menu.addItem(.separator())
         
@@ -230,6 +222,42 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         return field
     }
 
+    private func makeSectionHeader(iconName: String, title: String) -> NSView {
+        let container = NSView()
+        let header = NSStackView()
+        header.orientation = .horizontal
+        header.alignment = .centerY
+        header.spacing = 6
+        
+        var icon: NSImage?
+        if #available(macOS 12.0, *) {
+            icon = NSImage(systemSymbolName: iconName, accessibilityDescription: nil)?
+                .withSymbolConfiguration(.init(hierarchicalColor: .secondaryLabelColor))
+        } else {
+            icon = NSImage(systemSymbolName: iconName, accessibilityDescription: nil)
+        }
+        let iconView = NSImageView(image: icon ?? NSImage())
+        
+        let titleLabel = createLabel(NSAttributedString(string: title, attributes: [
+            .font: NSFont.systemFont(ofSize: 10, weight: .bold),
+            .foregroundColor: NSColor.secondaryLabelColor
+        ]))
+        
+        header.addArrangedSubview(iconView)
+        header.addArrangedSubview(titleLabel)
+        
+        header.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(header)
+        
+        NSLayoutConstraint.activate([
+            header.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            header.topAnchor.constraint(equalTo: container.topAnchor),
+            header.bottomAnchor.constraint(equalTo: container.bottomAnchor)
+        ])
+        
+        return container
+    }
+
     private func makeHorizontalToolbarItem() -> NSMenuItem {
         let item = NSMenuItem()
         
@@ -241,8 +269,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             ("Global\nWorkflows", "arrow.triangle.branch", .systemTeal),
             ("Setup &\nAudit", "desktopcomputer", .systemIndigo),
             ("Restart &\nReload", "arrow.clockwise", .systemYellow),
-            ("Clean Cache\n\(cacheSize)", "trash", .systemRed)
+            ("Clean Cache\n\(cacheSize)", "trash", .systemRed),
+            ("Archive\nUnused", "archivebox", .systemGray)
         ]
+        
+        let wrapperStack = NSStackView()
+        wrapperStack.orientation = .vertical
+        wrapperStack.alignment = .centerX
+        wrapperStack.spacing = 10
+        
+        wrapperStack.addArrangedSubview(makeSectionHeader(iconName: "square.grid.2x2", title: "QUICK ACTIONS"))
         
         let mainStack = NSStackView()
         mainStack.orientation = .vertical
@@ -337,21 +373,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         row1Stack.translatesAutoresizingMaskIntoConstraints = false
         row2Stack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            row1Stack.leadingAnchor.constraint(equalTo: mainStack.leadingAnchor),
-            row1Stack.trailingAnchor.constraint(equalTo: mainStack.trailingAnchor),
-            row2Stack.leadingAnchor.constraint(equalTo: mainStack.leadingAnchor),
-            row2Stack.trailingAnchor.constraint(equalTo: mainStack.trailingAnchor)
+            row1Stack.widthAnchor.constraint(equalToConstant: 526),
+            row2Stack.widthAnchor.constraint(equalToConstant: 526)
         ])
         
-        let container = NSView(frame: NSRect(x: 0, y: 0, width: 550, height: 160))
-        mainStack.translatesAutoresizingMaskIntoConstraints = false
-        container.addSubview(mainStack)
+        wrapperStack.addArrangedSubview(mainStack)
+        
+        let container = NSView(frame: NSRect(x: 0, y: 0, width: 550, height: 185))
+        wrapperStack.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(wrapperStack)
         
         NSLayoutConstraint.activate([
-            mainStack.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 12),
-            mainStack.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -12),
-            mainStack.topAnchor.constraint(equalTo: container.topAnchor, constant: 4),
-            mainStack.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -4)
+            wrapperStack.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 12),
+            wrapperStack.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -12),
+            wrapperStack.topAnchor.constraint(equalTo: container.topAnchor, constant: 4),
+            wrapperStack.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -4)
         ])
         
         item.view = container
@@ -360,136 +396,120 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     private func makeAppsHorizontalItem() -> NSMenuItem {
         let item = NSMenuItem()
-        
         let mainStack = NSStackView()
         mainStack.orientation = .vertical
-        mainStack.distribution = .fillEqually
-        mainStack.spacing = 8
+        mainStack.alignment = .centerX
+        mainStack.spacing = 10
         
-        let topApps = Array(ProcessManager.getTopProcesses().prefix(10)) // 10 apps
+        mainStack.addArrangedSubview(makeSectionHeader(iconName: "memorychip", title: "TOP RAM PROCESSES"))
         
-        func createRow(apps: [AppGroup]) -> NSStackView {
-            let rowStack = NSStackView()
-            rowStack.orientation = .horizontal
-            rowStack.distribution = .fillEqually
-            rowStack.spacing = 8
+        let topApps = Array(ProcessManager.getTopProcesses().prefix(6))
+        
+        let gridStack = NSStackView()
+        gridStack.orientation = .horizontal
+        gridStack.distribution = .fillEqually
+        gridStack.spacing = 20
+        
+        let col1 = NSStackView()
+        col1.orientation = .vertical
+        col1.alignment = .leading
+        col1.spacing = 8
+        
+        let col2 = NSStackView()
+        col2.orientation = .vertical
+        col2.alignment = .leading
+        col2.spacing = 8
+        
+        for (i, app) in topApps.enumerated() {
+            let row = NSStackView()
+            row.orientation = .horizontal
+            row.alignment = .centerY
+            row.spacing = 8
             
-            for app in apps {
-                let memoryStr = ProcessManager.formatMemory(app.totalRssKB)
-                
-                var icon: NSImage?
-                if app.isSystemGroup {
-                    if #available(macOS 12.0, *) {
-                        icon = NSImage(systemSymbolName: "gearshape.fill", accessibilityDescription: nil)?
-                            .withSymbolConfiguration(.init(hierarchicalColor: .systemGray))
-                    } else {
-                        icon = NSImage(systemSymbolName: "gearshape.fill", accessibilityDescription: nil)
-                    }
-                } else if !app.appPath.isEmpty, FileManager.default.fileExists(atPath: app.appPath) {
-                    icon = NSWorkspace.shared.icon(forFile: app.appPath)
+            var appIcon: NSImage?
+            if app.isSystemGroup {
+                if #available(macOS 12.0, *) {
+                    appIcon = NSImage(systemSymbolName: "gearshape.fill", accessibilityDescription: nil)?
+                        .withSymbolConfiguration(.init(hierarchicalColor: .systemBlue))
+                } else {
+                    appIcon = NSImage(systemSymbolName: "gearshape.fill", accessibilityDescription: nil)
                 }
-                
-                let imgView = NSImageView()
-                imgView.image = icon
-                imgView.imageScaling = .scaleProportionallyUpOrDown
-                
-                var displayName = app.appName
-                if displayName.hasSuffix(".app") {
-                    displayName = String(displayName.dropLast(4))
-                }
-                
-                let nameAttr = NSAttributedString(string: displayName, attributes: [
-                    .font: NSFont.systemFont(ofSize: 10, weight: .medium),
-                    .foregroundColor: app.isSystemGroup ? NSColor.systemBlue : NSColor.secondaryLabelColor
-                ])
-                let nameField = createLabel(nameAttr)
-                
-                let memAttr = NSAttributedString(string: memoryStr, attributes: [
-                    .font: NSFont.monospacedDigitSystemFont(ofSize: 11, weight: .bold),
-                    .foregroundColor: NSColor.systemYellow
-                ])
-                let memField = createLabel(memAttr)
-                
-                let vStack = NSStackView()
-                vStack.orientation = .vertical
-                vStack.alignment = .centerX
-                vStack.spacing = 4
-                
-                imgView.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-                    imgView.widthAnchor.constraint(equalToConstant: 30),
-                    imgView.heightAnchor.constraint(equalToConstant: 30)
-                ])
-                
-                vStack.addArrangedSubview(imgView)
-                vStack.addArrangedSubview(nameField)
-                vStack.addArrangedSubview(memField)
-                
-                let box = NSBox()
-                box.boxType = .custom
-                box.borderWidth = 1
-                box.borderColor = NSColor.separatorColor.withAlphaComponent(0.2)
-                box.cornerRadius = 10
-                box.fillColor = NSColor.unemphasizedSelectedContentBackgroundColor.withAlphaComponent(0.2)
-                box.contentView = vStack
-                
-                vStack.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-                    vStack.leadingAnchor.constraint(equalTo: box.leadingAnchor, constant: 4),
-                    vStack.trailingAnchor.constraint(equalTo: box.trailingAnchor, constant: -4),
-                    vStack.centerYAnchor.constraint(equalTo: box.centerYAnchor)
-                ])
-                
-                box.translatesAutoresizingMaskIntoConstraints = false
-                box.heightAnchor.constraint(greaterThanOrEqualToConstant: 80).isActive = true
-                
-                rowStack.addArrangedSubview(box)
+            } else if !app.appPath.isEmpty, FileManager.default.fileExists(atPath: app.appPath) {
+                appIcon = NSWorkspace.shared.icon(forFile: app.appPath)
             }
-            
-            if apps.count < 5 {
-                for _ in 0..<(5 - apps.count) {
-                    let empty = NSView()
-                    rowStack.addArrangedSubview(empty)
-                }
-            }
-            
-            return rowStack
-        }
-        
-        var activeRows: [NSStackView] = []
-        
-        if topApps.count > 0 {
-            let row1 = createRow(apps: Array(topApps.prefix(5)))
-            mainStack.addArrangedSubview(row1)
-            activeRows.append(row1)
-        }
-        if topApps.count > 5 {
-            let row2 = createRow(apps: Array(topApps.dropFirst(5)))
-            mainStack.addArrangedSubview(row2)
-            activeRows.append(row2)
-        }
-        
-        for row in activeRows {
-            row.translatesAutoresizingMaskIntoConstraints = false
+            let imgView = NSImageView(image: appIcon ?? NSImage())
+            imgView.imageScaling = .scaleProportionallyUpOrDown
+            imgView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                row.leadingAnchor.constraint(equalTo: mainStack.leadingAnchor),
-                row.trailingAnchor.constraint(equalTo: mainStack.trailingAnchor)
+                imgView.widthAnchor.constraint(equalToConstant: 16),
+                imgView.heightAnchor.constraint(equalToConstant: 16)
             ])
+            
+            var displayName = app.appName
+            if displayName.hasSuffix(".app") { displayName = String(displayName.dropLast(4)) }
+            if displayName.count > 15 { displayName = String(displayName.prefix(15)) + "..." }
+            
+            let nameField = createLabel(NSAttributedString(string: displayName, attributes: [
+                .font: NSFont.systemFont(ofSize: 12, weight: .medium),
+                .foregroundColor: app.isSystemGroup ? NSColor.systemBlue : NSColor.labelColor
+            ]))
+            nameField.alignment = .left
+            
+            let spacer = NSView()
+            spacer.setContentHuggingPriority(.defaultLow, for: .horizontal)
+            
+            let memField = createLabel(NSAttributedString(string: ProcessManager.formatMemory(app.totalRssKB), attributes: [
+                .font: NSFont.monospacedDigitSystemFont(ofSize: 11, weight: .semibold),
+                .foregroundColor: NSColor.secondaryLabelColor
+            ]))
+            memField.alignment = .right
+            
+            row.addArrangedSubview(imgView)
+            row.addArrangedSubview(nameField)
+            row.addArrangedSubview(spacer)
+            row.addArrangedSubview(memField)
+            
+            row.translatesAutoresizingMaskIntoConstraints = false
+            row.widthAnchor.constraint(equalToConstant: 240).isActive = true
+            
+            if i < 3 {
+                col1.addArrangedSubview(row)
+            } else {
+                col2.addArrangedSubview(row)
+            }
         }
         
-        let height: CGFloat = topApps.count > 5 ? 200 : 95
-        let container = NSView(frame: NSRect(x: 0, y: 0, width: 550, height: height))
-        mainStack.translatesAutoresizingMaskIntoConstraints = false
-        container.addSubview(mainStack)
+        gridStack.addArrangedSubview(col1)
+        gridStack.addArrangedSubview(col2)
         
+        mainStack.addArrangedSubview(gridStack)
+        
+        let containerBox = NSBox()
+        containerBox.boxType = .custom
+        containerBox.borderWidth = 0
+        containerBox.cornerRadius = 12
+        containerBox.fillColor = NSColor.unemphasizedSelectedContentBackgroundColor.withAlphaComponent(0.2)
+        
+        mainStack.translatesAutoresizingMaskIntoConstraints = false
+        containerBox.contentView = mainStack
         NSLayoutConstraint.activate([
-            mainStack.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 12),
-            mainStack.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -12),
-            mainStack.topAnchor.constraint(equalTo: container.topAnchor, constant: 4),
-            mainStack.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -4)
+            mainStack.leadingAnchor.constraint(equalTo: containerBox.leadingAnchor, constant: 16),
+            mainStack.trailingAnchor.constraint(equalTo: containerBox.trailingAnchor, constant: -16),
+            mainStack.topAnchor.constraint(equalTo: containerBox.topAnchor, constant: 12),
+            mainStack.bottomAnchor.constraint(equalTo: containerBox.bottomAnchor, constant: -12)
         ])
         
-        item.view = container
+        let wrapper = NSView(frame: NSRect(x: 0, y: 0, width: 550, height: 140))
+        containerBox.translatesAutoresizingMaskIntoConstraints = false
+        wrapper.addSubview(containerBox)
+        NSLayoutConstraint.activate([
+            containerBox.leadingAnchor.constraint(equalTo: wrapper.leadingAnchor, constant: 12),
+            containerBox.trailingAnchor.constraint(equalTo: wrapper.trailingAnchor, constant: -12),
+            containerBox.centerYAnchor.constraint(equalTo: wrapper.centerYAnchor),
+            containerBox.heightAnchor.constraint(equalToConstant: 125)
+        ])
+        
+        item.view = wrapper
         return item
     }
 
@@ -865,13 +885,28 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             case 4: self.handleSetupWizard()
             case 5: self.restartAndReload()
             case 6: self.fullCleanup()
+            case 7: self.archiveUnusedItemsBackground()
             default: break
             }
         }
     }
 
+    private func archiveUnusedItemsBackground() {
+        DispatchQueue.global(qos: .background).async {
+            WorkflowTracker.shared.archiveUnusedWorkflows()
+        }
+    }
+
     private func makeModelsHorizontalItem(models: [ModelQuota]) -> NSMenuItem {
         let item = NSMenuItem()
+        
+        let outerStack = NSStackView()
+        outerStack.orientation = .vertical
+        outerStack.alignment = .centerX
+        outerStack.spacing = 10
+        
+        outerStack.addArrangedSubview(makeSectionHeader(iconName: "cpu", title: "AI MODELS QUOTA"))
+        
         let stackView = NSStackView()
         stackView.orientation = .horizontal
         stackView.distribution = .fillEqually
@@ -880,8 +915,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         for model in models {
             let pct = Int(model.remainingPercentage)
             let icon: String
-            if pct == 100 { icon = "⚪️" }
-            else if pct >= 80 { icon = "🟢" }
+            if pct >= 80 { icon = "🟢" }
             else if pct >= 60 { icon = "🟡" }
             else if pct >= 40 { icon = "🟠" }
             else { icon = "🔴" }
@@ -950,32 +984,35 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             
             let box = NSBox()
             box.boxType = .custom
-            box.borderWidth = 1
-            box.borderColor = NSColor.separatorColor.withAlphaComponent(0.2)
-            box.cornerRadius = 8
-            box.fillColor = NSColor.unemphasizedSelectedContentBackgroundColor.withAlphaComponent(0.3)
+            box.borderWidth = 0
+            box.cornerRadius = 12
+            box.fillColor = NSColor.unemphasizedSelectedContentBackgroundColor.withAlphaComponent(0.15)
             box.contentView = vStack
             
             vStack.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 vStack.leadingAnchor.constraint(equalTo: box.leadingAnchor, constant: 4),
                 vStack.trailingAnchor.constraint(equalTo: box.trailingAnchor, constant: -4),
-                vStack.topAnchor.constraint(equalTo: box.topAnchor, constant: 8),
-                vStack.bottomAnchor.constraint(equalTo: box.bottomAnchor, constant: -8)
+                vStack.topAnchor.constraint(equalTo: box.topAnchor, constant: 10),
+                vStack.bottomAnchor.constraint(equalTo: box.bottomAnchor, constant: -10)
             ])
             
             stackView.addArrangedSubview(box)
         }
         
-        let container = NSView(frame: NSRect(x: 0, y: 0, width: 550, height: 85))
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        container.addSubview(stackView)
+        outerStack.addArrangedSubview(stackView)
+        
+        let container = NSView(frame: NSRect(x: 0, y: 0, width: 550, height: 125))
+        outerStack.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(outerStack)
         
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 12),
-            stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -12),
-            stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: 4),
-            stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -4)
+            outerStack.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 12),
+            outerStack.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -12),
+            outerStack.topAnchor.constraint(equalTo: container.topAnchor, constant: 6),
+            outerStack.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -6),
+            
+            stackView.widthAnchor.constraint(equalToConstant: 526)
         ])
         
         item.view = container

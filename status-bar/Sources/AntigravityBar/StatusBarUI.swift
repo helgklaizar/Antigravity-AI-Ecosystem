@@ -64,10 +64,28 @@ struct StatusBarUI {
         return img
     }
 
+    static func makeCenteredBlock(text: String, font: NSFont, color: NSColor, width: CGFloat) -> NSTextAttachment {
+        let attrStr = NSAttributedString(string: text, attributes: [.font: font, .foregroundColor: color])
+        let size = attrStr.size()
+        let height: CGFloat = 16
+        let img = NSImage(size: NSSize(width: width, height: height), flipped: false) { rect in
+            let x = (rect.width - size.width) / 2
+            let y = (rect.height - size.height) / 2 + 0.5
+            attrStr.draw(at: NSPoint(x: x, y: y))
+            return true
+        }
+        img.isTemplate = false
+        let attachment = NSTextAttachment()
+        attachment.image = img
+        attachment.bounds = CGRect(x: 0, y: -2, width: width, height: height)
+        return attachment
+    }
+
+
     static func colorForResourceUsage(_ pct: Int) -> NSColor {
-        if pct > 85 { return NSColor.systemRed }
-        if pct > 65 { return NSColor.systemOrange }
-        if pct > 40 { return NSColor.systemYellow }
+        if pct >= 90 { return NSColor.systemRed }
+        if pct >= 75 { return NSColor.systemOrange }
+        if pct >= 60 { return NSColor.systemYellow }
         return NSColor.systemGreen
     }
 
@@ -81,7 +99,7 @@ struct StatusBarUI {
 
         // 1. Cache
         let cacheColor = colorForCacheMB(cacheMB)
-        let cacheStr = NSAttributedString(string: "💾 " + cacheFormatted, attributes: [
+        let cacheStr = NSAttributedString(string: cacheFormatted, attributes: [
             .font: pctFont, .foregroundColor: cacheColor
         ])
         result.append(cacheStr)
@@ -101,31 +119,16 @@ struct StatusBarUI {
             for g in grouped {
                 let color = colorForPercentage(g.pct)
 
-                let circleImg = makeTimerCircle(secondsLeft: g.secsLeft)
-                let attachment = NSTextAttachment()
-                attachment.image = circleImg
-                attachment.bounds = CGRect(x: 0, y: -1, width: 14, height: 14)
-                result.append(NSAttributedString(attachment: attachment))
-                result.append(NSAttributedString(string: " ", attributes: [.font: sepFont]))
-
-                var formattedPctStr = "\(g.pct)%"
-                if g.pct < 10 {
-                    formattedPctStr = "\u{2007}\u{2007}\(g.pct)%"
-                } else if g.pct < 100 {
-                    formattedPctStr = "\u{2007}\(g.pct)%"
-                }
-                
-                let pctStr = NSAttributedString(string: formattedPctStr, attributes: [
-                    .font: pctFont, .foregroundColor: color
-                ])
-                result.append(pctStr)
+                let formattedPctStr = "\(g.pct)%"
+                let pctAttachment = makeCenteredBlock(text: formattedPctStr, font: pctFont, color: color, width: 38)
+                result.append(NSAttributedString(attachment: pctAttachment))
                 result.append(sep)
             }
         }
 
         // 3. Stats
         let stats: [(String, Int, [Int], NSColor)] = [
-            ("CPU", cpu, historyCPU, NSColor.systemBlue),
+            ("CPU", cpu, historyCPU, colorForResourceUsage(cpu)),
             ("GPU", gpu, historyGPU, colorForResourceUsage(gpu)),
             ("RAM", ram, historyRAM, colorForResourceUsage(ram))
         ]
@@ -139,16 +142,9 @@ struct StatusBarUI {
             result.append(NSAttributedString(attachment: attachment))
             result.append(NSAttributedString(string: " ", attributes: [.font: sepFont]))
             
-            var formattedPctStr = "\(stat.1)"
-            if stat.1 < 10 {
-                formattedPctStr = "\u{2007}\u{2007}\(stat.1)"
-            } else if stat.1 < 100 {
-                formattedPctStr = "\u{2007}\(stat.1)"
-            }
-            
-            result.append(NSAttributedString(string: formattedPctStr, attributes: [
-                .font: pctFont, .foregroundColor: NSColor.labelColor
-            ]))
+            let formattedPctStr = "\(stat.1)%"
+            let pctAttachment = makeCenteredBlock(text: formattedPctStr, font: pctFont, color: NSColor.labelColor, width: 38)
+            result.append(NSAttributedString(attachment: pctAttachment))
             
             if idx < stats.count - 1 {
                 result.append(sep)
@@ -185,7 +181,6 @@ struct StatusBarUI {
     }
 
     static func colorForPercentage(_ pct: Int) -> NSColor {
-        if pct == 100 { return NSColor.white }
         if pct >= 80 { return NSColor.systemGreen }
         if pct >= 60 { return NSColor.systemYellow }
         if pct >= 40 { return NSColor.systemOrange }

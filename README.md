@@ -21,8 +21,14 @@ This repository is the **Global Master Database** that powers your entire AI-dri
 ### The Problem It Solves
 Most AI setups are fragmented: hidden `.gemini` folders scattered across dozens of projects, leading to outdated prompts, forgotten rules, and constant "hallucinations". Developers waste hours doing manual prompt engineering instead of coding.
 
-### The Solution: Zero-Bloat Global Architecture
-We solve this by centralizing the "brain". The AI-Ecosystem provides a unified, highly-curated repository located at `~/.gemini/antigravity/` that dictates exactly *how* your agents should behave, code, and test.
+### The Solution: The 3-Layer Ecosystem Architecture
+We solve this by centralizing the "brain" and strictly separating concerns. The AI-Ecosystem provides a unified, highly-curated repository located at `~/.gemini/antigravity/` built on three pillars:
+
+1. **System Prompts (The Rulebook):** Global personas and absolute rules. No complex bash logic here.
+2. **Skills & Workflows (The Orchestrators):** Markdown routing steps that coordinate tasks and tools without executing heavy logic internally.
+3. **Tools (The Executors):** Native local bash and python scripts (e.g., `generate_news_feed.py`) that act as "dumb couriers" returning structured data.
+
+This 3-layer architecture ensures zero context bloat, eliminates hallucinations, and allows the AI to use native terminal execution securely instead of relying on heavy MCP servers.
 
 - **Deploy the Best Tools:** Instantly pull the most cutting-edge workflows, prompt updates, and skills specifically tailored for Antigravity.
 - **Agentic Mode Ready:** Fine-tuned to allow your AI agents to execute massive, end-to-end tasks autonomously without getting stuck.
@@ -45,10 +51,11 @@ Forget digging through terminals. The **AntigravityBar** is a native, ultra-ligh
 ![Antigravity Bar Menu](status-bar/assets/screenshots/dashboard.png)
 
 ### Why you'll love it:
-- **Live System Telemetry:** Professional, color-coded monitoring for CPU, GPU, and RAM, right where you need it.
+- **Live System Telemetry:** Professional, color-coded monitoring for CPU, GPU, and RAM, right where you need it. Now features clear visual distinction between System RAM and local application cache.
+- **Dynamic Skill Fetching:** Fetches skills on-demand from a remote registry to keep your local environment pristine, with one-click cache clearing.
+- **Workflow Radar:** Automatically tracks usage metrics of your AI workflows, allowing you to easily archive unused skills directly from the UI.
 - **Context-Aware Autopilot:** It dynamically watches your IDE and automatically injects the correct `PROFILE.md` so your AI never hallucinates context across different projects.
 - **Real-Time Quota Tracking:** Never guess your API limits again. Live tracking for Gemini 3.1 Pro, Claude Sonnet, and local models.
-- **One-Click Ecosystem Sync:** Instantly pull the newest agents, workflows, and skills from this repo without touching a single terminal command.
 
 ---
 
