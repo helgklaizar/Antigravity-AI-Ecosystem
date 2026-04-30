@@ -81,7 +81,7 @@ struct StatusBarUI {
 
         // 1. Cache
         let cacheColor = colorForCacheMB(cacheMB)
-        let cacheStr = NSAttributedString(string: cacheFormatted, attributes: [
+        let cacheStr = NSAttributedString(string: "💾 " + cacheFormatted, attributes: [
             .font: pctFont, .foregroundColor: cacheColor
         ])
         result.append(cacheStr)

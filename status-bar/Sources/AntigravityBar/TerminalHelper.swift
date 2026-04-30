@@ -91,4 +91,10 @@ struct TerminalHelper {
         let script = "cd '\(ecosystemDir)' && git pull"
         runAppleScript(script)
     }
+
+    static func analyzeChatsAndSyncSkills() {
+        let prompt = "Please analyze recent conversations in ~/.gemini/antigravity/brain. Identify recurring topics and check if we have all necessary skills/workflows downloaded locally. If any are missing, fetch them from the registry."
+        let script = "'\(antigravityCLI)' chat \\\"\(prompt)\\\""
+        runAppleScript(script)
+    }
 }

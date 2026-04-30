@@ -65,7 +65,7 @@ class ProcessManager {
                                     realPath.hasPrefix("/Library/Apple/")) 
                                    && !realPath.hasPrefix("/usr/local/")
                     
-                    if realPath.contains("Safari.app") {
+                    if realPath.contains("Safari.app") || realPath.contains("com.apple.WebKit") || realPath.contains("Safari") {
                         isSystem = false
                     }
                     
@@ -73,6 +73,9 @@ class ProcessManager {
                     var appPath = realPath
                     if isSystem {
                         appName = "macOS System"
+                    } else if realPath.contains("com.apple.WebKit") || name.contains("Safari") {
+                        appName = "Safari"
+                        appPath = "/Applications/Safari.app"
                     } else if let appRange = realPath.range(of: ".app/") {
                         let prefix = realPath[..<appRange.lowerBound]
                         appName = (prefix as NSString).lastPathComponent + ".app"

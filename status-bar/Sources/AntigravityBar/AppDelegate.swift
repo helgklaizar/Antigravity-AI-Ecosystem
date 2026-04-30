@@ -198,6 +198,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         menu.addItem(makeAppsHorizontalItem())
 
         menu.addItem(.separator())
+        menu.addItem(makeWorkflowsRadarItem())
+
+        menu.addItem(.separator())
+        menu.addItem(makeDynamicSkillsItem())
+
+        menu.addItem(.separator())
         menu.addItem(makeHorizontalToolbarItem())
         menu.addItem(.separator())
         
@@ -227,6 +233,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private func makeHorizontalToolbarItem() -> NSMenuItem {
         let item = NSMenuItem()
         
+        let cacheSize = api.cacheSize().formatted
         let allActions: [(String, String, NSColor)] = [
             ("Main\nGEMINI", "doc.text", .systemBlue),
             ("Knowledge\nProfile", "person.crop.circle", .systemPurple),
@@ -234,7 +241,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             ("Global\nWorkflows", "arrow.triangle.branch", .systemTeal),
             ("Setup &\nAudit", "desktopcomputer", .systemIndigo),
             ("Restart &\nReload", "arrow.clockwise", .systemYellow),
-            ("Full\nCleanup", "trash", .systemRed)
+            ("Clean Cache\n\(cacheSize)", "trash", .systemRed)
         ]
         
         let mainStack = NSStackView()
@@ -484,6 +491,363 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         
         item.view = container
         return item
+    }
+
+    private func makeWorkflowsRadarItem() -> NSMenuItem {
+        let item = NSMenuItem()
+        
+        let stats = WorkflowTracker.shared.fetchUsageStats()
+        let topStats = Array(stats.prefix(3))
+        let unusedCount = stats.filter { $0.uses == 0 }.count
+        
+        let mainStack = NSStackView()
+        mainStack.orientation = .horizontal
+        mainStack.distribution = .fillEqually
+        mainStack.spacing = 8
+        
+        // ----------------------------------------
+        // LEFT BOX: HOT WORKFLOWS
+        // ----------------------------------------
+        let hotBox = NSBox()
+        hotBox.boxType = .custom
+        hotBox.borderWidth = 1
+        hotBox.borderColor = NSColor.separatorColor.withAlphaComponent(0.2)
+        hotBox.cornerRadius = 10
+        hotBox.fillColor = NSColor.unemphasizedSelectedContentBackgroundColor.withAlphaComponent(0.2)
+        
+        let hotStack = NSStackView()
+        hotStack.orientation = .vertical
+        hotStack.alignment = .leading
+        hotStack.spacing = 8
+        
+        let hotHeader = NSStackView()
+        hotHeader.orientation = .horizontal
+        hotHeader.alignment = .centerY
+        hotHeader.spacing = 4
+        
+        var flameIcon: NSImage?
+        if #available(macOS 12.0, *) {
+            flameIcon = NSImage(systemSymbolName: "flame.fill", accessibilityDescription: nil)?
+                .withSymbolConfiguration(.init(hierarchicalColor: .systemOrange))
+        } else {
+            flameIcon = NSImage(systemSymbolName: "flame.fill", accessibilityDescription: nil)
+        }
+        
+        let hotIconView = NSImageView(image: flameIcon ?? NSImage())
+        let hotTitle = createLabel(NSAttributedString(string: "HOT WORKFLOWS", attributes: [
+            .font: NSFont.systemFont(ofSize: 10, weight: .bold),
+            .foregroundColor: NSColor.labelColor.withAlphaComponent(0.7)
+        ]))
+        hotHeader.addArrangedSubview(hotIconView)
+        hotHeader.addArrangedSubview(hotTitle)
+        
+        hotStack.addArrangedSubview(hotHeader)
+        
+        if topStats.isEmpty {
+            let emptyLabel = createLabel(NSAttributedString(string: "No data yet", attributes: [
+                .font: NSFont.systemFont(ofSize: 11, weight: .medium),
+                .foregroundColor: NSColor.secondaryLabelColor
+            ]))
+            hotStack.addArrangedSubview(emptyLabel)
+        } else {
+            for stat in topStats {
+                let row = NSStackView()
+                row.orientation = .horizontal
+                row.distribution = .gravityAreas
+                
+                let nameLabel = createLabel(NSAttributedString(string: "/\(stat.name)", attributes: [
+                    .font: NSFont.monospacedSystemFont(ofSize: 11, weight: .medium),
+                    .foregroundColor: NSColor.labelColor
+                ]))
+                
+                let countBox = NSBox()
+                countBox.boxType = .custom
+                countBox.borderWidth = 0
+                countBox.cornerRadius = 4
+                countBox.fillColor = NSColor.systemOrange.withAlphaComponent(0.15)
+                
+                let countLabel = createLabel(NSAttributedString(string: "\(stat.uses)", attributes: [
+                    .font: NSFont.monospacedDigitSystemFont(ofSize: 10, weight: .bold),
+                    .foregroundColor: NSColor.systemOrange
+                ]))
+                
+                countBox.contentView = countLabel
+                countLabel.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+                    countLabel.leadingAnchor.constraint(equalTo: countBox.leadingAnchor, constant: 4),
+                    countLabel.trailingAnchor.constraint(equalTo: countBox.trailingAnchor, constant: -4),
+                    countLabel.topAnchor.constraint(equalTo: countBox.topAnchor, constant: 2),
+                    countLabel.bottomAnchor.constraint(equalTo: countBox.bottomAnchor, constant: -2)
+                ])
+                
+                row.addView(nameLabel, in: .leading)
+                row.addView(countBox, in: .trailing)
+                row.translatesAutoresizingMaskIntoConstraints = false
+                hotStack.addArrangedSubview(row)
+                row.widthAnchor.constraint(equalTo: hotStack.widthAnchor).isActive = true
+            }
+        }
+        
+        // Add spacer to push content up if < 3 items
+        if topStats.count < 3 {
+            let spacer = NSView()
+            spacer.setContentHuggingPriority(.defaultLow, for: .vertical)
+            hotStack.addArrangedSubview(spacer)
+        }
+        
+        hotBox.contentView = hotStack
+        hotStack.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            hotStack.leadingAnchor.constraint(equalTo: hotBox.leadingAnchor, constant: 12),
+            hotStack.trailingAnchor.constraint(equalTo: hotBox.trailingAnchor, constant: -12),
+            hotStack.topAnchor.constraint(equalTo: hotBox.topAnchor, constant: 10),
+            hotStack.bottomAnchor.constraint(equalTo: hotBox.bottomAnchor, constant: -10)
+        ])
+        
+        // ----------------------------------------
+        // RIGHT BOX: COLD STORAGE
+        // ----------------------------------------
+        let coldBox = NSBox()
+        coldBox.boxType = .custom
+        coldBox.borderWidth = 1
+        coldBox.borderColor = NSColor.separatorColor.withAlphaComponent(0.2)
+        coldBox.cornerRadius = 10
+        coldBox.fillColor = NSColor.unemphasizedSelectedContentBackgroundColor.withAlphaComponent(0.2)
+        
+        let coldStack = NSStackView()
+        coldStack.orientation = .vertical
+        coldStack.alignment = .centerX
+        coldStack.distribution = .fill
+        coldStack.spacing = 2
+        
+        let coldHeader = NSStackView()
+        coldHeader.orientation = .horizontal
+        coldHeader.alignment = .centerY
+        coldHeader.spacing = 4
+        
+        var archiveIcon: NSImage?
+        if #available(macOS 12.0, *) {
+            archiveIcon = NSImage(systemSymbolName: "archivebox.fill", accessibilityDescription: nil)?
+                .withSymbolConfiguration(.init(hierarchicalColor: .systemTeal))
+        } else {
+            archiveIcon = NSImage(systemSymbolName: "archivebox.fill", accessibilityDescription: nil)
+        }
+        
+        let coldIconView = NSImageView(image: archiveIcon ?? NSImage())
+        let coldTitle = createLabel(NSAttributedString(string: "COLD STORAGE", attributes: [
+            .font: NSFont.systemFont(ofSize: 10, weight: .bold),
+            .foregroundColor: NSColor.labelColor.withAlphaComponent(0.7)
+        ]))
+        coldHeader.addArrangedSubview(coldIconView)
+        coldHeader.addArrangedSubview(coldTitle)
+        
+        let countField = createLabel(NSAttributedString(string: "\(unusedCount)", attributes: [
+            .font: NSFont.systemFont(ofSize: 24, weight: .heavy),
+            .foregroundColor: NSColor.labelColor
+        ]))
+        
+        let unusedText = createLabel(NSAttributedString(string: "Unused Workflows", attributes: [
+            .font: NSFont.systemFont(ofSize: 10, weight: .medium),
+            .foregroundColor: NSColor.secondaryLabelColor
+        ]))
+        
+        let archiveBtn = NSButton()
+        archiveBtn.title = "Clean Up"
+        archiveBtn.target = self
+        archiveBtn.action = #selector(cleanUpWorkflows)
+        
+        let btnBox = NSBox()
+        btnBox.boxType = .custom
+        btnBox.borderWidth = 0
+        btnBox.cornerRadius = 6
+        btnBox.fillColor = unusedCount > 0 ? NSColor.systemTeal.withAlphaComponent(0.8) : NSColor.tertiaryLabelColor.withAlphaComponent(0.2)
+        
+        let btnLbl = createLabel(NSAttributedString(string: "Clean Up", attributes: [
+            .font: NSFont.systemFont(ofSize: 11, weight: .semibold),
+            .foregroundColor: unusedCount > 0 ? NSColor.white : NSColor.secondaryLabelColor
+        ]))
+        btnBox.contentView = btnLbl
+        btnLbl.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            btnLbl.centerXAnchor.constraint(equalTo: btnBox.centerXAnchor),
+            btnLbl.centerYAnchor.constraint(equalTo: btnBox.centerYAnchor)
+        ])
+        
+        let btnWrapper = NSView()
+        btnBox.translatesAutoresizingMaskIntoConstraints = false
+        archiveBtn.translatesAutoresizingMaskIntoConstraints = false
+        archiveBtn.isTransparent = true
+        archiveBtn.title = ""
+        btnWrapper.addSubview(btnBox)
+        btnWrapper.addSubview(archiveBtn)
+        NSLayoutConstraint.activate([
+            btnBox.leadingAnchor.constraint(equalTo: btnWrapper.leadingAnchor),
+            btnBox.trailingAnchor.constraint(equalTo: btnWrapper.trailingAnchor),
+            btnBox.topAnchor.constraint(equalTo: btnWrapper.topAnchor),
+            btnBox.bottomAnchor.constraint(equalTo: btnWrapper.bottomAnchor),
+            archiveBtn.leadingAnchor.constraint(equalTo: btnWrapper.leadingAnchor),
+            archiveBtn.trailingAnchor.constraint(equalTo: btnWrapper.trailingAnchor),
+            archiveBtn.topAnchor.constraint(equalTo: btnWrapper.topAnchor),
+            archiveBtn.bottomAnchor.constraint(equalTo: btnWrapper.bottomAnchor),
+            btnWrapper.heightAnchor.constraint(equalToConstant: 22)
+        ])
+        
+        if unusedCount == 0 { archiveBtn.isEnabled = false }
+        
+        coldStack.addArrangedSubview(coldHeader)
+        coldStack.setCustomSpacing(4, after: coldHeader)
+        coldStack.addArrangedSubview(countField)
+        coldStack.addArrangedSubview(unusedText)
+        coldStack.setCustomSpacing(6, after: unusedText)
+        coldStack.addArrangedSubview(btnWrapper)
+        
+        btnWrapper.widthAnchor.constraint(equalTo: coldStack.widthAnchor, multiplier: 0.7).isActive = true
+        
+        coldBox.contentView = coldStack
+        coldStack.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            coldStack.leadingAnchor.constraint(equalTo: coldBox.leadingAnchor, constant: 12),
+            coldStack.trailingAnchor.constraint(equalTo: coldBox.trailingAnchor, constant: -12),
+            coldStack.topAnchor.constraint(equalTo: coldBox.topAnchor, constant: 10),
+            coldStack.bottomAnchor.constraint(equalTo: coldBox.bottomAnchor, constant: -10)
+        ])
+        
+        mainStack.addArrangedSubview(hotBox)
+        mainStack.addArrangedSubview(coldBox)
+        
+        let container = NSView(frame: NSRect(x: 0, y: 0, width: 550, height: 110))
+        mainStack.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(mainStack)
+        
+        NSLayoutConstraint.activate([
+            mainStack.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 12),
+            mainStack.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -12),
+            mainStack.topAnchor.constraint(equalTo: container.topAnchor, constant: 4),
+            mainStack.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -4)
+        ])
+        
+        item.view = container
+        return item
+    }
+
+    private func makeDynamicSkillsItem() -> NSMenuItem {
+        let item = NSMenuItem()
+        
+        let mainStack = NSStackView()
+        mainStack.orientation = .vertical
+        mainStack.distribution = .fill
+        mainStack.spacing = 8
+        
+        let header = NSStackView()
+        header.orientation = .horizontal
+        header.alignment = .centerY
+        header.spacing = 6
+        
+        var icon: NSImage?
+        if #available(macOS 12.0, *) {
+            icon = NSImage(systemSymbolName: "network", accessibilityDescription: nil)?
+                .withSymbolConfiguration(.init(hierarchicalColor: .systemPurple))
+        } else {
+            icon = NSImage(systemSymbolName: "network", accessibilityDescription: nil)
+        }
+        let iconView = NSImageView(image: icon ?? NSImage())
+        let title = createLabel(NSAttributedString(string: "DYNAMIC SKILLS HUB", attributes: [
+            .font: NSFont.systemFont(ofSize: 10, weight: .bold),
+            .foregroundColor: NSColor.labelColor.withAlphaComponent(0.7)
+        ]))
+        
+        header.addArrangedSubview(iconView)
+        header.addArrangedSubview(title)
+        
+        let controls = NSStackView()
+        controls.orientation = .horizontal
+        controls.distribution = .gravityAreas
+        controls.spacing = 8
+        
+        let toggleLabel = createLabel(NSAttributedString(string: "Auto-Fetch", attributes: [
+            .font: NSFont.systemFont(ofSize: 11, weight: .medium),
+            .foregroundColor: NSColor.labelColor
+        ]))
+        let toggle = NSSwitch()
+        toggle.state = UserDefaults.standard.bool(forKey: "DynamicSkillsEnabled") ? .on : .off
+        toggle.target = self
+        toggle.action = #selector(dynamicSkillsToggled(_:))
+        
+        let toggleStack = NSStackView()
+        toggleStack.orientation = .horizontal
+        toggleStack.spacing = 4
+        toggleStack.addArrangedSubview(toggleLabel)
+        toggleStack.addArrangedSubview(toggle)
+        
+        let syncBtn = NSButton()
+        syncBtn.title = "Analyze Chats & Fetch"
+        syncBtn.bezelStyle = .rounded
+        syncBtn.target = self
+        syncBtn.action = #selector(analyzeChatsAndSync)
+        
+        controls.addView(toggleStack, in: .leading)
+        controls.addView(syncBtn, in: .trailing)
+        
+        let statusBox = NSBox()
+        statusBox.boxType = .custom
+        statusBox.borderWidth = 0
+        statusBox.cornerRadius = 6
+        statusBox.fillColor = NSColor.systemPurple.withAlphaComponent(0.15)
+        
+        let statusLabel = createLabel(NSAttributedString(string: "Registry: helgklaizar/AI-Ecosystem", attributes: [
+            .font: NSFont.monospacedSystemFont(ofSize: 10, weight: .regular),
+            .foregroundColor: NSColor.systemPurple.withAlphaComponent(0.8)
+        ]))
+        statusBox.contentView = statusLabel
+        statusLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            statusLabel.leadingAnchor.constraint(equalTo: statusBox.leadingAnchor, constant: 8),
+            statusLabel.trailingAnchor.constraint(equalTo: statusBox.trailingAnchor, constant: -8),
+            statusLabel.topAnchor.constraint(equalTo: statusBox.topAnchor, constant: 4),
+            statusLabel.bottomAnchor.constraint(equalTo: statusBox.bottomAnchor, constant: -4)
+        ])
+        
+        mainStack.addArrangedSubview(header)
+        mainStack.addArrangedSubview(controls)
+        mainStack.addArrangedSubview(statusBox)
+        
+        controls.widthAnchor.constraint(equalTo: mainStack.widthAnchor).isActive = true
+        statusBox.widthAnchor.constraint(equalTo: mainStack.widthAnchor).isActive = true
+        
+        let container = NSView(frame: NSRect(x: 0, y: 0, width: 550, height: 95))
+        mainStack.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(mainStack)
+        NSLayoutConstraint.activate([
+            mainStack.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 12),
+            mainStack.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -12),
+            mainStack.topAnchor.constraint(equalTo: container.topAnchor, constant: 4),
+            mainStack.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -4)
+        ])
+        
+        item.view = container
+        return item
+    }
+
+    @objc private func dynamicSkillsToggled(_ sender: NSSwitch) {
+        UserDefaults.standard.set(sender.state == .on, forKey: "DynamicSkillsEnabled")
+    }
+    
+    @objc private func analyzeChatsAndSync() {
+        TerminalHelper.analyzeChatsAndSyncSkills()
+        statusItem.menu?.cancelTracking()
+    }
+    
+    @objc private func cleanUpWorkflows() {
+        let alert = NSAlert()
+        alert.messageText = "Archive Unused Workflows?"
+        alert.informativeText = "Workflows with 0 uses will be moved to the _archive folder."
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "Archive")
+        alert.addButton(withTitle: "Cancel")
+        if alert.runModal() == .alertFirstButtonReturn {
+            WorkflowTracker.shared.archiveUnusedWorkflows()
+            statusItem.menu?.cancelTracking()
+        }
     }
 
     @objc private func toolbarButtonClicked(_ sender: NSButton) {
