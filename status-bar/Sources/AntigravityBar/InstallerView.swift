@@ -9,13 +9,26 @@ struct Node: Identifiable, Hashable {
     var children: [Node]? = nil
 }
 
+struct RegistrySection: Identifiable, Codable {
+    var id: String { title }
+    var title: String
+    var isEnabled: Bool
+    var repositories: [String]
+}
+
+enum InstallerStep {
+    case initial
+    case analyzing
+    case results
+    case installing
+}
+
 @MainActor
 class InstallerViewModel: ObservableObject {
+    @Published var step: InstallerStep = .initial
     @Published var nodes: [Node] = []
-    @Published var isAnalyzing: Bool = false
-    @Published var isInstalling: Bool = false
     @Published var isShowingSettings: Bool = false
-    @Published var sources: [String] = []
+    @Published var registrySections: [RegistrySection] = []
     
     private let registryURL: URL = {
         let home = FileManager.default.homeDirectoryForCurrentUser
@@ -24,89 +37,63 @@ class InstallerViewModel: ObservableObject {
     
     init() {
         loadSources()
-        // Mock data representing the Hub structure (эталон)
-        nodes = [
-            Node(name: "skills", isFolder: true, children: [
-                Node(name: "ai", isFolder: true, children: [Node(name: "agents", isFolder: false), Node(name: "mcp", isFolder: false)]),
-                Node(name: "backend", isFolder: true, children: [Node(name: "nodejs", isFolder: false), Node(name: "python", isFolder: false), Node(name: "rust", isFolder: false)]),
-                Node(name: "database", isFolder: true, children: [Node(name: "prisma", isFolder: false)]),
-                Node(name: "design", isFolder: true, children: [Node(name: "ui", isFolder: false)]),
-                Node(name: "devops", isFolder: true, children: [Node(name: "ci-cd", isFolder: false), Node(name: "docker", isFolder: false)]),
-                Node(name: "frontend", isFolder: true, children: [Node(name: "nextjs", isFolder: false), Node(name: "react", isFolder: false), Node(name: "tailwind", isFolder: false)]),
-                Node(name: "native", isFolder: true, children: [Node(name: "tauri", isFolder: false), Node(name: "apple", isFolder: false)]),
-                Node(name: "testing", isFolder: true, children: [Node(name: "e2e", isFolder: false), Node(name: "unit", isFolder: false)])
-            ]),
-            Node(name: "global_workflows", isFolder: true, children: [
-                Node(name: "arch-evolution.md", isFolder: false),
-                Node(name: "db-migration-engine.md", isFolder: false),
-                Node(name: "feature-pipeline.md", isFolder: false),
-                Node(name: "qa-orchestrator.md", isFolder: false),
-                Node(name: "init-project.md", isFolder: false)
-            ])
-        ]
     }
     
     func analyzeSystem() {
-        isAnalyzing = true
-        // Симулируем анализ локальной системы (парсинг package.json, Cargo.toml и т.д.)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            // Например, анализатор нашел React и Tailwind в открытом проекте:
-            self.toggleSelection(for: "react")
-            self.toggleSelection(for: "tailwind")
-            self.toggleSelection(for: "feature-pipeline.md")
-            self.isAnalyzing = false
+        step = .analyzing
+        // Симулируем процесс
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            self.nodes = [
+                Node(name: "skills", isFolder: true, children: [
+                    Node(name: "frontend", isFolder: true, children: [Node(name: "react.md", isSelected: true, isFolder: false), Node(name: "tailwind.md", isSelected: true, isFolder: false)]),
+                    Node(name: "database", isFolder: true, children: [Node(name: "prisma.md", isSelected: true, isFolder: false)]),
+                    Node(name: "native", isFolder: true, children: [Node(name: "apple-mlx.md", isSelected: false, isFolder: false)])
+                ]),
+                Node(name: "global_workflows", isFolder: true, children: [
+                    Node(name: "feature-pipeline.md", isSelected: true, isFolder: false),
+                    Node(name: "qa-orchestrator.md", isSelected: true, isFolder: false)
+                ])
+            ]
+            self.step = .results
         }
     }
     
     func installSelected() {
-        isInstalling = true
-        // Симулируем скачивание выбранных чекбоксов в ~/.gemini/antigravity/
+        step = .installing
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.isInstalling = false
+            self.step = .initial
         }
-    }
-    
-    private func toggleSelection(for target: String) {
-        func searchAndToggle(in nodes: inout [Node]) -> Bool {
-            var found = false
-            for i in 0..<nodes.count {
-                if nodes[i].name == target {
-                    nodes[i].isSelected = true
-                    found = true
-                }
-                if nodes[i].children != nil {
-                    var children = nodes[i].children!
-                    if searchAndToggle(in: &children) {
-                        nodes[i].children = children
-                        found = true
-                    }
-                }
-            }
-            return found
-        }
-        _ = searchAndToggle(in: &nodes)
     }
     
     // MARK: - Registry Persistence
-    
     func loadSources() {
         do {
             if FileManager.default.fileExists(atPath: registryURL.path) {
                 let data = try Data(contentsOf: registryURL)
+                // Если старый плоский формат - оборачиваем в секции
                 if let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
                    let loadedSources = dict["sources"] as? [String] {
-                    self.sources = loadedSources
+                    self.registrySections = [
+                        RegistrySection(title: "🌌 All Ecosystem Hubs", isEnabled: true, repositories: loadedSources)
+                    ]
+                } else if let loaded = try? JSONDecoder().decode([RegistrySection].self, from: data) {
+                    self.registrySections = loaded
                 }
             }
         } catch {
             print("Failed to load registry: \(error)")
         }
+        
+        if self.registrySections.isEmpty {
+            self.registrySections = [
+                RegistrySection(title: "🌌 Core Antigravity", isEnabled: true, repositories: ["https://github.com/sickn33/antigravity-awesome-skills"])
+            ]
+        }
     }
     
     func saveSources() {
         do {
-            let dict: [String: Any] = ["sources": sources]
-            let data = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+            let data = try JSONEncoder().encode(registrySections)
             try data.write(to: registryURL)
         } catch {
             print("Failed to save registry: \(error)")
@@ -149,56 +136,100 @@ struct InstallerView: View {
             
             Divider()
             
-            // Content List
-            List {
-                ForEach($viewModel.nodes) { $node in
-                    NodeView(node: $node)
-                }
-            }
-            .listStyle(.sidebar)
-            
-            Divider()
-            
-            // Footer
-            HStack {
-                Button(action: {
-                    viewModel.analyzeSystem()
-                }) {
-                    HStack {
-                        if viewModel.isAnalyzing {
-                            ProgressView().controlSize(.small).padding(.trailing, 2)
-                            Text("Analyzing Stack...")
-                        } else {
+            // Dynamic Content
+            VStack {
+                switch viewModel.step {
+                case .initial:
+                    Spacer()
+                    Button(action: {
+                        viewModel.analyzeSystem()
+                    }) {
+                        HStack(spacing: 8) {
                             Image(systemName: "magnifyingglass")
                             Text("Analyze System")
+                                .font(.headline)
                         }
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 12)
                     }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.purple)
+                    .controlSize(.large)
+                    Spacer()
+                    
+                case .analyzing:
+                    Spacer()
+                    VStack(spacing: 16) {
+                        ProgressView()
+                            .scaleEffect(1.5)
+                        Text("Analyzing standard places and projects...")
+                            .font(.headline)
+                        Text("Fetching remote repositories and resolving context.")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
+                    Spacer()
+                    
+                case .results:
+                    VStack(alignment: .leading, spacing: 0) {
+                        // Analysis Report
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Analysis Complete")
+                                .font(.headline)
+                                .foregroundColor(.green)
+                            Text("Missing: React and Tailwind skills are not configured globally.")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color.green.opacity(0.1))
+                        
+                        List {
+                            ForEach($viewModel.nodes) { $node in
+                                NodeView(node: $node)
+                            }
+                        }
+                        .listStyle(.sidebar)
+                    }
+                    
+                case .installing:
+                    Spacer()
+                    VStack(spacing: 16) {
+                        ProgressView()
+                            .scaleEffect(1.5)
+                        Text("Installing Skills...")
+                            .font(.headline)
+                        Text("Injecting selected configurations into ~/.gemini/antigravity/")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
+                    Spacer()
                 }
-                .disabled(viewModel.isAnalyzing || viewModel.isInstalling)
-                
-                Spacer()
-                
-                Button(action: {
-                    viewModel.installSelected()
-                }) {
-                    HStack {
-                        if viewModel.isInstalling {
-                            ProgressView().controlSize(.small).padding(.trailing, 2)
-                            Text("Installing...")
-                        } else {
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
+            // Footer
+            if viewModel.step == .results {
+                Divider()
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        viewModel.installSelected()
+                    }) {
+                        HStack {
                             Image(systemName: "square.and.arrow.down")
                             Text("Install Selected")
                         }
                     }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.purple)
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(.purple)
-                .disabled(viewModel.isAnalyzing || viewModel.isInstalling)
+                .padding()
+                .background(Color(NSColor.controlBackgroundColor))
             }
-            .padding()
-            .background(Color(NSColor.controlBackgroundColor))
         }
-        .frame(width: 500, height: 600)
+        .frame(minWidth: 500, idealWidth: 500, minHeight: 450, idealHeight: 600)
         .sheet(isPresented: $viewModel.isShowingSettings) {
             SourcesSettingsView(viewModel: viewModel)
         }
@@ -238,38 +269,58 @@ struct SourcesSettingsView: View {
             Text("Registry Sources")
                 .font(.headline)
             
-            Text("The installer will fetch skills and workflows from these GitHub repositories.")
+            Text("Toggle groups to optimize your context window. Only enabled groups will be fetched.")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
             
             List {
-                ForEach(viewModel.sources, id: \.self) { source in
-                    HStack {
-                        Image(systemName: "globe")
-                            .foregroundColor(.purple)
-                        Text(source)
-                        Spacer()
-                        Button(action: {
-                            viewModel.sources.removeAll { $0 == source }
-                            viewModel.saveSources()
-                        }) {
-                            Image(systemName: "trash")
-                                .foregroundColor(.red)
+                ForEach(viewModel.registrySections.indices, id: \.self) { index in
+                    Section(header: HStack {
+                        Toggle("", isOn: Binding(
+                            get: { viewModel.registrySections[index].isEnabled },
+                            set: { newValue in
+                                viewModel.registrySections[index].isEnabled = newValue
+                                viewModel.saveSources()
+                            }
+                        ))
+                        .labelsHidden()
+                        
+                        Text(viewModel.registrySections[index].title)
+                            .font(.headline)
+                            .foregroundColor(viewModel.registrySections[index].isEnabled ? .primary : .secondary)
+                    }) {
+                        if viewModel.registrySections[index].isEnabled {
+                            ForEach(viewModel.registrySections[index].repositories, id: \.self) { repo in
+                                HStack {
+                                    Image(systemName: "globe")
+                                        .foregroundColor(.purple)
+                                    Text(repo)
+                                        .font(.system(.body, design: .monospaced))
+                                    Spacer()
+                                    Button(action: {
+                                        viewModel.registrySections[index].repositories.removeAll { $0 == repo }
+                                        viewModel.saveSources()
+                                    }) {
+                                        Image(systemName: "trash")
+                                            .foregroundColor(.red)
+                                    }
+                                    .buttonStyle(.plain)
+                                }
+                                .padding(.vertical, 2)
+                            }
                         }
-                        .buttonStyle(.plain)
                     }
-                    .padding(.vertical, 4)
                 }
             }
-            .frame(height: 150)
+            .frame(minHeight: 250)
             .border(Color.secondary.opacity(0.2), width: 1)
             
             HStack {
                 TextField("https://github.com/...", text: $newSource)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                Button("Add") {
-                    if !newSource.isEmpty {
-                        viewModel.sources.append(newSource)
+                Button("Add to First Group") {
+                    if !newSource.isEmpty, !viewModel.registrySections.isEmpty {
+                        viewModel.registrySections[0].repositories.append(newSource)
                         viewModel.saveSources()
                         newSource = ""
                     }
@@ -285,6 +336,6 @@ struct SourcesSettingsView: View {
             }
         }
         .padding()
-        .frame(width: 450)
+        .frame(width: 550)
     }
 }
