@@ -31,7 +31,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         }
 
         startPolling()
-        checkAndShowSetupWizard()
     }
 
     // MARK: - Polling
@@ -197,12 +196,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
         menu.addItem(.separator())
         menu.addItem(makeHorizontalToolbarItem())
-        menu.addItem(.separator())
         
-        let quitItem = NSMenuItem(title: "Quit", action: #selector(quitApp), keyEquivalent: "")
-        quitItem.target = self
-        menu.addItem(quitItem)
-
         statusItem.menu = menu
         statusItem.button?.performClick(nil)
         DispatchQueue.main.async { [weak self] in
@@ -263,14 +257,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         
         let cacheSize = api.cacheSize().formatted
         let allActions: [(String, String, NSColor)] = [
-            ("Main\nGEMINI", "doc.text", .systemBlue),
-            ("Knowledge\nProfile", "person.crop.circle", .systemPurple),
-            ("Skills\n& Tools", "wrench.and.screwdriver", .systemOrange),
-            ("Global\nWorkflows", "arrow.triangle.branch", .systemTeal),
-            ("Setup &\nAudit", "desktopcomputer", .systemIndigo),
+            ("Open\n.gemini", "folder", .systemBlue),
             ("Restart &\nReload", "arrow.clockwise", .systemYellow),
             ("Clean Cache\n\(cacheSize)", "trash", .systemRed),
-            ("Archive\nUnused", "archivebox", .systemGray)
+            ("Quit\nAntigravity", "xmark.circle", .systemGray)
         ]
         
         let wrapperStack = NSStackView()
@@ -364,22 +354,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             return rowStack
         }
         
-        let row1Stack = createRow(actions: Array(allActions[0..<4]), startIndex: 0)
-        let row2Stack = createRow(actions: Array(allActions[4...]), startIndex: 4)
+        let rowStack = createRow(actions: allActions, startIndex: 0)
         
-        mainStack.addArrangedSubview(row1Stack)
-        mainStack.addArrangedSubview(row2Stack)
+        mainStack.addArrangedSubview(rowStack)
         
-        row1Stack.translatesAutoresizingMaskIntoConstraints = false
-        row2Stack.translatesAutoresizingMaskIntoConstraints = false
+        rowStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            row1Stack.widthAnchor.constraint(equalToConstant: 526),
-            row2Stack.widthAnchor.constraint(equalToConstant: 526)
+            rowStack.widthAnchor.constraint(equalToConstant: 526)
         ])
         
         wrapperStack.addArrangedSubview(mainStack)
         
-        let container = NSView(frame: NSRect(x: 0, y: 0, width: 550, height: 185))
+        let container = NSView(frame: NSRect(x: 0, y: 0, width: 550, height: 105))
         wrapperStack.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(wrapperStack)
         
@@ -878,22 +864,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             switch segment {
-            case 0: self.openMainGemini()
-            case 1: self.openProfile()
-            case 2: self.openSkills()
-            case 3: self.openWorkflows()
-            case 4: self.handleSetupWizard()
-            case 5: self.restartAndReload()
-            case 6: self.fullCleanup()
-            case 7: self.archiveUnusedItemsBackground()
+            case 0: self.openGeminiFolder()
+            case 1: self.restartAndReload()
+            case 2: self.fullCleanup()
+            case 3: self.quitApp()
             default: break
             }
-        }
-    }
-
-    private func archiveUnusedItemsBackground() {
-        DispatchQueue.global(qos: .background).async {
-            WorkflowTracker.shared.archiveUnusedWorkflows()
         }
     }
 
@@ -1021,28 +997,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     // MARK: - Actions
 
-    @objc private func openMainGemini() { openInAntigravity(EnvPaths.geminiDir + "/GEMINI.md") }
-    @objc private func openProfile() { openInAntigravity(EnvPaths.antigravityDir + "/knowledge/user_ecosystem_profile/artifacts/PROFILE.md") }
-    @objc private func openSkills() { openInAntigravity(EnvPaths.antigravityDir + "/skills") }
-    @objc private func openWorkflows() { openInAntigravity(EnvPaths.antigravityDir + "/global_workflows") }
-
-    @objc private func handleSetupWizard() {
-        let profilePath = EnvPaths.antigravityDir + "/knowledge/user_ecosystem_profile/metadata.json"
-        if FileManager.default.fileExists(atPath: profilePath) {
-            TerminalHelper.autoConfigureEcosystem()
-        } else {
-            WizardWindowController.shared.showWindow()
-        }
-    }
-
-    private func checkAndShowSetupWizard() {
-        let profilePath = EnvPaths.antigravityDir + "/knowledge/user_ecosystem_profile/metadata.json"
-        if !FileManager.default.fileExists(atPath: profilePath) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                WizardWindowController.shared.showWindow()
-            }
-        }
-    }
+    @objc private func openGeminiFolder() { NSWorkspace.shared.open(URL(fileURLWithPath: EnvPaths.geminiDir)) }
 
     // MARK: - Unified Utilities
 

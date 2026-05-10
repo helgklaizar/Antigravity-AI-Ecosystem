@@ -1,49 +1,72 @@
 ---
-name: e2e-testing-patterns
-description: "Build reliable, fast, and maintainable end-to-end test suites that provide confidence to ship code quickly and catch regressions before users do."
-risk: safe
-source: community
-date_added: "2026-02-27"
+name: End-to-End (E2E) Testing
+description: "This project uses [Cypress](https://www.cypress.io/) for end-to-end (E2E) testing, which simulates real user interactions in a browser. The E2E tes..."
+category: references
 ---
 
-# E2E Testing Patterns
+# End-to-End (E2E) Testing
 
-Build reliable, fast, and maintainable end-to-end test suites that provide confidence to ship code quickly and catch regressions before users do.
+This project uses [Cypress](https://www.cypress.io/) for end-to-end (E2E) testing, which simulates real user interactions in a browser. The E2E tests are located primarily within the `devtools/` package.
 
-## Use this skill when
+## Running E2E Tests
 
-- Implementing end-to-end test automation
-- Debugging flaky or unreliable tests
-- Testing critical user workflows
-- Setting up CI/CD test pipelines
-- Testing across multiple browsers
-- Validating accessibility requirements
-- Testing responsive designs
-- Establishing E2E testing standards
+The primary way to run E2E tests is through the `pnpm` script defined in the root `package.json`.
 
-## Do not use this skill when
+1.  **Build DevTools:** The E2E tests run against a built version of the devtools extension. You must build it first:
 
-- You only need unit or integration tests
-- The environment cannot support stable UI automation
-- You cannot provision safe test accounts or data
+    ```shell
+    pnpm -F ng-devtools-mcp build:dev
+    ```
 
-## Instructions
+2.  **Run Cypress:** Use the `cy:open` or `cy:run` script:
+    - To open the interactive Cypress Test Runner:
+      ```shell
+      pnpm -F ng-devtools-mcp cy:open
+      ```
+    - To run the tests headlessly in the terminal (ideal for CI):
+      ```shell
+      pnpm -F ng-devtools-mcp cy:run
+      ```
 
-1. Identify critical user journeys and success criteria.
-2. Build stable selectors and test data strategies.
-3. Implement tests with retries, tracing, and isolation.
-4. Run in CI with parallelization and artifact capture.
+## Test Structure
 
-## Safety
+- **Configuration:** The main Cypress configuration is located at `devtools/cypress.json`.
+- **Specs:** Test files (specs) are located in `devtools/cypress/integration/`.
+- **Custom Commands:** Reusable custom commands and actions are defined in `devtools/cypress/support/`.
 
-- Avoid running destructive tests against production.
-- Use dedicated test data and scrub sensitive output.
+### Example E2E Test Snippet
 
-## Resources
+A typical test might look like this:
 
-- `resources/implementation-playbook.md` for detailed E2E patterns and templates.
+```typescript
+// in devtools/cypress/integration/profiler.spec.ts
 
-## Limitations
-- Use this skill only when the task clearly matches the scope described above.
-- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
-- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.
+describe('Profiler', () => {
+  beforeEach(() => {
+    cy.visit('/?e2e-app');
+    cy.wait(1000);
+    cy.get('ng-devtools-tabs').find('a').contains('Profiler').click();
+  });
+
+  it('should record and display profiling data', () => {
+    // Find the record button and click it
+    cy.get('button[aria-label="start-recording-button"]').click();
+
+    // Interact with the test application to generate profiling data
+    cy.get('body').find('#cards button').first().click();
+    cy.wait(500);
+
+    // Stop recording
+    cy.get('button[aria-label="stop-recording-button"]').click();
+
+    // Assert that the flame graph is now visible
+    cy.get('ng-devtools-recording-timeline').find('canvas').should('be.visible');
+  });
+});
+```
+
+### Best Practices
+
+- **Use `data-` attributes:** Whenever possible, use `data-cy` or similar attributes for selecting elements to make tests more resilient to CSS or structural changes.
+- **Custom Commands:** Encapsulate common sequences of actions into custom commands in the `support` directory to keep tests clean and readable.
+- **Wait for Application State:** Use `cy.wait()` for arbitrary waits sparingly. Prefer to wait for specific UI elements to appear or for network requests to complete to avoid flaky tests.
