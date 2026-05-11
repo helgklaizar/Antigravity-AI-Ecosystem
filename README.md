@@ -22,7 +22,7 @@ This repository houses the **Antigravity Bar**, a native Swift macOS application
 Previously, this repository contained hundreds of markdown skills, global workflows, and templates. This bloated the repository and created sync issues across multiple local projects.
 
 **The New Paradigm:**
-We have moved to a **Decentralized, JIT (Just-In-Time) Delivery Model**. The Antigravity Bar now features a built-in **AI Ecosystem Installer**. It pulls agentic skills, instructions, and workflows dynamically from a curated registry of external GitHub repositories (including community hubs like `awesome-cursorrules` and official vendor hubs like `anthropics/skills`).
+We have moved to a **Decentralized, JIT (Just-In-Time) Delivery Model**. The Antigravity Bar now features a built-in **Antigravity Bar Installer**. It pulls agentic skills, instructions, and workflows dynamically from a curated registry of external GitHub repositories (including community hubs like `awesome-cursorrules` and official vendor hubs like `anthropics/skills`).
 
 This ensures your local `~/.gemini/antigravity/` folder is always populated with only the tools you actually need for the active project, keeping the context window pristine.
 
@@ -32,7 +32,7 @@ This ensures your local `~/.gemini/antigravity/` folder is always populated with
 
 The Antigravity Bar lives in your macOS menu bar, giving you instant access to:
 
-### 🪄 1. AI Ecosystem Installer (Multi-Repo Package Manager)
+### 🪄 1. Antigravity Bar Installer (Multi-Repo Package Manager)
 - **Dynamic Fetching:** Uses `registry.json` to scan top AI community repositories (e.g., `midudev/autoskills`, `garrytan/gstack`, `sickn33/antigravity-awesome-skills`).
 - **Stack Analyzer:** Scans your active IDE project and auto-selects the correct AI skills (React, Rust, Tailwind) to download.
 - **Global Installation:** Injects the downloaded markdown files directly into your local `~/.gemini/antigravity/` environment.
